@@ -146,7 +146,7 @@ public class CtrEasyJob implements ActionListener {
             frame.setSize(1000, 500);
             frame.setVisible(true);
 
-        }else if (actComm.compareTo(PanelHFavoritos.bFAtras) == 0) {
+        }else if ((actComm.compareTo(PanelHFavoritos.bFAtras) == 0)||(actComm.compareTo(PanelSolicitudHorario.bSAtras) == 0)) {
 
 
             JComponent comp = (JComponent) e.getSource();
@@ -158,6 +158,27 @@ public class CtrEasyJob implements ActionListener {
 
 
             PanelHorario panel = new PanelHorario();
+
+            panel.controlador(this);
+
+            frame.getContentPane().add(panel);
+            frame.pack();
+
+            frame.setSize(1000, 500);
+            frame.setVisible(true);
+
+        }else if (actComm.compareTo(PanelHorario.bSHorario) == 0) {
+
+
+            JComponent comp = (JComponent) e.getSource();
+            Window win = SwingUtilities.getWindowAncestor(comp);
+            win.dispose();
+
+            JFrame frame = new JFrame("SOLICITAR HORARIO");
+            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+
+            PanelSolicitudHorario panel = new PanelSolicitudHorario();
 
             panel.controlador(this);
 

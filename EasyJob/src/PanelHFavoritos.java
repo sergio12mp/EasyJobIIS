@@ -10,7 +10,7 @@ public class PanelHFavoritos extends JPanel implements VistaEasyJob {
     private JButton fAtras;
     private JLabel fav, hFav;
 
-    static String bFAtras = "ATRAS";
+    static String bFAtras = "ATRAS \n";
 
 
     public PanelHFavoritos() {
