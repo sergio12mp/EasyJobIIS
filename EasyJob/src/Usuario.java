@@ -7,14 +7,13 @@ public abstract class Usuario {
     private String FotoPerfil;
     private String DNI;
     private String Telefono;
-    private String UsuarioDeAcceso;
     private String Contrasena;
     private String QR;
 
     public Usuario(String nombre, String apellidos, String correoElectronico,  String DNI, String telefono,  String contrasena) {
         Nombre = nombre;
         Apellidos = apellidos;
-        CorreElectronico = correElectronico;
+        CorreoElectronico = correoElectronico;
         this.DNI = DNI;
         Telefono = telefono;
         Contrasena = contrasena;
@@ -37,11 +36,11 @@ public abstract class Usuario {
     }
 
     public String getCorreoElectronico() {
-        return CorreElectronico;
+        return CorreoElectronico;
     }
 
     public void setCorreoElectronico(String correElectronico) {
-        CorreElectronico = correElectronico;
+        CorreoElectronico = correElectronico;
     }
 
     public String getFotoPerfil() {
@@ -66,14 +65,6 @@ public abstract class Usuario {
 
     public void setTelefono(String telefono) {
         Telefono = telefono;
-    }
-
-    public String getUsuarioDeAcceso() {
-        return UsuarioDeAcceso;
-    }
-
-    public void setUsuarioDeAcceso(String usuarioDeAcceso) {
-        UsuarioDeAcceso = usuarioDeAcceso;
     }
 
     public String getContrasena() {
