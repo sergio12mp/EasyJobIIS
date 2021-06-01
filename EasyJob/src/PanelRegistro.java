@@ -5,9 +5,13 @@ import java.awt.event.ActionListener;
 
 public class PanelRegistro extends JPanel implements VistaEasyJob{
 
+    private static final String BT_NEW_USUARIO_ACCION_COMMAND = "BT_NEW_USUARIO_ACCION_COMMAND" ;
+
     private JLabel registro, status, nom, apell, cor, tele, dn, cont;
     private JTextField nombre, apellidos, correo, telefono, dni, contrasena;
     private JButton registrar;
+
+    ConexionBD conex = new ConexionBaseDatosJDBC();
 
 
     public PanelRegistro() {
@@ -81,6 +85,8 @@ public class PanelRegistro extends JPanel implements VistaEasyJob{
                     //status.setText("Registrado con exito");
                     JOptionPane.showMessageDialog(null, "Registrado con exito");
 
+                    conex.introducirUsuario(new Empleado(nomb, apellid, corr, id, telef, contra));
+
                     JComponent comp = (JComponent) e.getSource();
                     Window win = SwingUtilities.getWindowAncestor(comp);
                     win.dispose();
@@ -110,5 +116,32 @@ public class PanelRegistro extends JPanel implements VistaEasyJob{
         add(status);
         add(Box.createVerticalStrut(10));
         add(registrar);
+    }
+
+    public JTextField getNombre() {return nombre;}
+
+    public JTextField getApellidos (){
+        return apellidos;
+    }
+
+    public JTextField getDNI (){
+        return dni;
+    }
+
+    public JTextField getCorreo (){
+        return correo;
+    }
+
+    public JTextField getTelefono(){
+        return telefono;
+    }
+
+    public JTextField getContrasena () {
+        return contrasena;
+    }
+
+    public void controlador (CtrlNuevoUsuario c) {
+        registrar.addActionListener(c);
+        registrar.setActionCommand(BT_NEW_USUARIO_ACCION_COMMAND);
     }
 }
