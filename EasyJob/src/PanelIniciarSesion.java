@@ -5,16 +5,20 @@ import java.awt.event.ActionListener;
 
 public class PanelIniciarSesion extends JPanel implements VistaEasyJob{
 
-        static final String botonLogin = "Entrar";
+    static final String botonLogin = "Entrar";
     static final String botonRegistrar = "Registrarse";
 
-    JLabel login, blanco;
-    JTextField dni, contrasena;
-    JButton aceptar, registrar;
+    private JLabel login, blanco;
+    private JTextField dni, contrasena;
+    private JButton aceptar, registrar;
 
     public PanelIniciarSesion() {
 
+        // Elegimos el Layout del panel
+
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+
+        // Inicializamos todos los componentes
 
         login = new JLabel("Introduce tu DNI y contraseña: ");
         login.setMaximumSize(new Dimension(180, 40));
@@ -32,6 +36,7 @@ public class PanelIniciarSesion extends JPanel implements VistaEasyJob{
         contrasena.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         aceptar = new JButton(botonLogin);
+        aceptar.setMinimumSize(new Dimension(150, 20));
         aceptar.setAlignmentX(Component.CENTER_ALIGNMENT);
         aceptar.addActionListener(new ActionListener() {
             @Override
@@ -56,7 +61,10 @@ public class PanelIniciarSesion extends JPanel implements VistaEasyJob{
         });
 
         registrar = new JButton(botonRegistrar);
+        registrar.setMinimumSize(new Dimension(150, 20));
         registrar.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        // Añadimos al panel
 
         add(login);
         add(dni);

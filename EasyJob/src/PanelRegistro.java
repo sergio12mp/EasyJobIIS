@@ -2,13 +2,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
 
 public class PanelRegistro extends JPanel implements VistaEasyJob{
 
-    JLabel registro, status, nom, apell, cor, tele, dn, cont;
-    JTextField nombre, apellidos, correo, telefono, dni, contrasena;
-    JButton registrar;
+    private JLabel registro, status, nom, apell, cor, tele, dn, cont;
+    private JTextField nombre, apellidos, correo, telefono, dni, contrasena;
+    private JButton registrar;
 
 
     public PanelRegistro() {

@@ -54,6 +54,10 @@ public class CtrEasyJob implements ActionListener {
             frame.setSize(600, 400);
             frame.setVisible(true);
 
+        } else if (actComm.compareTo(PanelVistaPrincipal.bCS) == 0) {
+
+            System.exit(0);
+
         } else if (actComm.compareTo(PanelVistaPrincipal.bHorario) == 0) {
 
             JComponent comp = (JComponent) e.getSource();
@@ -69,6 +73,53 @@ public class CtrEasyJob implements ActionListener {
             frame.pack();
 
             frame.setSize(600, 400);
+            frame.setVisible(true);
+
+        } else if (actComm.compareTo(PanelVistaPrincipal.bChat) == 0) {
+
+            JComponent comp = (JComponent) e.getSource();
+            Window win = SwingUtilities.getWindowAncestor(comp);
+            win.dispose();
+
+            JFrame frame = new JFrame("Chat");
+            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+            PanelChat panel = new PanelChat();
+            panel.controlador(this);
+
+            frame.getContentPane().add(panel);
+            frame.pack();
+
+            frame.setSize(800, 400);
+            frame.setVisible(true);
+
+        } else if(actComm.compareTo(PanelChat.ENVIARMENSAJE) == 0) {
+
+            JOptionPane.showMessageDialog(null, "No se pueden enviar mensajes. Servidor en mantenimiento");
+
+
+        } else if(actComm.compareTo(PanelChat.MENSAJESPENDIENTES) == 0) {
+
+            JOptionPane.showMessageDialog(null, "No se pueden revisar los mensajes. Servidor en mantenimiento");
+
+        } else if(actComm.compareTo(PanelChat.chatATRAS) == 0) {
+
+            JComponent comp = (JComponent) e.getSource();
+            Window win = SwingUtilities.getWindowAncestor(comp);
+            win.dispose();
+
+            JFrame frame = new JFrame("MENU");
+            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+
+            PanelVistaPrincipal panel = new PanelVistaPrincipal();
+
+            panel.controlador(this);
+
+            frame.getContentPane().add(panel);
+            frame.pack();
+
+            frame.setSize(1000, 500);
             frame.setVisible(true);
 
         }
