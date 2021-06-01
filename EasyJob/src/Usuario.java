@@ -1,7 +1,3 @@
-<<<<<<< Updated upstream
-public class Usuario {
-  
-=======
 public abstract class Usuario {
 
     private String Nombre;
@@ -97,5 +93,4 @@ public abstract class Usuario {
     public void setQR(String QR) {
         this.QR = QR;
     }
->>>>>>> Stashed changes
 }
