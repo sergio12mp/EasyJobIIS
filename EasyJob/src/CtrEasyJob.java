@@ -105,7 +105,7 @@ public class CtrEasyJob implements ActionListener {
 
             JOptionPane.showMessageDialog(null, "No se pueden revisar los mensajes. Servidor en mantenimiento");
 
-        } else if ((actComm.compareTo(PanelHorario.bHAtras) == 0) || (actComm.compareTo(PanelChat.chatATRAS) == 0)) {
+        } else if ((actComm.compareTo(PanelHorario.bHAtras) == 0) || (actComm.compareTo(PanelChat.chatATRAS) == 0)||(actComm.compareTo(PanelFichar.bMFichar) == 0)) {
 
             JComponent comp = (JComponent) e.getSource();
             Window win = SwingUtilities.getWindowAncestor(comp);
@@ -153,7 +153,7 @@ public class CtrEasyJob implements ActionListener {
             Window win = SwingUtilities.getWindowAncestor(comp);
             win.dispose();
 
-            JFrame frame = new JFrame("FAVORITOS");
+            JFrame frame = new JFrame("HORARIOS");
             frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 
@@ -179,6 +179,27 @@ public class CtrEasyJob implements ActionListener {
 
 
             PanelSolicitudHorario panel = new PanelSolicitudHorario();
+
+            panel.controlador(this);
+
+            frame.getContentPane().add(panel);
+            frame.pack();
+
+            frame.setSize(1000, 500);
+            frame.setVisible(true);
+
+        }else if (actComm.compareTo(PanelVistaPrincipal.bFichar) == 0) {
+
+
+            JComponent comp = (JComponent) e.getSource();
+            Window win = SwingUtilities.getWindowAncestor(comp);
+            win.dispose();
+
+            JFrame frame = new JFrame("FICHAR");
+            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+
+            PanelFichar panel = new PanelFichar();
 
             panel.controlador(this);
 
