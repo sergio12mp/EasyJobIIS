@@ -22,6 +22,23 @@ public class Chat {
         mensajes.remove(m);
     }
 
+    public Mensaje buscarMensaje (Mensaje m){
+        Mensaje res = null;
+        if (!mensajes.contains(m)) {
+            System.out.print("El mensaje no está en la base de datos");
+            return res;
+        } else {
+            int i = 0;
+            while (!mensajes.get(i).equals(m)){
+                i++;
+            }
+            if (i < mensajes.size()){
+                res =  mensajes.get(i);
+            }
+        }
+        return res;
+    }
+
     public String verMensajes () {
         System.out.println("**********************************");
         StringJoiner sj = new StringJoiner("\n");
