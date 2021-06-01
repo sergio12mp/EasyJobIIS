@@ -9,7 +9,7 @@ public class Main {
 
         PanelIniciarSesion panel = new PanelIniciarSesion();
       //  PanelVistaPrincipal panel = new PanelVistaPrincipal();
-
+           // PanelHorario panel = new PanelHorario();
         CtrEasyJob ctr = new CtrEasyJob(panel);
           panel.controlador(ctr);
 

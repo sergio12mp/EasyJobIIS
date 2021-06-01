@@ -16,7 +16,9 @@ public class CtrEasyJob implements ActionListener {
 
         String actComm = e.getActionCommand();
 
-        if (actComm.compareTo(PanelIniciarSesion.botonLogin) == 0) {
+        if ((actComm.compareTo(PanelIniciarSesion.botonLogin) == 0)
+            //&&loginOK(usuario,contraseña)
+        ) {
 
             JComponent comp = (JComponent) e.getSource();
             Window win = SwingUtilities.getWindowAncestor(comp);
@@ -67,7 +69,8 @@ public class CtrEasyJob implements ActionListener {
             JFrame frame = new JFrame("Horario");
             frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-            PanelRegistro panel = new PanelRegistro();
+            PanelHorario panel = new PanelHorario();
+            panel.controlador(this);
 
             frame.getContentPane().add(panel);
             frame.pack();
@@ -93,16 +96,16 @@ public class CtrEasyJob implements ActionListener {
             frame.setSize(800, 400);
             frame.setVisible(true);
 
-        } else if(actComm.compareTo(PanelChat.ENVIARMENSAJE) == 0) {
+        } else if (actComm.compareTo(PanelChat.ENVIARMENSAJE) == 0) {
 
             JOptionPane.showMessageDialog(null, "No se pueden enviar mensajes. Servidor en mantenimiento");
 
 
-        } else if(actComm.compareTo(PanelChat.MENSAJESPENDIENTES) == 0) {
+        } else if (actComm.compareTo(PanelChat.MENSAJESPENDIENTES) == 0) {
 
             JOptionPane.showMessageDialog(null, "No se pueden revisar los mensajes. Servidor en mantenimiento");
 
-        } else if(actComm.compareTo(PanelChat.chatATRAS) == 0) {
+        } else if ((actComm.compareTo(PanelHorario.bHAtras) == 0) || (actComm.compareTo(PanelChat.chatATRAS) == 0)) {
 
             JComponent comp = (JComponent) e.getSource();
             Window win = SwingUtilities.getWindowAncestor(comp);

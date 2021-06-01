@@ -13,7 +13,6 @@ public class Horario {
     }
 
 
-
     public Date gethInicio() {
         return hInicio;
     }
