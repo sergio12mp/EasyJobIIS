@@ -30,6 +30,10 @@ public class Cita {
     public void setRemitente(Usuario remitente){
         this.remitente = remitente;
     }
+    public java.util.LinkedList<Usuario> getDestinatarios() {
+        return destinatarios;
+    }
+
     public String toString() {
         String res = "Solicitud cita de ";
         res += remitente.getNombre() + ", para el " + fecha + "\n ESTADO: ";
