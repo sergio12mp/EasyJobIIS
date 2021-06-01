@@ -8,9 +8,10 @@ public class Main {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         PanelIniciarSesion panel = new PanelIniciarSesion();
+      //  PanelVistaPrincipal panel = new PanelVistaPrincipal();
 
         CtrEasyJob ctr = new CtrEasyJob(panel);
-        panel.controlador(ctr);
+          panel.controlador(ctr);
 
         frame.getContentPane().add(panel);
         frame.pack();
@@ -27,6 +28,7 @@ public class Main {
             @Override
             public void run() {
                 createAndShowGui();
-            }});
+            }
+        });
     }
 }
