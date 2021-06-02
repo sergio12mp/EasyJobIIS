@@ -3,11 +3,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class CtrChat implements ActionListener {
-
+public class CtrFichar implements ActionListener {
     VistaEasyJob vistaEasy;     // Vista
 
-    public CtrChat(VistaEasyJob vb) {
+    public CtrFichar(VistaEasyJob vb) {
         vistaEasy = vb;
     }
 
@@ -16,16 +15,7 @@ public class CtrChat implements ActionListener {
 
         String actComm = e.getActionCommand();
 
-        if (actComm.compareTo(PanelChat.ENVIARMENSAJE) == 0) {
-
-            JOptionPane.showMessageDialog(null, "No se pueden enviar mensajes. Servidor en mantenimiento");
-
-
-        } else if (actComm.compareTo(PanelChat.MENSAJESPENDIENTES) == 0) {
-
-            JOptionPane.showMessageDialog(null, "No se pueden revisar los mensajes. Servidor en mantenimiento");
-
-        } else if (actComm.compareTo(PanelChat.chatATRAS) == 0) {
+        if (actComm.compareTo(PanelFichar.bMFichar) == 0) {
 
             JComponent comp = (JComponent) e.getSource();
             Window win = SwingUtilities.getWindowAncestor(comp);
@@ -36,9 +26,7 @@ public class CtrChat implements ActionListener {
 
 
             PanelVistaPrincipal panel = new PanelVistaPrincipal();
-
             CtrEasyJob ctr = new CtrEasyJob(panel);
-
             panel.controlador(ctr);
 
             frame.getContentPane().add(panel);
