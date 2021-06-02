@@ -1,13 +1,13 @@
 import javax.swing.*;
 import java.awt.event.ActionListener;
 
-public class PanelCCorreo extends JPanel implements VistaEasyJob {
+public class PanelCCCorreo extends JPanel implements VistaEasyJob {
 
 
 
 
 
-    public PanelCCorreo(){
+    public PanelCCCorreo(){
 
 
 
