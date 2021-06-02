@@ -1,3 +1,5 @@
+import com.sun.jdi.IntegerValue;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -12,6 +14,7 @@ public class PanelHFavoritos extends JPanel implements VistaEasyJob {
 
     static String bFAtras = "ATRAS \n";
 
+    ConexionBD conex = new ConexionBaseDatosJDBC();
 
     public PanelHFavoritos() {
 
@@ -23,6 +26,8 @@ public class PanelHFavoritos extends JPanel implements VistaEasyJob {
         JPanel p2 = new JPanel();
         p2.setLayout(new GridLayout(2, 3, 5, 5));
 
+
+
         fAtras = new JButton(bFAtras);
         fAtras.setFont(new Font(fuente, Font.BOLD, 18));
         fAtras.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -30,7 +35,17 @@ public class PanelHFavoritos extends JPanel implements VistaEasyJob {
         JLabel fav = new JLabel("              FAVORITOS");
         fav.setFont(new Font(fuente, Font.BOLD, 25));
 
-        JLabel hFav = new JLabel("AQUI VAN LOS HORARIOS FAVORITOS");
+        JScrollPane subpanelCentralDcho = new JScrollPane();
+        Horario h = conex.horarioFavorito(PanelIniciarSesion.identificador);
+        int semana[] = h.getSemana();
+        Integer semana2[] = new Integer[7];
+        for(int i=0;i<7;i++){
+            semana2[i] = Integer.valueOf(semana[i]);
+        }
+
+        JList<Integer> lista = new JList<Integer>(semana2);
+
+        subpanelCentralDcho.setViewportView(lista);
 
 
         p1.add(Box.createVerticalStrut(3));

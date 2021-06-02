@@ -1,39 +1,26 @@
 import java.util.*;
 
 public class Horario {
-    private Date hInicio;
-    private Date hFin;
+
     private String Dia;
-    private int horaExtra;
 
-    public Horario(Date hInicio, Date hFin, String dia) {
-        this.hInicio = hInicio;
-        this.hFin = hFin;
-        Dia = dia;
+    private int[] semana = new int[7];
+
+    public Horario() {
+        for (int i = 0; i<semana.length; i++){
+            semana[i] = 0;
+        }
     }
 
-
-    public Date gethInicio() {
-        return hInicio;
+    public Horario (int [] s) {
+        semana = s;
     }
 
-    public void sethInicio(Date hInicio) {
-        this.hInicio = hInicio;
+    public int[] getSemana(){
+        return semana;
     }
 
-    public Date gethFin() {
-        return hFin;
-    }
-
-    public void sethFin(Date hFin) {
-        this.hFin = hFin;
-    }
-
-    public String getDia() {
-        return Dia;
-    }
-
-    public void setDia(String dia) {
-        Dia = dia;
+    public String toString() {
+        return  Arrays.toString(semana);
     }
 }

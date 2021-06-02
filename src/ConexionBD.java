@@ -18,6 +18,6 @@ public abstract class ConexionBD {
     public abstract  void cambiarTelefono(String dni, String actual, String nuevo);
     public abstract  void cambiarContraseña(String dni, String actual, String nuevo);
     public abstract  void cambiarFoto(String dni, String actual, String nuevo);
-
+    public abstract Horario horarioFavorito(String dni);
     public abstract List<Usuario> verUsuarios();
 }
