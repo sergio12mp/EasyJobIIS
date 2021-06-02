@@ -51,6 +51,7 @@ public class PanelIniciarSesion extends JPanel implements VistaEasyJob{
                 } else {
                     System.out.println("BUSCAR USUARIO");
 
+
                     /*
                     JComponent comp = (JComponent) e.getSource();
                     Window win = SwingUtilities.getWindowAncestor(comp);
