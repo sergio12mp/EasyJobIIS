@@ -84,6 +84,26 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
         return esta;
     }
 
+    public boolean esJefe(String dni, String contraseña){
+        int njefe=0;
+        try{
+            ps = conn.prepareStatement("SELECT * FROM Usuario WHERE DNI = ? AND Contraseña = ? AND WHERE Jefe = ?");
+            ps.setString(1,dni);
+            ps.setString(2,contraseña);
+            ps.setInt(3,njefe);
+            if(njefe ==1)
+                return true;
+           else
+               return false;
+
+        }catch (SQLException throwables){
+            throwables.printStackTrace();
+        }
+
+        return false;
+    }
+
+
     public void eliminarUsuario(String dni){
         try {
             ps = conn.prepareStatement("DELETE * FROM Usuario WHERE DNI = ?");
