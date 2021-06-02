@@ -6,7 +6,7 @@ public class Main {
     private static void createAndShowGui() {
         JFrame frame = new JFrame("Login");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+        frame.setBounds(500,300,500,200);
         PanelIniciarSesion panel = new PanelIniciarSesion();
         //PanelVistaPrincipal panel = new PanelVistaPrincipal();
         //PanelHorario panel = new PanelHorario();

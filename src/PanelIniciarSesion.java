@@ -10,7 +10,8 @@ public class PanelIniciarSesion extends JPanel implements VistaEasyJob {
     static final String botonRegistrar = "Registrarse";
 
     private JLabel login, blanco;
-    private JTextField dni, contrasena;
+    private JTextField dni;
+    private JPasswordField contrasena;
     private JButton aceptar, registrar;
 
     ConexionBD conex = new ConexionBaseDatosJDBC();
