@@ -120,6 +120,24 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
         return list;
     }
 
+    public void cambiarCorreo(String dni, String actual, String nuevo) {
+        try {
+            ps =   ps = conn.prepareStatement("UPDATE Usuario  SET Correo =  ?  WHERE DNI = ?");
+            ps.setString(1,nuevo);
+            ps.setString(2,dni);
+            int res = ps.executeUpdate();
+
+            if (res > 0){
+                JOptionPane.showMessageDialog(null, "Correo actualizado con exito");
+            }
+
+            conn.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+    }
+
     @Override
     public void eliminarUsuario(String dni){
         try {
@@ -134,5 +152,63 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+    }
+
+    @Override
+    public void cambiarTelefono(String dni, String actual, String nuevo) {
+        try {
+            ps =   ps = conn.prepareStatement("UPDATE Usuario  SET Telefono =  ?  WHERE DNI = ?");
+            ps.setString(1,nuevo);
+            ps.setString(2,dni);
+            int res = ps.executeUpdate();
+
+            if (res > 0){
+                JOptionPane.showMessageDialog(null, "Telefono actualizado con exito");
+            }
+
+            conn.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+    }
+
+    @Override
+    public void cambiarContraseña(String dni, String actual, String nuevo) {
+        try {
+            ps =   ps = conn.prepareStatement("UPDATE Usuario  SET Contraseña =  ?  WHERE DNI = ?");
+            ps.setString(1,nuevo);
+            ps.setString(2,dni);
+            int res = ps.executeUpdate();
+
+            if (res > 0){
+                JOptionPane.showMessageDialog(null, "Contraseña actualizado con exito");
+            }
+
+            conn.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+    }
+
+
+    @Override
+    public void cambiarFoto(String dni, String actual, String nuevo) {
+        try {
+            ps =   ps = conn.prepareStatement("UPDATE Usuario  SET FotoPerfil =  ?  WHERE DNI = ?");
+            ps.setString(1,nuevo);
+            ps.setString(2,dni);
+            int res = ps.executeUpdate();
+
+            if (res > 0){
+                JOptionPane.showMessageDialog(null, "FotoPerfil actualizado con exito");
+            }
+
+            conn.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
     }
 }
