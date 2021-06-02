@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class PanelJVerEmpleados extends JPanel implements VistaEasyJob {
     private String fuente = "Arial";
@@ -39,8 +40,8 @@ public class PanelJVerEmpleados extends JPanel implements VistaEasyJob {
 
     }
 
-
-
-
+    public void controlador(ActionListener ctrl) {
+        jAtras.addActionListener(ctrl);
+    }
 
 }
