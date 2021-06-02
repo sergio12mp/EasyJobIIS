@@ -9,6 +9,10 @@ public class PanelIniciarSesion extends JPanel implements VistaEasyJob {
     static final String botonLogin = "Entrar";
     static final String botonRegistrar = "Registrarse";
 
+   public int rango =0;
+    //0 trabajador
+    //1 admin
+
     static String identificador = "";
 
     private JLabel login, blanco;
@@ -80,6 +84,8 @@ public class PanelIniciarSesion extends JPanel implements VistaEasyJob {
 
                             frame.setSize(1000, 500);
                             frame.setVisible(true);
+
+                            rango = 1;
                         }
                         else {
 

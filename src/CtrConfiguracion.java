@@ -10,19 +10,38 @@ public class CtrConfiguracion implements ActionListener {
         vistaEasy = vb;
     }
 
+    ConexionBD conex = new ConexionBaseDatosJDBC();
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
         String actComm = e.getActionCommand();
 
-        if (actComm.compareTo(PanelConfiguracion.bCAtras) == 0) {
+        if (!(conex.esOnoJefe()) && (actComm.compareTo(PanelConfiguracion.bCAtras) == 0)) {
 
             JComponent comp = (JComponent) e.getSource();
             Window win = SwingUtilities.getWindowAncestor(comp);
             win.dispose();
 
-            JFrame frame = new JFrame("JEFE");
+            JFrame frame = new JFrame("MENU");
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+            PanelVistaPrincipal panel = new PanelVistaPrincipal();
+            CtrEasyJob ctr = new CtrEasyJob(panel);
+            panel.controlador(ctr);
+
+            frame.getContentPane().add(panel);
+            frame.pack();
+
+            frame.setSize(600, 400);
+            frame.setVisible(true);
+        } else if ((actComm.compareTo(PanelConfiguracion.bCAtras) == 0)) {
+
+            JComponent comp = (JComponent) e.getSource();
+            Window win = SwingUtilities.getWindowAncestor(comp);
+            win.dispose();
+
+            JFrame frame = new JFrame("MENU");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
             PanelJefe panel = new PanelJefe();
@@ -34,7 +53,8 @@ public class CtrConfiguracion implements ActionListener {
 
             frame.setSize(600, 400);
             frame.setVisible(true);
-        }/*else if (actComm.compareTo(PanelConfiguracion.bCContraseña) == 0) {
+        }
+        /*else if (actComm.compareTo(PanelConfiguracion.bCContraseña) == 0) {
 
             JComponent comp = (JComponent) e.getSource();
             Window win = SwingUtilities.getWindowAncestor(comp);
