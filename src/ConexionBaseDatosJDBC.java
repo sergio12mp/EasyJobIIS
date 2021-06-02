@@ -122,7 +122,7 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
 
     public void cambiarCorreo(String dni, String actual, String nuevo) {
         try {
-            ps =   ps = conn.prepareStatement("UPDATE Usuario  SET Correo =  ?  WHERE DNI = ?");
+            ps = conn.prepareStatement("UPDATE Usuario  SET Correo =  ?  WHERE DNI = ?");
             ps.setString(1,nuevo);
             ps.setString(2,dni);
             int res = ps.executeUpdate();
