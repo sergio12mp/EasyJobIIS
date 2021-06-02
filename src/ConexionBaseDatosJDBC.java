@@ -40,16 +40,16 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
     @Override
     public void introducirUsuario(Usuario u) {
 
-        String insertBody = "INSERT INTO Usuario (DNI, Nombre, Apellidos, Correo, Telefono, Contraseña, FotoPerfil, QR ) VALUES (?, ?, ?, ?, ?, ?, null,null)";
+        String insertBody = "INSERT INTO Usuario (DNI, Nombre, Apellidos, Correo, Telefono, Contraseña, FotoPerfil, QR ) VALUES (?, ?, ?, ?, ?, ?, null,null,0)";
         try {
-            PreparedStatement preparedStatement = conn.prepareStatement(insertBody);
-            preparedStatement.setString(1, u.getDNI());
-            preparedStatement.setString(2, u.getNombre());
-            preparedStatement.setString(3, u.getApellidos());
-            preparedStatement.setString(4, u.getCorreoElectronico());
-            preparedStatement.setString(5, u.getTelefono());
-            preparedStatement.setString(6, u.getContrasena());
-            int res = preparedStatement.executeUpdate();
+            ps = conn.prepareStatement(insertBody);
+            ps.setString(1, u.getDNI());
+            ps.setString(2, u.getNombre());
+            ps.setString(3, u.getApellidos());
+            ps.setString(4, u.getCorreoElectronico());
+            ps.setString(5, u.getTelefono());
+            ps.setString(6, u.getContrasena());
+            int res = ps.executeUpdate();
 
             if (res > 0) {
                 JOptionPane.showMessageDialog(null, "Registrado con exito");
@@ -71,11 +71,10 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
             ps = conn.prepareStatement("SELECT * FROM Usuario WHERE DNI = ? AND Contraseña = ?");
             ps.setString(1,dni);
             ps.setString(2,contraseña);
+            int res = ps.executeUpdate();
 
-            rs = ps.executeQuery();
-
-            if(rs.next()){
-                esta = true;
+            if (res > 0) {
+                JOptionPane.showMessageDialog(null, "Borrado con éxito");
             }
 
         } catch (SQLException throwables) {
@@ -83,5 +82,20 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
         }
 
         return esta;
+    }
+
+    public void eliminarUsuario(String dni){
+        try {
+            ps = conn.prepareStatement("DELETE * FROM Usuario WHERE DNI = ?");
+            ps.setString(1,dni);
+
+            int res = ps.executeUpdate();
+
+            if (res > 0) {
+                JOptionPane.showMessageDialog(null, "Borrado con éxito");
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 }
