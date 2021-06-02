@@ -1,49 +1,26 @@
-import javax.swing.undo.UndoableEditSupport;
 
-public class Usuario {
+public abstract class Usuario {
 
     private String Nombre;
     private String Apellidos;
-    private String CorreoElectronico;
+    private String CorreElectronico;
     private String FotoPerfil;
     private String DNI;
     private String Telefono;
+    private String UsuarioDeAcceso;
     private String Contrasena;
     private String QR;
-    private boolean esJefe;
 
-    public Usuario(){
-        Nombre = null;
-        Apellidos = null;
-        CorreoElectronico = null;
-        this.DNI = null;
-        Telefono = null;
-        Contrasena = null;
-        QR = null;
-        esJefe = false;
-        FotoPerfil = null;
-    }
-    public Usuario(String nombre, String apellidos, String correoElectronico,  String DNI, String telefono,  String contrasena) {
+    public Usuario(String nombre, String apellidos, String correElectronico, String fotoPerfil, String DNI, String telefono, String usuarioDeAcceso, String contrasena, String QR) {
         Nombre = nombre;
         Apellidos = apellidos;
-        CorreoElectronico = correoElectronico;
+        CorreElectronico = correElectronico;
+        FotoPerfil = fotoPerfil;
         this.DNI = DNI;
         Telefono = telefono;
+        UsuarioDeAcceso = usuarioDeAcceso;
         Contrasena = contrasena;
-        QR = null;
-        esJefe = false;
-        FotoPerfil = null;
-    }
-
-    @Override
-    public String toString() {
-        String jefe = "";
-        if(esJefe)
-            jefe = ", ES JEFE";
-
-        return DNI + ",  " + Nombre + " " + Apellidos + ",  " + CorreoElectronico + ",  " + Telefono + jefe;
-
-
+        this.QR = QR;
     }
 
     public String getNombre() {
@@ -62,12 +39,12 @@ public class Usuario {
         Apellidos = apellidos;
     }
 
-    public String getCorreoElectronico() {
-        return CorreoElectronico;
+    public String getCorreElectronico() {
+        return CorreElectronico;
     }
 
-    public void setCorreoElectronico(String correElectronico) {
-        CorreoElectronico = correElectronico;
+    public void setCorreElectronico(String correElectronico) {
+        CorreElectronico = correElectronico;
     }
 
     public String getFotoPerfil() {
@@ -94,6 +71,14 @@ public class Usuario {
         Telefono = telefono;
     }
 
+    public String getUsuarioDeAcceso() {
+        return UsuarioDeAcceso;
+    }
+
+    public void setUsuarioDeAcceso(String usuarioDeAcceso) {
+        UsuarioDeAcceso = usuarioDeAcceso;
+    }
+
     public String getContrasena() {
         return Contrasena;
     }
@@ -110,7 +95,4 @@ public class Usuario {
         this.QR = QR;
     }
 
-    public void setEsJefe(boolean esJefe){this.esJefe = esJefe;}
-
-    public boolean getesJefe() { return esJefe; }
 }
