@@ -10,4 +10,6 @@ public abstract class ConexionBD {
 
     public abstract void introducirUsuario(Usuario u);
     public abstract boolean buscarUsuario(String dni,String contraseña);
+    public abstract boolean esJefe(String dni,String contraseña);
+    public abstract void eliminarUsuario(String dni);
 }
