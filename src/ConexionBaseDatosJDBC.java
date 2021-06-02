@@ -72,6 +72,7 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
             ps.setString(1,dni);
             ps.setString(2,contraseña);
 
+
             rs = ps.executeQuery();
 
             if(rs.next()){
@@ -86,19 +87,19 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
     }
 
     @Override
-    public boolean esJefe (String dni, String contraseña, int njefe){
-        //int njefe=0;
+    public boolean esJefe (String dni, String contraseña){
+        String jefe1 = "1";
         boolean esJefe = false;
 
         try{
             ps = conn.prepareStatement("SELECT * FROM Usuario WHERE DNI = ? AND Contraseña = ? AND WHERE Jefe = ?");
             ps.setString(1,dni);
             ps.setString(2,contraseña);
-            ps.setInt(3,njefe);
+            ps.setString(3,jefe1);
 
            // System.out.println(contraseña);
-            System.out.println(njefe);
-            if(njefe ==1) {
+            System.out.println(jefe1);
+            if(jefe1.equals("1")) {
                 esJefe = true;
             }
 
