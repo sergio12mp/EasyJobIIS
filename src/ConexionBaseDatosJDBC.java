@@ -209,6 +209,28 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+    }
+    public Horario horarioFavorito (String dni) {
+        Horario h = null;
+        try {
+            ps = conn.prepareStatement("SELECT * FROM Horario where DNI = ?");
 
+            ps.setString(1, dni);
+            rs = ps.executeQuery();
+
+            int [] semana = new int [7];
+            semana[0] = rs.getInt("Lunes");
+            semana[1] = rs.getInt("Martes");
+            semana[2] = rs.getInt("Miercoles");
+            semana[3] = rs.getInt("Jueves");
+            semana[4] = rs.getInt("Viernes");
+            semana[5] = rs.getInt("Sabado");
+            semana[6] = rs.getInt("Domingo");
+            h = new Horario(semana);
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return h;
     }
 }
