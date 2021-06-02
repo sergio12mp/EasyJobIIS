@@ -14,7 +14,6 @@ public class PanelIniciarSesion extends JPanel implements VistaEasyJob{
     private JButton aceptar, registrar;
 
     ConexionBD conex = new ConexionBaseDatosJDBC();
-    private boolean ejecutar = true;
 
     public PanelIniciarSesion() {
 
@@ -50,11 +49,9 @@ public class PanelIniciarSesion extends JPanel implements VistaEasyJob{
 
                 if (dn.isEmpty() || cont.isEmpty()) {
                     //status.setText("Tienes que introducir todos los campos");
-                    ejecutar = false;
                     JOptionPane.showMessageDialog(null, "Tienes que rellenar todos los campos");
                 } else {
                     if (!conex.buscarUsuario(dn, cont)) {
-                        ejecutar = false;
                         JOptionPane.showMessageDialog(null, "Contraseña o usuario incorrectos");
                     } else {
 
