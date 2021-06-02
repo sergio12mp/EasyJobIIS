@@ -86,10 +86,24 @@ public class PanelRegistro extends JPanel implements VistaEasyJob{
                     //status.setText("Registrado con exito");
 
                     conex.introducirUsuario(usu);
-
                     JComponent comp = (JComponent) e.getSource();
                     Window win = SwingUtilities.getWindowAncestor(comp);
                     win.dispose();
+
+                    JFrame frame = new JFrame("Login");
+                    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+                    PanelIniciarSesion panel = new PanelIniciarSesion();
+                    //PanelVistaPrincipal panel = new PanelVistaPrincipal();
+                    //PanelHorario panel = new PanelHorario();
+                    CtrEasyJob ctr = new CtrEasyJob(panel);
+                    panel.controlador(ctr);
+
+                    frame.getContentPane().add(panel);
+                    frame.pack();
+
+                    frame.setSize(450, 200);
+                    frame.setVisible(true);
                 }
             }
         });
