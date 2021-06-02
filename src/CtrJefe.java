@@ -94,7 +94,7 @@ public class CtrJefe implements ActionListener {
             frame.getContentPane().add(panel);
             frame.pack();
 
-            frame.setSize(600, 400);
+            frame.setSize(1000, 500);
             frame.setVisible(true);
 
         }

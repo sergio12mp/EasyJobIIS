@@ -41,7 +41,7 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
     @Override
     public void introducirUsuario(Usuario u) {
 
-        String insertBody = "INSERT INTO Usuario (DNI, Nombre, Apellidos, Correo, Telefono, Contraseña, FotoPerfil, QR ) VALUES (?, ?, ?, ?, ?, ?, null,null,0)";
+        String insertBody = "INSERT INTO Usuario (DNI, Nombre, Apellidos, Correo, Telefono, Contraseña, FotoPerfil, QR, Jefe ) VALUES (?, ?, ?, ?, ?, ?, null,null,0)";
         try {
             ps = conn.prepareStatement(insertBody);
             ps.setString(1, u.getDNI());
