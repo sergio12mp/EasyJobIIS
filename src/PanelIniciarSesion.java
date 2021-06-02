@@ -54,8 +54,27 @@ public class PanelIniciarSesion extends JPanel implements VistaEasyJob{
                     if (!conex.buscarUsuario(dn, cont)) {
                         JOptionPane.showMessageDialog(null, "Contraseña o usuario incorrectos");
                     } else {
+                        //JOptionPane.showMessageDialog(null, "Usuario y contraseña correctos");
 
-                        JOptionPane.showMessageDialog(null, "Usuario y contraseña correctos");
+                        JComponent comp = (JComponent) e.getSource();
+                        Window win = SwingUtilities.getWindowAncestor(comp);
+                        win.dispose();
+
+                        JFrame frame = new JFrame("MENU");
+                        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+
+                        PanelVistaPrincipal panel = new PanelVistaPrincipal();
+
+                        panel.controlador(this);
+
+                        frame.getContentPane().add(panel);
+                        frame.pack();
+
+                        frame.setSize(1000, 500);
+                        frame.setVisible(true);
+
+
                     }
                 }
             }

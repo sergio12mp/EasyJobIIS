@@ -16,25 +16,7 @@ public class CtrEasyJob implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String actComm = e.getActionCommand();
 
-        if ((actComm.compareTo(PanelIniciarSesion.botonLogin) == 0)){
-            JComponent comp = (JComponent) e.getSource();
-            Window win = SwingUtilities.getWindowAncestor(comp);
-            win.dispose();
-
-            JFrame frame = new JFrame("MENU");
-            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
-
-            PanelVistaPrincipal panel = new PanelVistaPrincipal();
-
-            panel.controlador(this);
-
-            frame.getContentPane().add(panel);
-            frame.pack();
-
-            frame.setSize(1000, 500);
-            frame.setVisible(true);
-        } else if (actComm.compareTo(PanelIniciarSesion.botonRegistrar) == 0) {
+        if (actComm.compareTo(PanelIniciarSesion.botonRegistrar) == 0) {
 
             JComponent comp = (JComponent) e.getSource();
             Window win = SwingUtilities.getWindowAncestor(comp);

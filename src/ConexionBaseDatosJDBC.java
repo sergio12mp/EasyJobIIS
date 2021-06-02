@@ -51,14 +51,15 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
             preparedStatement.setString(6, u.getContrasena());
             int res = preparedStatement.executeUpdate();
 
-            if(res > 0){
+            if (res > 0) {
                 JOptionPane.showMessageDialog(null, "Registrado con exito");
-            }else{
-                JOptionPane.showMessageDialog(null,"Error al registrar usuario");
             }
 
-        conn.close();
+            conn.close();
+        } catch(SQLIntegrityConstraintViolationException e){
+            JOptionPane.showMessageDialog(null, "DNI ya registrado. Pruebe a iniciar sesión");
         } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al registrar usuario");
             e.printStackTrace();
         }
     }
