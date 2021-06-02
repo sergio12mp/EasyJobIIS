@@ -34,7 +34,7 @@ public class CtrConfiguracion implements ActionListener {
 
             frame.setSize(600, 400);
             frame.setVisible(true);
-        }else if (actComm.compareTo(PanelConfiguracion.bCContraseña) == 0) {
+        }/*else if (actComm.compareTo(PanelConfiguracion.bCContraseña) == 0) {
 
             JComponent comp = (JComponent) e.getSource();
             Window win = SwingUtilities.getWindowAncestor(comp);
@@ -125,7 +125,7 @@ public class CtrConfiguracion implements ActionListener {
             frame.setSize(600, 400);
             frame.setVisible(true);
         }
-
+*/
 
 
     }

@@ -18,7 +18,7 @@ public class CtrJefe implements ActionListener {
         String actComm = e.getActionCommand();
 
         if (actComm.compareTo(PanelJefe.bCerrarS) == 0) {
-            System.exit(0);
+            System.exit(1);
         }else if (actComm.compareTo(PanelJefe.bConf) == 0) {
 
             JComponent comp = (JComponent) e.getSource();
