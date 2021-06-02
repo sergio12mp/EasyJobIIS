@@ -4,13 +4,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.PreparedStatement;
 
-public class PanelIniciarSesion extends JPanel implements VistaEasyJob{
+public class PanelIniciarSesion extends JPanel implements VistaEasyJob {
 
     static final String botonLogin = "Entrar";
     static final String botonRegistrar = "Registrarse";
 
     private JLabel login, blanco;
-    private JTextField dni, contrasena;
+
+    private JTextField dni,jefe;
+    private JPasswordField contrasena;
     private JButton aceptar, registrar;
 
     ConexionBD conex = new ConexionBaseDatosJDBC();
@@ -47,6 +49,7 @@ public class PanelIniciarSesion extends JPanel implements VistaEasyJob{
                 String dn = dni.getText();
                 String cont = contrasena.getText();
 
+
                 if (dn.isEmpty() || cont.isEmpty()) {
                     //status.setText("Tienes que introducir todos los campos");
                     JOptionPane.showMessageDialog(null, "Tienes que rellenar todos los campos");
@@ -54,28 +57,52 @@ public class PanelIniciarSesion extends JPanel implements VistaEasyJob{
                     if (!conex.buscarUsuario(dn, cont)) {
                         JOptionPane.showMessageDialog(null, "Contraseña o usuario incorrectos");
                     } else {
-                        //JOptionPane.showMessageDialog(null, "Usuario y contraseña correctos");
 
-                        JComponent comp = (JComponent) e.getSource();
-                        Window win = SwingUtilities.getWindowAncestor(comp);
-                        win.dispose();
+                        if (conex.esJefe(dn, cont)) {
 
-                        JFrame frame = new JFrame("MENU");
-                        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                            JComponent comp = (JComponent) e.getSource();
+                            Window win = SwingUtilities.getWindowAncestor(comp);
+                            win.dispose();
 
-
-                        PanelVistaPrincipal panel = new PanelVistaPrincipal();
-
-                        CtrEasyJob ctr = new CtrEasyJob(panel);
-                        panel.controlador(ctr);
-
-                        frame.getContentPane().add(panel);
-                        frame.pack();
-
-                        frame.setSize(1000, 500);
-                        frame.setVisible(true);
+                            JFrame frame = new JFrame("PanelJefe");
+                            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 
+                            PanelJefe panel = new PanelJefe();
+
+                            CtrEasyJob ctr = new CtrEasyJob(panel);
+                            panel.controlador(ctr);
+
+                            frame.getContentPane().add(panel);
+                            frame.pack();
+
+                            frame.setSize(1000, 500);
+                            frame.setVisible(true);
+                        }
+                        else {
+
+                            //JOptionPane.showMessageDialog(null, "Usuario y contraseña correctos");
+
+                            JComponent comp = (JComponent) e.getSource();
+                            Window win = SwingUtilities.getWindowAncestor(comp);
+                            win.dispose();
+
+                            JFrame frame = new JFrame("MENU");
+                            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+
+                            PanelVistaPrincipal panel = new PanelVistaPrincipal();
+
+                            CtrEasyJob ctr = new CtrEasyJob(panel);
+                            panel.controlador(ctr);
+
+                            frame.getContentPane().add(panel);
+                            frame.pack();
+
+                            frame.setSize(1000, 500);
+                            frame.setVisible(true);
+
+                        }
                     }
                 }
             }

@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class PanelJefe extends JPanel implements VistaEasyJob {
 
@@ -79,5 +80,8 @@ public class PanelJefe extends JPanel implements VistaEasyJob {
 
     }
 
+    public void controlador(ActionListener ctrl) {
+
+    }
 
 }

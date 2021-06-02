@@ -7,7 +7,7 @@ import java.util.Properties;
 public class ConexionBaseDatosJDBC extends ConexionBD {
 
     private static ConexionBaseDatosJDBC instanciaInterfaz = null;
-    PreparedStatement ps ;
+    PreparedStatement ps;
     ResultSet rs;
     private Connection conn;
 
@@ -64,7 +64,7 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
         }
     }
 
-
+    @Override
     public boolean buscarUsuario(String dni, String contraseña) {
         boolean esta = false;
         try {
@@ -73,6 +73,14 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
             ps.setString(2,contraseña);
 
 
+<<<<<<< HEAD
+=======
+            rs = ps.executeQuery();
+
+            if(rs.next()){
+                esta = true;
+            }
+>>>>>>> 4e013eb2526d02c4cfe02b7eb1515127841807bb
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -81,6 +89,30 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
         return esta;
     }
 
+    @Override
+    public boolean esJefe (String dni, String contraseña){
+        String jefe1 = "1";
+        boolean esJefe = false;
+
+        try{
+            ps = conn.prepareStatement("SELECT * FROM Usuario WHERE DNI = ? AND Contraseña = ? AND WHERE Jefe = ?");
+            ps.setString(1,dni);
+            ps.setString(2,contraseña);
+            ps.setString(3,jefe1);
+
+           // System.out.println(contraseña);
+            System.out.println(jefe1);
+            if(jefe1.equals("1")) {
+                esJefe = true;
+            }
+
+        }catch (SQLException throwables){
+            throwables.printStackTrace();
+        }
+        return esJefe;
+    }
+
+    @Override
     public void eliminarUsuario(String dni){
         try {
             ps = conn.prepareStatement("DELETE * FROM Usuario WHERE DNI = ?");

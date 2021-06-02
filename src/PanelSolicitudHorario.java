@@ -15,10 +15,6 @@ public class PanelSolicitudHorario extends JPanel implements VistaEasyJob, ListS
 
     static String bSAtras= "VOLVER A HORARIO";
 
-
-
-
-
     public PanelSolicitudHorario(){
 
         setLayout(new GridLayout(3,3,5,5));

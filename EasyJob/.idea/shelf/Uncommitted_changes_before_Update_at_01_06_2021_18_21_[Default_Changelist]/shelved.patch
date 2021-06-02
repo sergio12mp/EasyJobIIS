@@ -1,0 +1,222 @@
+Index: src/Main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import javax.swing.*;\r\nimport java.io.IOException;\r\n\r\npublic class Main {\r\n\r\n    private static void createAndShowGui() {\r\n        JFrame frame = new JFrame(\"Login\");\r\n        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);\r\n\r\n        PanelIniciarSesion panel = new PanelIniciarSesion();\r\n      //  PanelVistaPrincipal panel = new PanelVistaPrincipal();\r\n\r\n        CtrEasyJob ctr = new CtrEasyJob(panel);\r\n          panel.controlador(ctr);\r\n\r\n        frame.getContentPane().add(panel);\r\n        frame.pack();\r\n\r\n        frame.setSize(450, 200);\r\n        frame.setVisible(true);\r\n\r\n\r\n    }\r\n\r\n    public static void main(String[] args) throws IOException {\r\n        SwingUtilities.invokeLater(new Runnable() {\r\n\r\n            @Override\r\n            public void run() {\r\n                createAndShowGui();\r\n            }\r\n        });\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/Main.java	(revision 69c0abe689bff7ad9070b14e9bac1c98a20f857a)
++++ src/Main.java	(date 1622562896532)
+@@ -9,7 +9,7 @@
+ 
+         PanelIniciarSesion panel = new PanelIniciarSesion();
+       //  PanelVistaPrincipal panel = new PanelVistaPrincipal();
+-
++           // PanelHorario panel = new PanelHorario();
+         CtrEasyJob ctr = new CtrEasyJob(panel);
+           panel.controlador(ctr);
+ 
+Index: src/CtrEasyJob.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import javax.swing.*;\r\nimport java.awt.*;\r\nimport java.awt.event.ActionEvent;\r\nimport java.awt.event.ActionListener;\r\n\r\npublic class CtrEasyJob implements ActionListener {\r\n\r\n    VistaEasyJob vistaEasy;     // Vista\r\n    Usuario usuario;            // Modelo\r\n\r\n    public CtrEasyJob(VistaEasyJob ve) {\r\n        vistaEasy = ve;\r\n    }\r\n\r\n    public void actionPerformed(ActionEvent e) {\r\n\r\n        String actComm = e.getActionCommand();\r\n\r\n        if (actComm.compareTo(PanelIniciarSesion.botonLogin) == 0) {\r\n\r\n            JComponent comp = (JComponent) e.getSource();\r\n            Window win = SwingUtilities.getWindowAncestor(comp);\r\n            win.dispose();\r\n\r\n            JFrame frame = new JFrame(\"MENU\");\r\n            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);\r\n\r\n\r\n            PanelVistaPrincipal panel = new PanelVistaPrincipal();\r\n\r\n            panel.controlador(this);\r\n\r\n            frame.getContentPane().add(panel);\r\n            frame.pack();\r\n\r\n            frame.setSize(1000, 500);\r\n            frame.setVisible(true);\r\n\r\n\r\n        } else if (actComm.compareTo(PanelIniciarSesion.botonRegistrar) == 0) {\r\n\r\n            JComponent comp = (JComponent) e.getSource();\r\n            Window win = SwingUtilities.getWindowAncestor(comp);\r\n            win.dispose();\r\n\r\n            JFrame frame = new JFrame(\"Registro\");\r\n            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);\r\n\r\n            PanelRegistro panel = new PanelRegistro();\r\n\r\n            frame.getContentPane().add(panel);\r\n            frame.pack();\r\n\r\n            frame.setSize(600, 400);\r\n            frame.setVisible(true);\r\n\r\n        } else if (actComm.compareTo(PanelVistaPrincipal.bCS) == 0) {\r\n\r\n            System.exit(0);\r\n\r\n        } else if (actComm.compareTo(PanelVistaPrincipal.bHorario) == 0) {\r\n\r\n            JComponent comp = (JComponent) e.getSource();\r\n            Window win = SwingUtilities.getWindowAncestor(comp);\r\n            win.dispose();\r\n\r\n            JFrame frame = new JFrame(\"Horario\");\r\n            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);\r\n\r\n            PanelRegistro panel = new PanelRegistro();\r\n\r\n            frame.getContentPane().add(panel);\r\n            frame.pack();\r\n\r\n            frame.setSize(600, 400);\r\n            frame.setVisible(true);\r\n\r\n        } else if (actComm.compareTo(PanelVistaPrincipal.bChat) == 0) {\r\n\r\n            JComponent comp = (JComponent) e.getSource();\r\n            Window win = SwingUtilities.getWindowAncestor(comp);\r\n            win.dispose();\r\n\r\n            JFrame frame = new JFrame(\"Chat\");\r\n            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);\r\n\r\n            PanelChat panel = new PanelChat();\r\n            panel.controlador(this);\r\n\r\n            frame.getContentPane().add(panel);\r\n            frame.pack();\r\n\r\n            frame.setSize(800, 400);\r\n            frame.setVisible(true);\r\n\r\n        } else if(actComm.compareTo(PanelChat.ENVIARMENSAJE) == 0) {\r\n\r\n            JOptionPane.showMessageDialog(null, \"No se pueden enviar mensajes. Servidor en mantenimiento\");\r\n\r\n\r\n        } else if(actComm.compareTo(PanelChat.MENSAJESPENDIENTES) == 0) {\r\n\r\n            JOptionPane.showMessageDialog(null, \"No se pueden revisar los mensajes. Servidor en mantenimiento\");\r\n\r\n        } else if(actComm.compareTo(PanelChat.chatATRAS) == 0) {\r\n\r\n            JComponent comp = (JComponent) e.getSource();\r\n            Window win = SwingUtilities.getWindowAncestor(comp);\r\n            win.dispose();\r\n\r\n            JFrame frame = new JFrame(\"MENU\");\r\n            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);\r\n\r\n\r\n            PanelVistaPrincipal panel = new PanelVistaPrincipal();\r\n\r\n            panel.controlador(this);\r\n\r\n            frame.getContentPane().add(panel);\r\n            frame.pack();\r\n\r\n            frame.setSize(1000, 500);\r\n            frame.setVisible(true);\r\n\r\n        }\r\n\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/CtrEasyJob.java	(revision 69c0abe689bff7ad9070b14e9bac1c98a20f857a)
++++ src/CtrEasyJob.java	(date 1622564341242)
+@@ -16,7 +16,9 @@
+ 
+         String actComm = e.getActionCommand();
+ 
+-        if (actComm.compareTo(PanelIniciarSesion.botonLogin) == 0) {
++        if ((actComm.compareTo(PanelIniciarSesion.botonLogin) == 0)
++            //&&loginOK(usuario,contraseña)
++        ) {
+ 
+             JComponent comp = (JComponent) e.getSource();
+             Window win = SwingUtilities.getWindowAncestor(comp);
+@@ -67,7 +69,8 @@
+             JFrame frame = new JFrame("Horario");
+             frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+ 
+-            PanelRegistro panel = new PanelRegistro();
++            PanelHorario panel = new PanelHorario();
++            panel.controlador(this);
+ 
+             frame.getContentPane().add(panel);
+             frame.pack();
+@@ -93,16 +96,16 @@
+             frame.setSize(800, 400);
+             frame.setVisible(true);
+ 
+-        } else if(actComm.compareTo(PanelChat.ENVIARMENSAJE) == 0) {
++        } else if (actComm.compareTo(PanelChat.ENVIARMENSAJE) == 0) {
+ 
+             JOptionPane.showMessageDialog(null, "No se pueden enviar mensajes. Servidor en mantenimiento");
+ 
+ 
+-        } else if(actComm.compareTo(PanelChat.MENSAJESPENDIENTES) == 0) {
++        } else if (actComm.compareTo(PanelChat.MENSAJESPENDIENTES) == 0) {
+ 
+             JOptionPane.showMessageDialog(null, "No se pueden revisar los mensajes. Servidor en mantenimiento");
+ 
+-        } else if(actComm.compareTo(PanelChat.chatATRAS) == 0) {
++        } else if ((actComm.compareTo(PanelHorario.bHAtras) == 0) || (actComm.compareTo(PanelChat.chatATRAS) == 0)) {
+ 
+             JComponent comp = (JComponent) e.getSource();
+             Window win = SwingUtilities.getWindowAncestor(comp);
+Index: src/Horario.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import java.util.*;\r\n\r\npublic class Horario {\r\n    private Date hInicio;\r\n    private Date hFin;\r\n    private String Dia;\r\n    private int horaExtra;\r\n\r\n    public Horario(Date hInicio, Date hFin, String dia) {\r\n        this.hInicio = hInicio;\r\n        this.hFin = hFin;\r\n        Dia = dia;\r\n    }\r\n\r\n\r\n\r\n    public Date gethInicio() {\r\n        return hInicio;\r\n    }\r\n\r\n    public void sethInicio(Date hInicio) {\r\n        this.hInicio = hInicio;\r\n    }\r\n\r\n    public Date gethFin() {\r\n        return hFin;\r\n    }\r\n\r\n    public void sethFin(Date hFin) {\r\n        this.hFin = hFin;\r\n    }\r\n\r\n    public String getDia() {\r\n        return Dia;\r\n    }\r\n\r\n    public void setDia(String dia) {\r\n        Dia = dia;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/Horario.java	(revision 69c0abe689bff7ad9070b14e9bac1c98a20f857a)
++++ src/Horario.java	(date 1622562847421)
+@@ -13,7 +13,6 @@
+     }
+ 
+ 
+-
+     public Date gethInicio() {
+         return hInicio;
+     }
+Index: src/PanelHorario.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/PanelHorario.java	(date 1622564479400)
++++ src/PanelHorario.java	(date 1622564479400)
+@@ -0,0 +1,79 @@
++import javax.swing.*;
++import java.awt.*;
++import java.awt.event.ActionListener;
++
++public class PanelHorario extends JPanel implements VistaEasyJob {
++
++    private String fuente = "Arial";
++
++
++    private JButton Favoritos, sHorario, hAtras;
++    private JLabel horas;
++
++    static String bFav = "FAVORITOS";
++    static String bSHorario = "SOLICITAR HORARIO";
++    static String bHAtras = "ATRAS";
++
++    public PanelHorario() {
++
++        setLayout(new GridLayout(3, 3, 5, 5));
++
++        JPanel p1 = new JPanel();
++        p1.setLayout(new GridLayout(2, 3, 5, 5));
++
++        JPanel p2 = new JPanel();
++        p2.setLayout(new GridLayout(3, 3, 5, 5));
++
++        Favoritos = new JButton(bFav);
++        Favoritos.setFont(new Font(fuente, Font.BOLD, 18));
++        Favoritos.setAlignmentX(Component.CENTER_ALIGNMENT);
++
++
++        sHorario = new JButton(bSHorario);
++        sHorario.setFont(new Font(fuente, Font.BOLD, 18));
++        sHorario.setAlignmentX(Component.CENTER_ALIGNMENT);
++
++        JLabel horas = new JLabel("AQUI TIENE QUE IR LOS HORARIOS");
++
++        hAtras = new JButton(bHAtras);
++        hAtras.setFont(new Font(fuente, Font.BOLD, 18));
++        hAtras.setAlignmentX(Component.CENTER_ALIGNMENT);
++
++        p1.add(Box.createVerticalStrut(3));
++        p1.add(Box.createVerticalStrut(3));
++        p1.add(Box.createVerticalStrut(3));
++
++        p1.add(Box.createVerticalStrut(3));
++        p1.add(Favoritos);
++        p1.add(Box.createVerticalStrut(3));
++
++        add(p1);
++
++        add(horas);
++
++        p2.add(Box.createVerticalStrut(3));
++        p2.add(sHorario);
++        p2.add(Box.createVerticalStrut(3));
++
++        p2.add(Box.createVerticalStrut(3));
++        p2.add(hAtras);
++        p2.add(Box.createVerticalStrut(3));
++
++        p2.add(Box.createVerticalStrut(3));
++        p2.add(Box.createVerticalStrut(3));
++        p2.add(Box.createVerticalStrut(3));
++
++        add(p2);
++
++    }
++
++    public void controlador(ActionListener ctrl) {
++        Favoritos.addActionListener(ctrl);
++        sHorario.addActionListener(ctrl);
++        hAtras.addActionListener(ctrl);
++    }
++
++}
++
++
++
+Index: src/Cita.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import java.util.LinkedList;\r\n\r\npublic class Cita {\r\n    private String fecha;\r\n    private Usuario remitente;\r\n    private LinkedList<Usuario> destinatarios;\r\n    private boolean aceptada;\r\n\r\n    public Cita(String fecha, Usuario remitente, LinkedList<Usuario> destinatarios){\r\n        this.fecha = fecha;\r\n        this.remitente = remitente;\r\n        this.destinatarios = destinatarios;\r\n        this.aceptada = false;\r\n    }\r\n    public void setFecha(String fecha) {\r\n        this.fecha = fecha;\r\n    }\r\n    public String getFecha() {\r\n        return fecha;\r\n    }\r\n    public void setAceptada(boolean aceptada) {\r\n        this.aceptada = aceptada;\r\n    }\r\n    public boolean isAceptada(){\r\n        return aceptada;\r\n    }\r\n    public Usuario getRemitente() {\r\n        return remitente;\r\n    }\r\n    public void setRemitente(Usuario remitente){\r\n        this.remitente = remitente;\r\n    }\r\n    public java.util.LinkedList<Usuario> getDestinatarios() {\r\n        return destinatarios;\r\n    }\r\n\r\n    public String toString() {\r\n        String res = \"Solicitud cita de \";\r\n        res += remitente.getNombre() + \", para el \" + fecha + \"\\n ESTADO: \";\r\n        if (!aceptada) {\r\n            res += \"Pendiente de confirmacion\";\r\n        } else {\r\n            res += \"Aceptada\";\r\n        }\r\n        return res;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/Cita.java	(revision 69c0abe689bff7ad9070b14e9bac1c98a20f857a)
++++ src/Cita.java	(date 1622562847432)
+@@ -6,30 +6,37 @@
+     private LinkedList<Usuario> destinatarios;
+     private boolean aceptada;
+ 
+-    public Cita(String fecha, Usuario remitente, LinkedList<Usuario> destinatarios){
++    public Cita(String fecha, Usuario remitente, LinkedList<Usuario> destinatarios) {
+         this.fecha = fecha;
+         this.remitente = remitente;
+         this.destinatarios = destinatarios;
+         this.aceptada = false;
+     }
++
+     public void setFecha(String fecha) {
+         this.fecha = fecha;
+     }
++
+     public String getFecha() {
+         return fecha;
+     }
++
+     public void setAceptada(boolean aceptada) {
+         this.aceptada = aceptada;
+     }
+-    public boolean isAceptada(){
++
++    public boolean isAceptada() {
+         return aceptada;
+     }
++
+     public Usuario getRemitente() {
+         return remitente;
+     }
+-    public void setRemitente(Usuario remitente){
++
++    public void setRemitente(Usuario remitente) {
+         this.remitente = remitente;
+     }
++
+     public java.util.LinkedList<Usuario> getDestinatarios() {
+         return destinatarios;
+     }

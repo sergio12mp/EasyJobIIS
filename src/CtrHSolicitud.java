@@ -3,11 +3,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class CtrChat implements ActionListener {
-
+public class CtrHSolicitud implements ActionListener {
     VistaEasyJob vistaEasy;     // Vista
 
-    public CtrChat(VistaEasyJob vb) {
+    public CtrHSolicitud(VistaEasyJob vb) {
         vistaEasy = vb;
     }
 
@@ -16,29 +15,18 @@ public class CtrChat implements ActionListener {
 
         String actComm = e.getActionCommand();
 
-        if (actComm.compareTo(PanelChat.ENVIARMENSAJE) == 0) {
-
-            JOptionPane.showMessageDialog(null, "No se pueden enviar mensajes. Servidor en mantenimiento");
-
-
-        } else if (actComm.compareTo(PanelChat.MENSAJESPENDIENTES) == 0) {
-
-            JOptionPane.showMessageDialog(null, "No se pueden revisar los mensajes. Servidor en mantenimiento");
-
-        } else if (actComm.compareTo(PanelChat.chatATRAS) == 0) {
+        if (actComm.compareTo(PanelSolicitudHorario.bSAtras) == 0) {
 
             JComponent comp = (JComponent) e.getSource();
             Window win = SwingUtilities.getWindowAncestor(comp);
             win.dispose();
 
-            JFrame frame = new JFrame("MENU");
+            JFrame frame = new JFrame("HORARIOS");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 
-            PanelVistaPrincipal panel = new PanelVistaPrincipal();
-
-            CtrEasyJob ctr = new CtrEasyJob(panel);
-
+            PanelHorario panel = new PanelHorario();
+            CtrHorario ctr = new CtrHorario(panel);
             panel.controlador(ctr);
 
             frame.getContentPane().add(panel);

@@ -9,7 +9,8 @@ public class PanelRegistro extends JPanel implements VistaEasyJob{
     private static final String BT_NEW_USUARIO_ACCION_COMMAND = "BT_NEW_USUARIO_ACCION_COMMAND" ;
 
     private JLabel registro, status, nom, apell, cor, tele, dn, cont;
-    private JTextField nombre, apellidos, correo, telefono, dni, contrasena;
+    private JTextField nombre, apellidos, correo, telefono, dni;
+    private JPasswordField contrasena;
     private JButton registrar;
 
     ConexionBD conex = new ConexionBaseDatosJDBC();
@@ -61,7 +62,7 @@ public class PanelRegistro extends JPanel implements VistaEasyJob{
         dni.setMaximumSize(new Dimension(300, 20));
         dni.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        contrasena = new JTextField("", 45);
+        contrasena = new JPasswordField("", 45);
         contrasena.setMaximumSize(new Dimension(300, 20));
         contrasena.setAlignmentX(Component.CENTER_ALIGNMENT);
 
@@ -99,6 +100,8 @@ public class PanelRegistro extends JPanel implements VistaEasyJob{
 
                     frame.getContentPane().add(panel);
                     frame.pack();
+
+                    frame.setBounds(500,300,500,200);
 
                     frame.setSize(450, 200);
                     frame.setVisible(true);
@@ -148,7 +151,7 @@ public class PanelRegistro extends JPanel implements VistaEasyJob{
         return telefono;
     }
 
-    public JTextField getContrasena () {
+    public JPasswordField getContrasena () {
         return contrasena;
     }
 
