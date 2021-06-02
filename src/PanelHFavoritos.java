@@ -11,6 +11,7 @@ public class PanelHFavoritos extends JPanel implements VistaEasyJob {
 
     private JButton fAtras;
     private JLabel fav, hFav;
+    private DefaultListModel listModel;
 
     static String bFAtras = "ATRAS \n";
 
@@ -36,6 +37,8 @@ public class PanelHFavoritos extends JPanel implements VistaEasyJob {
         fav.setFont(new Font(fuente, Font.BOLD, 25));
 
         JScrollPane subpanelCentralDcho = new JScrollPane();
+
+
         Horario h = conex.horarioFavorito(PanelIniciarSesion.identificador);
         int semana[] = h.getSemana();
         Integer semana2[] = new Integer[7];
@@ -43,9 +46,10 @@ public class PanelHFavoritos extends JPanel implements VistaEasyJob {
             semana2[i] = Integer.valueOf(semana[i]);
         }
 
-        JList<Integer> lista = new JList<Integer>(semana2);
 
-        subpanelCentralDcho.setViewportView(lista);
+        JList<Integer> listaSemana = new JList<Integer>(semana2);
+
+        subpanelCentralDcho.setViewportView(listaSemana);
 
 
         p1.add(Box.createVerticalStrut(3));

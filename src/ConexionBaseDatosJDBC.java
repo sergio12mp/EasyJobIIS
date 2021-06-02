@@ -141,7 +141,7 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
     @Override
     public void eliminarUsuario(String dni){
         try {
-            ps = conn.prepareStatement("DELETE * FROM Usuario WHERE DNI = ?");
+            ps = conn.prepareStatement("DELETE FROM Usuario WHERE DNI = ?");
             ps.setString(1,dni);
 
             int res = ps.executeUpdate();
@@ -218,19 +218,21 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
             ps.setString(1, dni);
             rs = ps.executeQuery();
 
-            int [] semana = new int [7];
-            semana[0] = rs.getInt("Lunes");
-            semana[1] = rs.getInt("Martes");
-            semana[2] = rs.getInt("Miercoles");
-            semana[3] = rs.getInt("Jueves");
-            semana[4] = rs.getInt("Viernes");
-            semana[5] = rs.getInt("Sabado");
-            semana[6] = rs.getInt("Domingo");
-            h = new Horario(semana);
+            while (rs.next()) {
+                int[] semana = new int[7];
+                semana[0] = rs.getInt("Lunes");
+                semana[1] = rs.getInt("Martes");
+                semana[2] = rs.getInt("Miercoles");
+                semana[3] = rs.getInt("Jueves");
+                semana[4] = rs.getInt("Viernes");
+                semana[5] = rs.getInt("Sabado");
+                semana[6] = rs.getInt("Domingo");
+                h = new Horario(semana);
+            }
+            } catch(SQLException throwables){
+                throwables.printStackTrace();
+            }
 
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
         return h;
     }
 }
