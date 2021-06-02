@@ -71,10 +71,11 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
             ps = conn.prepareStatement("SELECT * FROM Usuario WHERE DNI = ? AND Contraseña = ?");
             ps.setString(1,dni);
             ps.setString(2,contraseña);
-            int res = ps.executeUpdate();
 
-            if (res > 0) {
-                JOptionPane.showMessageDialog(null, "Borrado con éxito");
+            rs = ps.executeQuery();
+
+            if(rs.next()){
+                esta = true;
             }
 
         } catch (SQLException throwables) {
