@@ -31,7 +31,7 @@ public class PanelIniciarSesion extends JPanel implements VistaEasyJob{
         dni.setMaximumSize(new Dimension(300, 20));
         dni.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        contrasena = new JTextField("", 45);
+        contrasena = new JPasswordField("", 45);
         contrasena.setMaximumSize(new Dimension(300, 20));
         contrasena.setAlignmentX(Component.CENTER_ALIGNMENT);
 
