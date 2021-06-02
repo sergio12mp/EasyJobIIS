@@ -7,6 +7,7 @@ public class PanelJVerEmpleados extends JPanel implements VistaEasyJob {
     enum ProvinciaAndaluza {
         Almería, Cádiz, Córdoba, Granada, Huelva, Jaén, Málaga, Sevilla
     }
+
     JButton jAtras;
     static String bJVE = "VOLVER AL MENU";
 
