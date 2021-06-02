@@ -57,7 +57,7 @@ public class CtrJefe implements ActionListener {
             frame.setSize(600, 400);
             frame.setVisible(true);
 
-        }
+
         /*else if (actComm.compareTo(PanelJefe.bSolicitudes) == 0) {
 
             JComponent comp = (JComponent) e.getSource();
@@ -77,6 +77,7 @@ public class CtrJefe implements ActionListener {
             frame.setSize(600, 400);
             frame.setVisible(true);
 
+*/
         }else if (actComm.compareTo(PanelJefe.bVerEmpleados) == 0) {
 
             JComponent comp = (JComponent) e.getSource();
@@ -87,7 +88,7 @@ public class CtrJefe implements ActionListener {
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
             PanelJVerEmpleados panel = new PanelJVerEmpleados();
-            CtrHorario ctr = new CtrHorario(panel);
+            CtrJEmpleados ctr = new CtrJEmpleados(panel);
             panel.controlador(ctr);
 
             frame.getContentPane().add(panel);
@@ -96,7 +97,7 @@ public class CtrJefe implements ActionListener {
             frame.setSize(600, 400);
             frame.setVisible(true);
 
-        }*/
+        }
 
     }
 }

@@ -21,7 +21,7 @@ public class CtrHFavoritos implements ActionListener {
             Window win = SwingUtilities.getWindowAncestor(comp);
             win.dispose();
 
-            JFrame frame = new JFrame("Horario");
+            JFrame frame = new JFrame("HORARIO");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
             PanelHorario panel = new PanelHorario();
