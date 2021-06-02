@@ -35,6 +35,17 @@ public class Usuario {
         FotoPerfil = null;
     }
 
+    @Override
+    public String toString() {
+        String jefe = "";
+        if(esJefe)
+            jefe = ", ES JEFE";
+
+        return DNI + ",  " + Nombre + " " + Apellidos + ",  " + CorreoElectronico + ",  " + Telefono + jefe;
+
+
+    }
+
     public String getNombre() {
         return Nombre;
     }
@@ -100,5 +111,6 @@ public class Usuario {
     }
 
     public void setEsJefe(boolean esJefe){this.esJefe = esJefe;}
+
     public boolean getesJefe() { return esJefe; }
 }
