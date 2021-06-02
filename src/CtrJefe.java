@@ -48,7 +48,7 @@ public class CtrJefe implements ActionListener {
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
             PanelJModificarHorario panel = new PanelJModificarHorario();
-            CtrHorario ctr = new CtrHorario(panel);
+            CtrModificarHorario ctr = new CtrModificarHorario(panel);
             panel.controlador(ctr);
 
             frame.getContentPane().add(panel);
@@ -57,7 +57,8 @@ public class CtrJefe implements ActionListener {
             frame.setSize(600, 400);
             frame.setVisible(true);
 
-        }/*else if (actComm.compareTo(PanelJefe.bSolicitudes) == 0) {
+        }
+        /*else if (actComm.compareTo(PanelJefe.bSolicitudes) == 0) {
 
             JComponent comp = (JComponent) e.getSource();
             Window win = SwingUtilities.getWindowAncestor(comp);
