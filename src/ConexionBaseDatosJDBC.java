@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +52,13 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
             preparedStatement.setString(6, u.getContrasena());
             int res = preparedStatement.executeUpdate();
 
+            if(res > 0){
+                JOptionPane.showMessageDialog(null, "Registrado con exito");
+            }else{
+                JOptionPane.showMessageDialog(null,"Error al registrar usuario");
+            }
 
+        conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }

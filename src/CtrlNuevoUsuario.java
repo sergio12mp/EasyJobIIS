@@ -19,8 +19,6 @@ public class CtrlNuevoUsuario implements ActionListener {
         Empleado u = new Empleado(panel.getNombre().getText(), panel.getApellidos().getText()
                 ,panel.getCorreo().getText(), panel.getDNI().getText(),
                 panel.getTelefono().getText(), panel.getContrasena().getText());
-
-        conexionbd.introducirUsuario(u);
     }
 
 

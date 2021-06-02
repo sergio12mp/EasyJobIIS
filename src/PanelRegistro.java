@@ -82,11 +82,10 @@ public class PanelRegistro extends JPanel implements VistaEasyJob{
                     //status.setText("Tienes que introducir todos los campos");
                     JOptionPane.showMessageDialog(null, "Tienes que rellenar todos los campos");
                 } else {
-                    Empleado usu = new Empleado(nomb, apellid, corr, id, telef, contra);
+                    Usuario usu = new Empleado(nomb, apellid, corr, id, telef, contra);
                     //status.setText("Registrado con exito");
-                    JOptionPane.showMessageDialog(null, "Registrado con exito");
 
-                    conex.introducirUsuario(new Empleado(nomb, apellid, corr, id, telef, contra));
+                    conex.introducirUsuario(usu);
 
                     JComponent comp = (JComponent) e.getSource();
                     Window win = SwingUtilities.getWindowAncestor(comp);

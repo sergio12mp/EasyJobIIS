@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
 public class CtrEasyJob implements ActionListener {
 
     VistaEasyJob vistaEasy;     // Vista
@@ -13,13 +14,12 @@ public class CtrEasyJob implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
-
         String actComm = e.getActionCommand();
 
-        if ((actComm.compareTo(PanelIniciarSesion.botonLogin) == 0)
-            //&&loginOK(usuario,contraseña)
-        ) {
+        if ((actComm.compareTo(PanelIniciarSesion.botonLogin) == 0)){
+            //if(!loginOK(usuario,contraseña))
 
+            //else
             JComponent comp = (JComponent) e.getSource();
             Window win = SwingUtilities.getWindowAncestor(comp);
             win.dispose();
