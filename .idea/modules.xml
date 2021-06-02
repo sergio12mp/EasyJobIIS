@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/EasyJobIIS.iml" filepath="$PROJECT_DIR$/EasyJobIIS.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EasyJob.iml" filepath="$PROJECT_DIR$/EasyJob.iml" />
     </modules>
   </component>
 </project>
