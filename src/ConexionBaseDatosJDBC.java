@@ -10,6 +10,7 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
     PreparedStatement ps;
     ResultSet rs;
     private Connection conn;
+    private boolean esJefe= false;
 
     public ConexionBaseDatosJDBC() {
         try {
@@ -64,7 +65,7 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
         }
     }
 
-    @Override
+
     public boolean buscarUsuario(String dni, String contraseña) {
         boolean esta = false;
         try {
@@ -72,15 +73,12 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
             ps.setString(1,dni);
             ps.setString(2,contraseña);
 
-
-<<<<<<< HEAD
-=======
             rs = ps.executeQuery();
 
             if(rs.next()){
                 esta = true;
+                esJefe = rs.getBoolean("Jefe");
             }
->>>>>>> 4e013eb2526d02c4cfe02b7eb1515127841807bb
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -89,26 +87,7 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
         return esta;
     }
 
-    @Override
-    public boolean esJefe (String dni, String contraseña){
-        String jefe1 = "1";
-        boolean esJefe = false;
-
-        try{
-            ps = conn.prepareStatement("SELECT * FROM Usuario WHERE DNI = ? AND Contraseña = ? AND WHERE Jefe = ?");
-            ps.setString(1,dni);
-            ps.setString(2,contraseña);
-            ps.setString(3,jefe1);
-
-           // System.out.println(contraseña);
-            System.out.println(jefe1);
-            if(jefe1.equals("1")) {
-                esJefe = true;
-            }
-
-        }catch (SQLException throwables){
-            throwables.printStackTrace();
-        }
+    public boolean esOnoJefe(){
         return esJefe;
     }
 

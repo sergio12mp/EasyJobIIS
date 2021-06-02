@@ -54,12 +54,10 @@ public class PanelIniciarSesion extends JPanel implements VistaEasyJob {
                     //status.setText("Tienes que introducir todos los campos");
                     JOptionPane.showMessageDialog(null, "Tienes que rellenar todos los campos");
                 } else {
-                    if (!conex.buscarUsuario(dn, cont)) {
+                    if (!conex.buscarUsuario(dn,cont)) {
                         JOptionPane.showMessageDialog(null, "Contraseña o usuario incorrectos");
                     } else {
-
-                        if (conex.esJefe(dn, cont)) {
-
+                        if (conex.esOnoJefe()) {
                             JComponent comp = (JComponent) e.getSource();
                             Window win = SwingUtilities.getWindowAncestor(comp);
                             win.dispose();
