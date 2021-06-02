@@ -9,4 +9,5 @@ public abstract class ConexionBD {
     static final String PASS = "corcellesmurillo";
 
     public abstract void introducirUsuario(Usuario u);
+    public abstract boolean buscarUsuario(String dni,String contraseña);
 }

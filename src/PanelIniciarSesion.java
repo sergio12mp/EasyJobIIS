@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.PreparedStatement;
 
 public class PanelIniciarSesion extends JPanel implements VistaEasyJob{
 
@@ -11,6 +12,9 @@ public class PanelIniciarSesion extends JPanel implements VistaEasyJob{
     private JLabel login, blanco;
     private JTextField dni, contrasena;
     private JButton aceptar, registrar;
+
+    ConexionBD conex = new ConexionBaseDatosJDBC();
+    private boolean ejecutar = true;
 
     public PanelIniciarSesion() {
 
@@ -44,19 +48,18 @@ public class PanelIniciarSesion extends JPanel implements VistaEasyJob{
                 String dn = dni.getText();
                 String cont = contrasena.getText();
 
-
-                if(dn.isEmpty() || cont.isEmpty()) {
+                if (dn.isEmpty() || cont.isEmpty()) {
                     //status.setText("Tienes que introducir todos los campos");
+                    ejecutar = false;
                     JOptionPane.showMessageDialog(null, "Tienes que rellenar todos los campos");
                 } else {
-                    System.out.println("BUSCAR USUARIO");
+                    if (!conex.buscarUsuario(dn, cont)) {
+                        ejecutar = false;
+                        JOptionPane.showMessageDialog(null, "Contraseña o usuario incorrectos");
+                    } else {
 
-
-                    /*
-                    JComponent comp = (JComponent) e.getSource();
-                    Window win = SwingUtilities.getWindowAncestor(comp);
-                    win.dispose();
-                     */
+                        JOptionPane.showMessageDialog(null, "Usuario y contraseña correctos");
+                    }
                 }
             }
         });
@@ -81,4 +84,5 @@ public class PanelIniciarSesion extends JPanel implements VistaEasyJob{
         aceptar.addActionListener(contrl);
         registrar.addActionListener(contrl);
     }
+
 }

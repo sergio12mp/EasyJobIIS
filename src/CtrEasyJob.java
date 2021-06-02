@@ -17,9 +17,6 @@ public class CtrEasyJob implements ActionListener {
         String actComm = e.getActionCommand();
 
         if ((actComm.compareTo(PanelIniciarSesion.botonLogin) == 0)){
-            //if(!loginOK(usuario,contraseña))
-
-            //else
             JComponent comp = (JComponent) e.getSource();
             Window win = SwingUtilities.getWindowAncestor(comp);
             win.dispose();
@@ -37,8 +34,6 @@ public class CtrEasyJob implements ActionListener {
 
             frame.setSize(1000, 500);
             frame.setVisible(true);
-
-
         } else if (actComm.compareTo(PanelIniciarSesion.botonRegistrar) == 0) {
 
             JComponent comp = (JComponent) e.getSource();

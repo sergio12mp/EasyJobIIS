@@ -93,5 +93,4 @@ public class PanelSolicitudHorario extends JPanel implements VistaEasyJob, ListS
             }
         }
     }
-
 }

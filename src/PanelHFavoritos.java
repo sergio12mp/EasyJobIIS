@@ -61,5 +61,4 @@ public class PanelHFavoritos extends JPanel implements VistaEasyJob {
         fAtras.addActionListener(ctrl);
     }
 
-
 }

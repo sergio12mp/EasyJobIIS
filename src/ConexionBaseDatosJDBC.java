@@ -6,9 +6,10 @@ import java.util.Properties;
 
 public class ConexionBaseDatosJDBC extends ConexionBD {
 
-    private Connection conn;
-
     private static ConexionBaseDatosJDBC instanciaInterfaz = null;
+    PreparedStatement ps ;
+    ResultSet rs;
+    private Connection conn;
 
     public ConexionBaseDatosJDBC() {
         try {
@@ -17,8 +18,6 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
         {
             System.err.println("ERROR DE DRIVER");
         }
-
-
         try {
             // create connection for database called DBB_SCHEMA in a server installed in
             // DB_URL, with a user USER with password PASS
@@ -62,5 +61,26 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+
+    public boolean buscarUsuario(String dni, String contraseña) {
+        boolean esta = false;
+        try {
+            ps = conn.prepareStatement("SELECT * FROM Usuario WHERE DNI = ? AND Contraseña = ?");
+            ps.setString(1,dni);
+            ps.setString(2,contraseña);
+
+            rs = ps.executeQuery();
+
+            if(rs.next()){
+                esta = true;
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return esta;
     }
 }

@@ -93,5 +93,4 @@ public class PanelVistaPrincipal extends JPanel implements VistaEasyJob {
         CS.addActionListener(ctrl);
 
     }
-
 }

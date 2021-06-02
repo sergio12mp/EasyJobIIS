@@ -72,7 +72,6 @@ public class PanelHorario extends JPanel implements VistaEasyJob {
         sHorario.addActionListener(ctrl);
         hAtras.addActionListener(ctrl);
     }
-
 }
 
 
