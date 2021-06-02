@@ -1,29 +1,35 @@
 import javax.swing.*;
+import javax.swing.undo.UndoableEditSupport;
 import java.awt.*;
+import java.awt.event.ActionListener;
+import java.util.List;
+import java.util.Vector;
 
 public class PanelJVerEmpleados extends JPanel implements VistaEasyJob {
     private String fuente = "Arial";
 
-    enum ProvinciaAndaluza {
-        Almería, Cádiz, Córdoba, Granada, Huelva, Jaén, Málaga, Sevilla
-    }
+    ConexionBD conex = new ConexionBaseDatosJDBC();
+
     JButton jAtras;
     static String bJVE = "VOLVER AL MENU";
 
     public PanelJVerEmpleados(){
 
-
-
         // Subpanel central derecho
         JScrollPane subpanelCentralDcho = new JScrollPane();
-        // Suponemos que las entradas de la lista son las
-        // provincias andaluzas
-        ProvinciaAndaluza[] provs = new ProvinciaAndaluza[8];
-        for (ProvinciaAndaluza prov : ProvinciaAndaluza.values()) {
-            provs[prov.ordinal()] = prov;
+        // Tenemos la lista
+        List<Usuario> lista = conex.verUsuarios();
+        String usuarios[] = new String[lista.size()];
+
+        int i=0;
+        for(Usuario u: lista){
+            usuarios[i] = u.toString();
+            i++;
         }
-        JList listaProvs = new JList(provs);
-        subpanelCentralDcho.setViewportView(listaProvs);
+
+        JList listaUsuarios = new JList(usuarios);
+        //add(listaUsuarios);
+        subpanelCentralDcho.setViewportView(listaUsuarios);
 
 
         jAtras = new JButton(bJVE);
@@ -38,8 +44,8 @@ public class PanelJVerEmpleados extends JPanel implements VistaEasyJob {
 
     }
 
-
-
-
+    public void controlador(ActionListener ctrl) {
+        jAtras.addActionListener(ctrl);
+    }
 
 }

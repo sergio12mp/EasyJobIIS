@@ -8,8 +8,6 @@ public class PanelJefe extends JPanel implements VistaEasyJob {
 
     public JButton ModH, VerEmpleados, Solicitudes, CerrarS, Conf;
 
-    public JLabel JEFE;
-
     static String bModH = "MODIFICAR HORARIO";
     static String bVerEmpleados = "VER EMPLEADOS";
     static String bSolicitudes = "SOLICITUDES DE HORARIO";
@@ -19,9 +17,7 @@ public class PanelJefe extends JPanel implements VistaEasyJob {
 
     public PanelJefe() {
 
-        setLayout(new GridLayout(8, 3, 5, 5));
-
-        JLabel JEFE = new JLabel("JEFE");
+        setLayout(new GridLayout(7, 3, 5, 5));
 
         ModH = new JButton(bModH);
         ModH.setFont(new Font(fuente, Font.BOLD, 20));
@@ -50,10 +46,6 @@ public class PanelJefe extends JPanel implements VistaEasyJob {
 
 
         add(Box.createVerticalStrut(3));
-        add(JEFE, BorderLayout.NORTH);
-        add(Box.createVerticalStrut(3));
-
-        add(Box.createVerticalStrut(3));
         add(ModH, BorderLayout.NORTH);
         add(Box.createVerticalStrut(3));
 
@@ -66,13 +58,12 @@ public class PanelJefe extends JPanel implements VistaEasyJob {
         add(Box.createVerticalStrut(3));
 
         add(Box.createVerticalStrut(3));
-        add(CerrarS, BorderLayout.NORTH);
-        add(Box.createVerticalStrut(3));
-
-        add(Box.createVerticalStrut(3));
         add(Conf, BorderLayout.NORTH);
         add(Box.createVerticalStrut(3));
 
+        add(Box.createVerticalStrut(3));
+        add(CerrarS, BorderLayout.NORTH);
+        add(Box.createVerticalStrut(3));
 
         add(Box.createVerticalStrut(3));
         add(Box.createVerticalStrut(3));
@@ -81,7 +72,11 @@ public class PanelJefe extends JPanel implements VistaEasyJob {
     }
 
     public void controlador(ActionListener ctrl) {
-
+        CerrarS.addActionListener(ctrl);
+        Solicitudes.addActionListener(ctrl);
+        VerEmpleados.addActionListener(ctrl);
+        ModH.addActionListener(ctrl);
+        Conf.addActionListener(ctrl);
     }
 
 }

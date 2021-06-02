@@ -3,36 +3,38 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class CtrHFavoritos implements ActionListener {
+public class CtrModificarHorario implements ActionListener {
+
     VistaEasyJob vistaEasy;     // Vista
 
-    public CtrHFavoritos(VistaEasyJob vb) {
+    public CtrModificarHorario(VistaEasyJob vb) {
         vistaEasy = vb;
     }
 
+
     @Override
     public void actionPerformed(ActionEvent e) {
-
         String actComm = e.getActionCommand();
 
-        if (actComm.compareTo(PanelHFavoritos.bFAtras) == 0) {
-
+        if(actComm.compareTo(PanelJModificarHorario.bVAM) == 0){
             JComponent comp = (JComponent) e.getSource();
             Window win = SwingUtilities.getWindowAncestor(comp);
             win.dispose();
 
-            JFrame frame = new JFrame("HORARIO");
+            JFrame frame = new JFrame("MENU JEFE");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-            PanelHorario panel = new PanelHorario();
+            PanelJefe panel = new PanelJefe();
             CtrHorario ctr = new CtrHorario(panel);
             panel.controlador(ctr);
 
             frame.getContentPane().add(panel);
             frame.pack();
 
-            frame.setSize(600, 400);
+            frame.setSize(1000, 500);
             frame.setVisible(true);
         }
     }
+
+
 }

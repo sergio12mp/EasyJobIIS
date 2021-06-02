@@ -1,3 +1,5 @@
+import java.util.List;
+
 public abstract class ConexionBD {
 
     static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
@@ -10,6 +12,12 @@ public abstract class ConexionBD {
 
     public abstract void introducirUsuario(Usuario u);
     public abstract boolean buscarUsuario(String dni,String contraseña);
-    public abstract boolean esJefe(String dni,String contraseña);
     public abstract void eliminarUsuario(String dni);
+    public abstract boolean esOnoJefe();
+    public abstract  void cambiarCorreo(String dni, String actual, String nuevo);
+    public abstract  void cambiarTelefono(String dni, String actual, String nuevo);
+    public abstract  void cambiarContraseña(String dni, String actual, String nuevo);
+    public abstract  void cambiarFoto(String dni, String actual, String nuevo);
+
+    public abstract List<Usuario> verUsuarios();
 }

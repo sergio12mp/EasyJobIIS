@@ -9,8 +9,11 @@ public class PanelIniciarSesion extends JPanel implements VistaEasyJob {
     static final String botonLogin = "Entrar";
     static final String botonRegistrar = "Registrarse";
 
+    static String identificador = "";
+
     private JLabel login, blanco;
-    private JTextField dni;
+
+    private JTextField dni,jefe;
     private JPasswordField contrasena;
     private JButton aceptar, registrar;
 
@@ -48,14 +51,38 @@ public class PanelIniciarSesion extends JPanel implements VistaEasyJob {
                 String dn = dni.getText();
                 String cont = contrasena.getText();
 
+
                 if (dn.isEmpty() || cont.isEmpty()) {
                     //status.setText("Tienes que introducir todos los campos");
                     JOptionPane.showMessageDialog(null, "Tienes que rellenar todos los campos");
                 } else {
-                    if (!conex.buscarUsuario(dn, cont)) {
+                    if (!conex.buscarUsuario(dn,cont)) {
                         JOptionPane.showMessageDialog(null, "Contraseña o usuario incorrectos");
                     } else {
-                        if (!conex.esJefe(dn, cont)) {
+
+                        identificador = dn;
+
+                        if (conex.esOnoJefe()) {
+                            JComponent comp = (JComponent) e.getSource();
+                            Window win = SwingUtilities.getWindowAncestor(comp);
+                            win.dispose();
+
+                            JFrame frame = new JFrame("PanelJefe");
+                            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+                            PanelJefe panel = new PanelJefe();
+
+                            CtrJefe ctr = new CtrJefe(panel);
+                            panel.controlador(ctr);
+
+                            frame.getContentPane().add(panel);
+                            frame.pack();
+
+                            frame.setSize(1000, 500);
+                            frame.setVisible(true);
+                        }
+                        else {
+
                             //JOptionPane.showMessageDialog(null, "Usuario y contraseña correctos");
 
                             JComponent comp = (JComponent) e.getSource();
@@ -70,27 +97,6 @@ public class PanelIniciarSesion extends JPanel implements VistaEasyJob {
 
                             CtrEasyJob ctr = new CtrEasyJob(panel);
                             panel.controlador(ctr);
-
-                            frame.getContentPane().add(panel);
-                            frame.pack();
-
-                            frame.setSize(1000, 500);
-                            frame.setVisible(true);
-
-                        } else {
-
-                            JComponent comp = (JComponent) e.getSource();
-                            Window win = SwingUtilities.getWindowAncestor(comp);
-                            win.dispose();
-
-                            JFrame frame = new JFrame("MENU JEFE");
-                            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
-
-                            PanelJefe panel = new PanelJefe();
-
-                            CtrEasyJob ctr = new CtrEasyJob(panel);
-                            panel.controlador(this);
 
                             frame.getContentPane().add(panel);
                             frame.pack();

@@ -10,6 +10,7 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
     PreparedStatement ps;
     ResultSet rs;
     private Connection conn;
+    private boolean esJefe= false;
 
     public ConexionBaseDatosJDBC() {
         try {
@@ -64,7 +65,7 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
         }
     }
 
-    @Override
+
     public boolean buscarUsuario(String dni, String contraseña) {
         boolean esta = false;
         try {
@@ -76,6 +77,7 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
 
             if(rs.next()){
                 esta = true;
+                esJefe = rs.getBoolean("Jefe");
             }
 
         } catch (SQLException throwables) {
@@ -85,27 +87,55 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
         return esta;
     }
 
+    public boolean esOnoJefe(){
+        return esJefe;
+    }
+
     @Override
-    public boolean esJefe (String dni, String contraseña, int njefe){
-        //int njefe=0;
-        boolean esJefe = false;
+    public List<Usuario> verUsuarios() {
+        List<Usuario> list = new ArrayList<>();
 
-        try{
-            ps = conn.prepareStatement("SELECT * FROM Usuario WHERE DNI = ? AND Contraseña = ? AND WHERE Jefe = ?");
-            ps.setString(1,dni);
-            ps.setString(2,contraseña);
-            ps.setInt(3,njefe);
+        try {
+            ps = conn.prepareStatement("SELECT * FROM Usuario");
+            rs = ps.executeQuery();
 
-           // System.out.println(contraseña);
-            System.out.println(njefe);
-            if(njefe ==1) {
-                esJefe = true;
+            while(rs.next()){
+                Usuario u = new Usuario();
+
+                u.setDNI(rs.getString("DNI"));
+                u.setNombre(rs.getString("Nombre"));
+                u.setApellidos(rs.getString("Apellidos"));
+                u.setCorreoElectronico(rs.getString("Correo"));
+                u.setTelefono(rs.getString("Telefono"));
+                u.setFotoPerfil(rs.getString("FotoPerfil"));
+                u.setQR(rs.getString("QR"));
+                u.setEsJefe(rs.getBoolean("Jefe"));
+
+                list.add(u);
             }
 
-        }catch (SQLException throwables){
+        } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return esJefe;
+        return list;
+    }
+
+    public void cambiarCorreo(String dni, String actual, String nuevo) {
+        try {
+            ps =   ps = conn.prepareStatement("UPDATE Usuario  SET Correo =  ?  WHERE DNI = ?");
+            ps.setString(1,nuevo);
+            ps.setString(2,dni);
+            int res = ps.executeUpdate();
+
+            if (res > 0){
+                JOptionPane.showMessageDialog(null, "Correo actualizado con exito");
+            }
+
+            conn.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
     }
 
     @Override
@@ -122,5 +152,63 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+    }
+
+    @Override
+    public void cambiarTelefono(String dni, String actual, String nuevo) {
+        try {
+            ps =   ps = conn.prepareStatement("UPDATE Usuario  SET Telefono =  ?  WHERE DNI = ?");
+            ps.setString(1,nuevo);
+            ps.setString(2,dni);
+            int res = ps.executeUpdate();
+
+            if (res > 0){
+                JOptionPane.showMessageDialog(null, "Telefono actualizado con exito");
+            }
+
+            conn.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+    }
+
+    @Override
+    public void cambiarContraseña(String dni, String actual, String nuevo) {
+        try {
+            ps =   ps = conn.prepareStatement("UPDATE Usuario  SET Contraseña =  ?  WHERE DNI = ?");
+            ps.setString(1,nuevo);
+            ps.setString(2,dni);
+            int res = ps.executeUpdate();
+
+            if (res > 0){
+                JOptionPane.showMessageDialog(null, "Contraseña actualizado con exito");
+            }
+
+            conn.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+    }
+
+
+    @Override
+    public void cambiarFoto(String dni, String actual, String nuevo) {
+        try {
+            ps =   ps = conn.prepareStatement("UPDATE Usuario  SET FotoPerfil =  ?  WHERE DNI = ?");
+            ps.setString(1,nuevo);
+            ps.setString(2,dni);
+            int res = ps.executeUpdate();
+
+            if (res > 0){
+                JOptionPane.showMessageDialog(null, "FotoPerfil actualizado con exito");
+            }
+
+            conn.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
     }
 }
