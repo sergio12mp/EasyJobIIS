@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 public class CtrJEmpleados implements ActionListener {
 
     VistaEasyJob vistaEasy;     // Vista
+    ConexionBD conex = new ConexionBaseDatosJDBC();
 
     public CtrJEmpleados(VistaEasyJob vb) {
         vistaEasy = vb;
@@ -36,7 +37,15 @@ public class CtrJEmpleados implements ActionListener {
             frame.setSize(1000, 500);
             frame.setVisible(true);
 
-        }
+        } else if (actComm.compareTo(PanelJVerEmpleados.bBorrar) == 0) {
 
+            if(PanelJVerEmpleados.seleccionado.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun usuario");
+            } else {
+                conex.eliminarUsuario(PanelJVerEmpleados.seleccionado);
+                JOptionPane.showMessageDialog(null, "Usuario eliminado con exito");
+            }
+
+        }
     }
 }
