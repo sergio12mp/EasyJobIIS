@@ -86,8 +86,8 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
     }
 
     @Override
-    public boolean esJefe (String dni, String contraseña){
-        int njefe=0;
+    public boolean esJefe (String dni, String contraseña, int njefe){
+        //int njefe=0;
         boolean esJefe = false;
 
         try{
@@ -96,6 +96,8 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
             ps.setString(2,contraseña);
             ps.setInt(3,njefe);
 
+           // System.out.println(contraseña);
+            System.out.println(njefe);
             if(njefe ==1) {
                 esJefe = true;
             }

@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.PreparedStatement;
 
-public class PanelIniciarSesion extends JPanel implements VistaEasyJob{
+public class PanelIniciarSesion extends JPanel implements VistaEasyJob {
 
     static final String botonLogin = "Entrar";
     static final String botonRegistrar = "Registrarse";
@@ -53,49 +53,51 @@ public class PanelIniciarSesion extends JPanel implements VistaEasyJob{
                 } else {
                     if (!conex.buscarUsuario(dn, cont)) {
                         JOptionPane.showMessageDialog(null, "Contraseña o usuario incorrectos");
-                    } else if (!conex.esJefe(dn, cont)) {
-                        //JOptionPane.showMessageDialog(null, "Usuario y contraseña correctos");
-
-                        JComponent comp = (JComponent) e.getSource();
-                        Window win = SwingUtilities.getWindowAncestor(comp);
-                        win.dispose();
-
-                        JFrame frame = new JFrame("MENU");
-                        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
-
-                        PanelVistaPrincipal panel = new PanelVistaPrincipal();
-
-                        CtrEasyJob ctr = new CtrEasyJob(panel);
-                        panel.controlador(ctr);
-
-                        frame.getContentPane().add(panel);
-                        frame.pack();
-
-                        frame.setSize(1000, 500);
-                        frame.setVisible(true);
-
                     } else {
+                        if (!conex.esJefe(dn, cont)) {
+                            //JOptionPane.showMessageDialog(null, "Usuario y contraseña correctos");
 
-                        JComponent comp = (JComponent) e.getSource();
-                        Window win = SwingUtilities.getWindowAncestor(comp);
-                        win.dispose();
+                            JComponent comp = (JComponent) e.getSource();
+                            Window win = SwingUtilities.getWindowAncestor(comp);
+                            win.dispose();
 
-                        JFrame frame = new JFrame("MENU JEFE");
-                        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                            JFrame frame = new JFrame("MENU");
+                            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 
-                        PanelJefe panel = new PanelJefe();
+                            PanelVistaPrincipal panel = new PanelVistaPrincipal();
 
-                        CtrEasyJob ctr = new CtrEasyJob(panel);
-                        panel.controlador(this);
+                            CtrEasyJob ctr = new CtrEasyJob(panel);
+                            panel.controlador(ctr);
 
-                        frame.getContentPane().add(panel);
-                        frame.pack();
+                            frame.getContentPane().add(panel);
+                            frame.pack();
 
-                        frame.setSize(1000, 500);
-                        frame.setVisible(true);
+                            frame.setSize(1000, 500);
+                            frame.setVisible(true);
 
+                        } else {
+
+                            JComponent comp = (JComponent) e.getSource();
+                            Window win = SwingUtilities.getWindowAncestor(comp);
+                            win.dispose();
+
+                            JFrame frame = new JFrame("MENU JEFE");
+                            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+
+                            PanelJefe panel = new PanelJefe();
+
+                            CtrEasyJob ctr = new CtrEasyJob(panel);
+                            panel.controlador(this);
+
+                            frame.getContentPane().add(panel);
+                            frame.pack();
+
+                            frame.setSize(1000, 500);
+                            frame.setVisible(true);
+
+                        }
                     }
                 }
             }
