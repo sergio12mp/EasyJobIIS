@@ -9,6 +9,8 @@ public class PanelIniciarSesion extends JPanel implements VistaEasyJob {
     static final String botonLogin = "Entrar";
     static final String botonRegistrar = "Registrarse";
 
+    static String identificador = "";
+
     private JLabel login, blanco;
 
     private JTextField dni,jefe;
@@ -57,6 +59,9 @@ public class PanelIniciarSesion extends JPanel implements VistaEasyJob {
                     if (!conex.buscarUsuario(dn,cont)) {
                         JOptionPane.showMessageDialog(null, "Contraseña o usuario incorrectos");
                     } else {
+
+                        identificador = dn;
+
                         if (conex.esOnoJefe()) {
                             JComponent comp = (JComponent) e.getSource();
                             Window win = SwingUtilities.getWindowAncestor(comp);
