@@ -66,7 +66,8 @@ public class PanelIniciarSesion extends JPanel implements VistaEasyJob{
 
                         PanelVistaPrincipal panel = new PanelVistaPrincipal();
 
-                        panel.controlador(this);
+                        CtrEasyJob ctr = new CtrEasyJob(panel);
+                        panel.controlador(ctr);
 
                         frame.getContentPane().add(panel);
                         frame.pack();

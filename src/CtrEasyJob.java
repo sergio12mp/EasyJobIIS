@@ -65,7 +65,10 @@ public class CtrEasyJob implements ActionListener {
             frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
             PanelChat panel = new PanelChat();
-            panel.controlador(this);
+
+            CtrChat ctrChat = new CtrChat(panel);
+
+            panel.controlador(ctrChat);
 
             frame.getContentPane().add(panel);
             frame.pack();
@@ -73,16 +76,7 @@ public class CtrEasyJob implements ActionListener {
             frame.setSize(800, 400);
             frame.setVisible(true);
 
-        } else if (actComm.compareTo(PanelChat.ENVIARMENSAJE) == 0) {
-
-            JOptionPane.showMessageDialog(null, "No se pueden enviar mensajes. Servidor en mantenimiento");
-
-
-        } else if (actComm.compareTo(PanelChat.MENSAJESPENDIENTES) == 0) {
-
-            JOptionPane.showMessageDialog(null, "No se pueden revisar los mensajes. Servidor en mantenimiento");
-
-        } else if ((actComm.compareTo(PanelHorario.bHAtras) == 0) || (actComm.compareTo(PanelChat.chatATRAS) == 0)||(actComm.compareTo(PanelFichar.bMFichar) == 0)) {
+        } else if ((actComm.compareTo(PanelHorario.bHAtras) == 0) || (actComm.compareTo(PanelFichar.bMFichar) == 0)) {
 
             JComponent comp = (JComponent) e.getSource();
             Window win = SwingUtilities.getWindowAncestor(comp);
