@@ -7,7 +7,7 @@ import java.util.Properties;
 public class ConexionBaseDatosJDBC extends ConexionBD {
 
     private static ConexionBaseDatosJDBC instanciaInterfaz = null;
-    PreparedStatement ps ;
+    PreparedStatement ps;
     ResultSet rs;
     private Connection conn;
 
@@ -64,7 +64,7 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
         }
     }
 
-
+    @Override
     public boolean buscarUsuario(String dni, String contraseña) {
         boolean esta = false;
         try {
@@ -85,26 +85,28 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
         return esta;
     }
 
-    public boolean esJefe(String dni, String contraseña){
+    @Override
+    public boolean esJefe (String dni, String contraseña){
         int njefe=0;
+        boolean esJefe = false;
+
         try{
             ps = conn.prepareStatement("SELECT * FROM Usuario WHERE DNI = ? AND Contraseña = ? AND WHERE Jefe = ?");
             ps.setString(1,dni);
             ps.setString(2,contraseña);
             ps.setInt(3,njefe);
-            if(njefe ==1)
-                return true;
-           else
-               return false;
+
+            if(njefe ==1) {
+                esJefe = true;
+            }
 
         }catch (SQLException throwables){
             throwables.printStackTrace();
         }
-
-        return false;
+        return esJefe;
     }
 
-
+    @Override
     public void eliminarUsuario(String dni){
         try {
             ps = conn.prepareStatement("DELETE * FROM Usuario WHERE DNI = ?");
