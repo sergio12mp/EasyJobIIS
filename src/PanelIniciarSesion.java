@@ -65,7 +65,6 @@ public class PanelIniciarSesion extends JPanel implements VistaEasyJob {
                             JFrame frame = new JFrame("PanelJefe");
                             frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-
                             PanelJefe panel = new PanelJefe();
 
                             CtrEasyJob ctr = new CtrEasyJob(panel);

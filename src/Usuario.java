@@ -1,5 +1,6 @@
+import javax.swing.undo.UndoableEditSupport;
 
-public abstract class Usuario {
+public class Usuario {
 
     private String Nombre;
     private String Apellidos;
@@ -9,7 +10,19 @@ public abstract class Usuario {
     private String Telefono;
     private String Contrasena;
     private String QR;
+    private boolean esJefe;
 
+    public Usuario(){
+        Nombre = null;
+        Apellidos = null;
+        CorreoElectronico = null;
+        this.DNI = null;
+        Telefono = null;
+        Contrasena = null;
+        QR = null;
+        esJefe = false;
+        FotoPerfil = null;
+    }
     public Usuario(String nombre, String apellidos, String correoElectronico,  String DNI, String telefono,  String contrasena) {
         Nombre = nombre;
         Apellidos = apellidos;
@@ -17,6 +30,9 @@ public abstract class Usuario {
         this.DNI = DNI;
         Telefono = telefono;
         Contrasena = contrasena;
+        QR = null;
+        esJefe = false;
+        FotoPerfil = null;
     }
 
     public String getNombre() {
@@ -83,4 +99,6 @@ public abstract class Usuario {
         this.QR = QR;
     }
 
+    public void setEsJefe(boolean esJefe){this.esJefe = esJefe;}
+    public boolean getesJefe() { return esJefe; }
 }

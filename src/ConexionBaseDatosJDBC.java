@@ -92,6 +92,35 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
     }
 
     @Override
+    public List<Usuario> verUsuarios() {
+        List<Usuario> list = new ArrayList<>();
+
+        try {
+            ps = conn.prepareStatement("SELECT * FROM Usuario");
+            rs = ps.executeQuery();
+
+            while(rs.next()){
+                Usuario u = new Usuario();
+
+                u.setDNI(rs.getString("DNI"));
+                u.setNombre(rs.getString("Nombre"));
+                u.setApellidos(rs.getString("Apellidos"));
+                u.setCorreoElectronico(rs.getString("Correo"));
+                u.setTelefono(rs.getString("Telefono"));
+                u.setFotoPerfil(rs.getString("FotoPerfil"));
+                u.setQR(rs.getString("QR"));
+                u.setEsJefe(rs.getBoolean("Jefe"));
+
+                list.add(u);
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return list;
+    }
+
+    @Override
     public void eliminarUsuario(String dni){
         try {
             ps = conn.prepareStatement("DELETE * FROM Usuario WHERE DNI = ?");
