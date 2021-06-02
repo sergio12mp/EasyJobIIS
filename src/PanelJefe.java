@@ -81,7 +81,11 @@ public class PanelJefe extends JPanel implements VistaEasyJob {
     }
 
     public void controlador(ActionListener ctrl) {
-
+        CerrarS.addActionListener(ctrl);
+        Solicitudes.addActionListener(ctrl);
+        VerEmpleados.addActionListener(ctrl);
+        ModH.addActionListener(ctrl);
+        Conf.addActionListener(ctrl);
     }
 
 }

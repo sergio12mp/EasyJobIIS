@@ -57,7 +57,7 @@ public class CtrJefe implements ActionListener {
             frame.setSize(600, 400);
             frame.setVisible(true);
 
-        }else if (actComm.compareTo(PanelJefe.bSolicitudes) == 0) {
+        }/*else if (actComm.compareTo(PanelJefe.bSolicitudes) == 0) {
 
             JComponent comp = (JComponent) e.getSource();
             Window win = SwingUtilities.getWindowAncestor(comp);
@@ -95,7 +95,7 @@ public class CtrJefe implements ActionListener {
             frame.setSize(600, 400);
             frame.setVisible(true);
 
-        }
+        }*/
 
     }
 }
