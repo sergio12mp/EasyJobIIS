@@ -49,7 +49,7 @@ public class PanelEnviarMensaje extends JPanel implements VistaEasyJob {
 
                 if(!dest.isEmpty() && !mensj.isEmpty()) {
 
-                    // conex.cambiarFoto(PanelIniciarSesion.identificador, actual);
+                    conex.EnviarMensaje(dest, mensj);
 
                     JComponent comp = (JComponent) e.getSource();
                     Window win = SwingUtilities.getWindowAncestor(comp);

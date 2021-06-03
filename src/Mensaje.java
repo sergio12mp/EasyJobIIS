@@ -37,7 +37,7 @@ public class Mensaje {
 
 
     public String toString() {
-        return ("Mensaje número: " + Identificador + " de autor: " + contenido);
+        return ("Mensaje de " + autor + " con ID " + Identificador + ", " + contenido);
     }
 
 }
