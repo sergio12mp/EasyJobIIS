@@ -4,8 +4,9 @@ import java.awt.event.ActionListener;
 
 public class PanelConfiguracion extends JPanel implements VistaEasyJob {
     private String fuente = "Arial";
-
-    JButton CFoto, CContraseña, CCorreo, CTelefono, CIdioma, CAtras, CModo;
+    Boolean oscuro = false;
+    JButton CFoto, CContraseña, CCorreo, CTelefono, CIdioma, CAtras;
+    JCheckBox CModo;
     static String bCFoto = "FOTO";
     static String bCContraseña = "CONTRASEÑA";
     static String bCCorreo = "CORREO";
@@ -44,7 +45,7 @@ public class PanelConfiguracion extends JPanel implements VistaEasyJob {
         CAtras.setFont(new Font(fuente, Font.BOLD, 20));
         CAtras.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        CModo = new JButton(bCModo);
+        CModo = new JCheckBox(bCModo);
         CModo.setFont(new Font(fuente, Font.BOLD, 20));
         CModo.setAlignmentX(Component.CENTER_ALIGNMENT);
 
@@ -70,11 +71,11 @@ public class PanelConfiguracion extends JPanel implements VistaEasyJob {
         add(Box.createVerticalStrut(3));
 
         add(Box.createVerticalStrut(3));
-        add(CModo, BorderLayout.NORTH);
+        add(CIdioma, BorderLayout.NORTH);
         add(Box.createVerticalStrut(3));
 
         add(Box.createVerticalStrut(3));
-        add(CIdioma, BorderLayout.NORTH);
+        add(CModo, BorderLayout.NORTH);
         add(Box.createVerticalStrut(3));
 
         add(Box.createVerticalStrut(3));
@@ -85,6 +86,9 @@ public class PanelConfiguracion extends JPanel implements VistaEasyJob {
         add(Box.createVerticalStrut(3));
         add(Box.createVerticalStrut(3));
 
+        if(CModo.isSelected()){
+            oscuro=true;
+        }
     }
 
     public void controlador(ActionListener ctrl) {
@@ -96,7 +100,6 @@ public class PanelConfiguracion extends JPanel implements VistaEasyJob {
         CIdioma.addActionListener(ctrl);
         CAtras.addActionListener(ctrl);
         CModo.addActionListener(ctrl);
-
 
     }
 
