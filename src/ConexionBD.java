@@ -33,4 +33,6 @@ public abstract class ConexionBD {
     public abstract void EnviarMensaje(String dni, String mensaje);
     public abstract void BorrarMensaje(int iden);
 
+    public abstract void Ascender(boolean esJefe);
+
 }
