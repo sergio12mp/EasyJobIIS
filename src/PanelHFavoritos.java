@@ -28,7 +28,6 @@ public class PanelHFavoritos extends JPanel implements VistaEasyJob {
         p2.setLayout(new GridLayout(2, 3, 5, 5));
 
 
-
         fAtras = new JButton(bFAtras);
         fAtras.setFont(new Font(fuente, Font.BOLD, 18));
         fAtras.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -42,7 +41,7 @@ public class PanelHFavoritos extends JPanel implements VistaEasyJob {
         Horario h = conex.horarioFavorito(PanelIniciarSesion.identificador);
         int semana[] = h.getSemana();
         Integer semana2[] = new Integer[7];
-        for(int i=0;i<7;i++){
+        for (int i = 0; i < 7; i++) {
             semana2[i] = Integer.valueOf(semana[i]);
         }
 
@@ -51,7 +50,7 @@ public class PanelHFavoritos extends JPanel implements VistaEasyJob {
 
         subpanelCentralDcho.setViewportView(listaSemana);
 
-
+        //aire para que on quede apretado
         p1.add(Box.createVerticalStrut(3));
         p1.add(Box.createVerticalStrut(3));
         p1.add(Box.createVerticalStrut(3));
@@ -62,12 +61,13 @@ public class PanelHFavoritos extends JPanel implements VistaEasyJob {
 
         add(p1);
 
-        add(hFav);
-
+        //Muestra los horarios favoritos
+        add(subpanelCentralDcho);
+        //boton atras
         p2.add(Box.createVerticalStrut(3));
         p2.add(fAtras);
         p2.add(Box.createVerticalStrut(3));
-
+        //aire para que on quede apretado
         p2.add(Box.createVerticalStrut(3));
         p2.add(Box.createVerticalStrut(3));
         p2.add(Box.createVerticalStrut(3));
@@ -77,6 +77,7 @@ public class PanelHFavoritos extends JPanel implements VistaEasyJob {
     }
 
     public void controlador(ActionListener ctrl) {
+
         fAtras.addActionListener(ctrl);
     }
 
