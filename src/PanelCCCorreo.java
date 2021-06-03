@@ -101,7 +101,4 @@ public class PanelCCCorreo extends JPanel implements VistaEasyJob {
         atras.addActionListener(ctrl);
     }
 
-
-
-
 }

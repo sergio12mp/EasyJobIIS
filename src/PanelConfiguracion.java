@@ -17,7 +17,7 @@ public class PanelConfiguracion extends JPanel implements VistaEasyJob {
 
     public PanelConfiguracion() {
 
-        setLayout(new GridLayout(9, 3, 5, 5));
+        setLayout(new GridLayout(10, 3, 5, 5));
 
 
         CFoto = new JButton(bCFoto);
@@ -63,6 +63,10 @@ public class PanelConfiguracion extends JPanel implements VistaEasyJob {
 
         add(Box.createVerticalStrut(3));
         add(CTelefono, BorderLayout.NORTH);
+        add(Box.createVerticalStrut(3));
+
+        add(Box.createVerticalStrut(3));
+        add(CFoto, BorderLayout.NORTH);
         add(Box.createVerticalStrut(3));
 
         add(Box.createVerticalStrut(3));

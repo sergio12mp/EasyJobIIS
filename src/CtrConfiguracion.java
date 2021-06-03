@@ -69,7 +69,7 @@ public class CtrConfiguracion implements ActionListener {
 
             frame.setSize(600, 400);
             frame.setVisible(true);
-        }/*else if (actComm.compareTo(PanelConfiguracion.bCCorreo) == 0) {
+        }else if (actComm.compareTo(PanelConfiguracion.bCCorreo) == 0) {
 
             JComponent comp = (JComponent) e.getSource();
             Window win = SwingUtilities.getWindowAncestor(comp);
@@ -79,7 +79,7 @@ public class CtrConfiguracion implements ActionListener {
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
             PanelCCCorreo panel = new PanelCCCorreo();
-            CtrCCContraseña ctr = new CtrCCContraseña(panel);
+            CtrCambCorreo ctr = new CtrCambCorreo(panel);
             panel.controlador(ctr);
 
             frame.getContentPane().add(panel);
@@ -87,7 +87,7 @@ public class CtrConfiguracion implements ActionListener {
 
             frame.setSize(600, 400);
             frame.setVisible(true);
-<<<<<<< HEAD
+
         } else if (actComm.compareTo(PanelConfiguracion.bCTelefono) == 0) {
 
             JComponent comp = (JComponent) e.getSource();
@@ -107,10 +107,8 @@ public class CtrConfiguracion implements ActionListener {
             frame.setSize(600, 300);
             frame.setVisible(true);
 
-        }/*else if (actComm.compareTo(PanelConfiguracion.bCFoto) == 0) {
-=======
         }else if (actComm.compareTo(PanelConfiguracion.bCFoto) == 0) {
->>>>>>> 78830aae3df31205e3f879661e611b2aa62b099d
+
 
             JComponent comp = (JComponent) e.getSource();
             Window win = SwingUtilities.getWindowAncestor(comp);
@@ -126,9 +124,10 @@ public class CtrConfiguracion implements ActionListener {
             frame.getContentPane().add(panel);
             frame.pack();
 
-            frame.setSize(600, 400);
+            frame.setSize(600, 250);
             frame.setVisible(true);
-        }else if (actComm.compareTo(PanelConfiguracion.bCIdioma) == 0) {
+
+        }/*else if (actComm.compareTo(PanelConfiguracion.bCIdioma) == 0) {
 
             JComponent comp = (JComponent) e.getSource();
             Window win = SwingUtilities.getWindowAncestor(comp);
@@ -165,9 +164,7 @@ public class CtrConfiguracion implements ActionListener {
             frame.setSize(600, 400);
             frame.setVisible(true);
         }
-*/
-
-
+        */
     }
 }
 

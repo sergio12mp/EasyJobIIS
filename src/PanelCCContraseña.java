@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class PanelCCContraseña extends JPanel implements VistaEasyJob {
     private String fuente = "Arial";
@@ -63,10 +64,11 @@ public class PanelCCContraseña extends JPanel implements VistaEasyJob {
     }
 
 
-    public void controlador(CtrCCContraseña ctr) {
+    public void controlador(ActionListener ctr) {
         contraseñaAntigua.addActionListener(ctr);
         contraseñaNueva.addActionListener(ctr);
         CContraseñaActualizar.addActionListener(ctr);
         CContraseñaAtras.addActionListener(ctr);
     }
+
 }
