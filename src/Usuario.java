@@ -38,6 +38,7 @@ public class Usuario {
     @Override
     public String toString() {
         String jefe = "";
+
         if(esJefe)
             jefe = ", ES JEFE";
 

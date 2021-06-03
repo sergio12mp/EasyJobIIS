@@ -11,8 +11,9 @@ public class PanelHelp  extends JPanel implements VistaEasyJob {
 
     public JFormattedTextField correo, telefono;
 
-    public JButton HAtras;
+    public JButton HAtras, Henviar;
     static String bHAtras = "Atras";
+    static String bHEnviar = "Enviar";
 
 
 
@@ -23,6 +24,14 @@ public class PanelHelp  extends JPanel implements VistaEasyJob {
         correo = new JFormattedTextField("CORREO: easyjob@easyjob.com");
         correo.setFont(new Font(fuente, Font.BOLD, 20));
         correo.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        Henviar = new JButton(bHEnviar);
+        correo.setFont(new Font(fuente, Font.BOLD, 20));
+        correo.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+
+
+
 
         telefono = new JFormattedTextField("TELEFONO: +34 987 987 987");
         telefono.setFont(new Font(fuente, Font.BOLD, 20));
@@ -41,6 +50,12 @@ public class PanelHelp  extends JPanel implements VistaEasyJob {
         add(Box.createVerticalStrut(3));
         add(Box.createVerticalStrut(3));
         add(Box.createVerticalStrut(3));
+
+
+        add(Box.createVerticalStrut(3));
+        add(HAtras);
+        add(Box.createVerticalStrut(3));
+
 
 
         add(Box.createVerticalStrut(3));
