@@ -97,7 +97,25 @@ public class CtrJefe implements ActionListener {
             frame.setSize(1000, 500);
             frame.setVisible(true);
 
-        }
+        } else if (actComm.compareTo(PanelJefe.bChatJ) == 0) {
 
+            JComponent comp = (JComponent) e.getSource();
+            Window win = SwingUtilities.getWindowAncestor(comp);
+            win.dispose();
+
+            JFrame frame = new JFrame("CHAT");
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+            PanelChat panel = new PanelChat();
+            CtrChat ctr = new CtrChat(panel);
+            panel.controlador(ctr);
+
+            frame.getContentPane().add(panel);
+            frame.pack();
+
+            frame.setSize(1000, 500);
+            frame.setVisible(true);
+
+        }
     }
 }

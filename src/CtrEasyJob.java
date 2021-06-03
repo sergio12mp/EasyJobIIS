@@ -123,6 +123,26 @@ public class CtrEasyJob implements ActionListener {
             frame.setSize(1000, 500);
             frame.setVisible(true);
 
+        }else if (actComm.compareTo(PanelVistaPrincipal.bHelp) == 0) {
+
+            JComponent comp = (JComponent) e.getSource();
+            Window win = SwingUtilities.getWindowAncestor(comp);
+            win.dispose();
+
+            JFrame frame = new JFrame("CONFIGURACION");
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+
+            PanelHelp panel = new PanelHelp();
+            CtrHelp ctr = new CtrHelp(panel);
+            //panel.controlador(ctr);
+
+            frame.getContentPane().add(panel);
+            frame.pack();
+
+            frame.setSize(1000, 500);
+            frame.setVisible(true);
+
         }
     }
 }
