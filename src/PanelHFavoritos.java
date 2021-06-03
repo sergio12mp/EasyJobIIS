@@ -33,7 +33,7 @@ public class PanelHFavoritos extends JPanel implements VistaEasyJob {
         fAtras.setFont(new Font(fuente, Font.BOLD, 18));
         fAtras.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        JLabel fav = new JLabel("              FAVORITOS");
+        JLabel fav = new JLabel("FAVORITOS");
         fav.setFont(new Font(fuente, Font.BOLD, 25));
 
         JScrollPane subpanelCentralDcho = new JScrollPane();
@@ -62,7 +62,7 @@ public class PanelHFavoritos extends JPanel implements VistaEasyJob {
 
         add(p1);
 
-        add(hFav);
+        add(subpanelCentralDcho);
 
         p2.add(Box.createVerticalStrut(3));
         p2.add(fAtras);

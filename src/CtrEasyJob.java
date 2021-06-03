@@ -53,7 +53,7 @@ public class CtrEasyJob implements ActionListener {
             frame.getContentPane().add(panel);
             frame.pack();
 
-            frame.setSize(600, 400);
+            frame.setSize(1000, 500);
             frame.setVisible(true);
 
         } else if (actComm.compareTo(PanelVistaPrincipal.bChat) == 0) {
@@ -74,7 +74,7 @@ public class CtrEasyJob implements ActionListener {
             frame.getContentPane().add(panel);
             frame.pack();
 
-            frame.setSize(800, 400);
+            frame.setSize(1000, 500);
             frame.setVisible(true);
 
         }else if (actComm.compareTo(PanelVistaPrincipal.bFichar) == 0) {
