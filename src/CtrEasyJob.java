@@ -129,7 +129,7 @@ public class CtrEasyJob implements ActionListener {
             Window win = SwingUtilities.getWindowAncestor(comp);
             win.dispose();
 
-            JFrame frame = new JFrame("CONFIGURACION");
+            JFrame frame = new JFrame("HELP");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 

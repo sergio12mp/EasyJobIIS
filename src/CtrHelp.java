@@ -14,7 +14,6 @@ public class CtrHelp implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        // TODO Auto-generated method stub
         String actComm = e.getActionCommand();
 
         if (!(PanelIniciarSesion.esJefe) && (actComm.compareTo(PanelHelp.bHAtras) == 0)) {
@@ -63,8 +62,8 @@ public class CtrHelp implements ActionListener {
             JFrame frame = new JFrame("MENU");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-            PanelJefe panel = new PanelJefe();
-            CtrJefe ctr = new CtrJefe(panel);
+            PanelEnviarMensajeDeveloper panel = new PanelEnviarMensajeDeveloper();
+            CtrEnviarMensajesDeveloper ctr = new CtrEnviarMensajesDeveloper(panel);
             panel.controlador(ctr);
 
             frame.getContentPane().add(panel);
