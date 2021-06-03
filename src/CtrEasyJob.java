@@ -135,7 +135,7 @@ public class CtrEasyJob implements ActionListener {
 
             PanelHelp panel = new PanelHelp();
             CtrHelp ctr = new CtrHelp(panel);
-            //panel.controlador(ctr);
+            panel.controlador(ctr);
 
             frame.getContentPane().add(panel);
             frame.pack();
