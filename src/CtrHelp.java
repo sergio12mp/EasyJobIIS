@@ -30,6 +30,7 @@ public class CtrHelp implements ActionListener {
             CtrEasyJob ctr = new CtrEasyJob(panel);
             panel.controlador(ctr);
 
+            
             frame.getContentPane().add(panel);
             frame.pack();
 
