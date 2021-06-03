@@ -4,8 +4,9 @@ import java.awt.event.ActionListener;
 
 
 import javax.swing.*;
-public class PanelHelp  extends JPanel implements VistaEasyJob {
-    
+
+public class PanelHelp extends JPanel implements VistaEasyJob {
+
 
     private String fuente = "Arial";
 
@@ -13,13 +14,12 @@ public class PanelHelp  extends JPanel implements VistaEasyJob {
 
     public JButton HAtras, Henviar;
     static String bHAtras = "Atras";
-    static String bHEnviar = "Enviar";
+    static String bHEnviar = "Enviar Solicitud";
 
 
+    public PanelHelp() {
 
-    public PanelHelp(){
-        
-        setLayout(new GridLayout(5, 3, 1, 5));
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         correo = new JLabel("CORREO: easyjob@easyjob.com");
         correo.setFont(new Font(fuente, Font.BOLD, 25));
@@ -32,36 +32,26 @@ public class PanelHelp  extends JPanel implements VistaEasyJob {
         telefono = new JLabel("TELEFONO: +34 987 987 987");
         telefono.setFont(new Font(fuente, Font.BOLD, 25));
         telefono.setAlignmentX(Component.CENTER_ALIGNMENT);
-    
 
-        HAtras= new JButton(bHAtras);
+
+        HAtras = new JButton(bHAtras);
         HAtras.setFont(new Font(fuente, Font.BOLD, 20));
         HAtras.setAlignmentX(Component.CENTER_ALIGNMENT);
 
 
-        add(Box.createVerticalStrut(3));
-        add(Box.createVerticalStrut(3));
-        add(Box.createVerticalStrut(3));
-        add(Box.createVerticalStrut(3));
-        add(Box.createVerticalStrut(3));
+        add(Box.createVerticalStrut(100));
+
         add(correo);
+        add(Box.createVerticalStrut(10));
+
+
         add(telefono);
-        add(Box.createVerticalStrut(3));
-        add(Box.createVerticalStrut(3));
-        add(Henviar);        add(HAtras);
 
+        add(Box.createVerticalStrut(10));
+        add(Henviar);
+        add(Box.createVerticalStrut(10));
+        add(HAtras);
 
-        add(Box.createVerticalStrut(3));
-        add(Box.createVerticalStrut(3));
-
-        add(Box.createVerticalStrut(3));
-        add(Box.createVerticalStrut(3));
-        add(Box.createVerticalStrut(3));
-        add(Box.createVerticalStrut(3));
-
-        add(Box.createVerticalStrut(3));
-        add(Box.createVerticalStrut(3));
-        add(Box.createVerticalStrut(3));
 
     }
 
