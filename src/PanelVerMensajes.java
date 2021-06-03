@@ -22,6 +22,7 @@ public class PanelVerMensajes extends JPanel implements VistaEasyJob, ListSelect
 
     static String bBorrar = "BORRAR";
     static String bJVE = "VOLVER AL MENU";
+    private final String separador = "-------------------------------------------------------------------------------------";
 
     public PanelVerMensajes(){
 
@@ -42,9 +43,11 @@ public class PanelVerMensajes extends JPanel implements VistaEasyJob, ListSelect
 
         List<Mensaje> listaEnviados = conex.verMensajesEnviados();
 
-        listModel.addElement(" ");
-        listModel.addElement("-------------------------------------------------------------------------------------");
-        listModel.addElement(" ");
+        if(!lista.isEmpty()) {
+            listModel.addElement(" ");
+            listModel.addElement(separador);
+            listModel.addElement(" ");
+        }
 
         for(Mensaje m : listaEnviados) {
             listModel.addElement(m.toString());
@@ -61,17 +64,20 @@ public class PanelVerMensajes extends JPanel implements VistaEasyJob, ListSelect
         borrar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(PanelVerMensajes.seleccionado.isEmpty()) {
+                if(PanelVerMensajes.seleccionado.isEmpty() || PanelVerMensajes.seleccionado.compareTo(separador) == 0) {
                     JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun mensaje");
                 } else {
-                    String[] parts = seleccionado.split(" ");
-                    System.out.println(parts[0]);
+                    try {
+                        String[] parts = seleccionado.split(" ");
 
-                    char c = parts[0].charAt(1);
-                    int id = Character.getNumericValue(c);
-                    conex.BorrarMensaje(id);
+                        char c = parts[0].charAt(1);
+                        int id = Character.getNumericValue(c);
+                        conex.BorrarMensaje(id);
 
-                    listModel.remove(index);
+                        listModel.remove(index);
+                    } catch (ArrayIndexOutOfBoundsException ex) {
+                        JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun mensaje");
+                    }
                 }
             }
         });
@@ -93,7 +99,6 @@ public class PanelVerMensajes extends JPanel implements VistaEasyJob, ListSelect
 
             if (listaMensajes.getSelectedIndex() == -1) {
                 //No selection, disable fire button.
-                System.out.println("Ningún elemento seleccionado");
 
             } else {
                 //Selection, enable the fire button.

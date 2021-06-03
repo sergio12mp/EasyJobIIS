@@ -67,7 +67,7 @@ public class CtrConfiguracion implements ActionListener {
             frame.getContentPane().add(panel);
             frame.pack();
 
-            frame.setSize(600, 400);
+            frame.setSize(600, 300);
             frame.setVisible(true);
         }else if (actComm.compareTo(PanelConfiguracion.bCCorreo) == 0) {
 
