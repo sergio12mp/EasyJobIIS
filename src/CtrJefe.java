@@ -29,8 +29,8 @@ public class CtrJefe implements ActionListener {
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
             PanelConfiguracion panel = new PanelConfiguracion();
-            CtrHorario ctr = new CtrHorario(panel);
-         //   panel.controlador(ctr);
+            CtrConfiguracion ctr = new CtrConfiguracion(panel);
+           panel.controlador(ctr);
 
             frame.getContentPane().add(panel);
             frame.pack();
