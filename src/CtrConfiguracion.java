@@ -10,10 +10,6 @@ public class CtrConfiguracion implements ActionListener {
         vistaEasy = vb;
     }
 
-    ConexionBD conex = new ConexionBaseDatosJDBC();
-
-
-
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -38,7 +34,6 @@ public class CtrConfiguracion implements ActionListener {
             frame.setSize(1000, 500);
             frame.setVisible(true);
         } else if ((actComm.compareTo(PanelConfiguracion.bCAtras) == 0)&&(PanelIniciarSesion.esJefe)) {
-            System.out.println("SI ES JEFE");
 
             JComponent comp = (JComponent) e.getSource();
             Window win = SwingUtilities.getWindowAncestor(comp);
@@ -56,8 +51,7 @@ public class CtrConfiguracion implements ActionListener {
 
             frame.setSize(1000, 500);
             frame.setVisible(true);
-
-        /*else if (actComm.compareTo(PanelConfiguracion.bCContraseña) == 0) {
+        }else if (actComm.compareTo(PanelConfiguracion.bCContraseña) == 0) {
 
             JComponent comp = (JComponent) e.getSource();
             Window win = SwingUtilities.getWindowAncestor(comp);
@@ -67,7 +61,7 @@ public class CtrConfiguracion implements ActionListener {
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
             PanelCCContraseña panel = new PanelCCContraseña();
-            CtrCContraseña ctr = new CtrCContraseña(panel);
+            CtrCCContraseña ctr = new CtrCCContraseña(panel);
             panel.controlador(ctr);
 
             frame.getContentPane().add(panel);
@@ -75,8 +69,7 @@ public class CtrConfiguracion implements ActionListener {
 
             frame.setSize(600, 400);
             frame.setVisible(true);
-            */
-        }else if (actComm.compareTo(PanelConfiguracion.bCCorreo) == 0) {
+        }/*else if (actComm.compareTo(PanelConfiguracion.bCCorreo) == 0) {
 
             JComponent comp = (JComponent) e.getSource();
             Window win = SwingUtilities.getWindowAncestor(comp);
@@ -86,7 +79,26 @@ public class CtrConfiguracion implements ActionListener {
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
             PanelCCCorreo panel = new PanelCCCorreo();
-            CtrCambCorreo ctr = new CtrCambCorreo(panel);
+            CtrCCContraseña ctr = new CtrCCContraseña(panel);
+            panel.controlador(ctr);
+
+            frame.getContentPane().add(panel);
+            frame.pack();
+
+            frame.setSize(600, 400);
+            frame.setVisible(true);
+<<<<<<< HEAD
+        } else if (actComm.compareTo(PanelConfiguracion.bCTelefono) == 0) {
+
+            JComponent comp = (JComponent) e.getSource();
+            Window win = SwingUtilities.getWindowAncestor(comp);
+            win.dispose();
+
+            JFrame frame = new JFrame("CAMBIAR TELEFONO");
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+            PanelCambiarTelefono panel = new PanelCambiarTelefono();
+            CtrCambiarTelefono ctr = new CtrCambiarTelefono(panel);
             panel.controlador(ctr);
 
             frame.getContentPane().add(panel);
@@ -96,6 +108,9 @@ public class CtrConfiguracion implements ActionListener {
             frame.setVisible(true);
 
         }/*else if (actComm.compareTo(PanelConfiguracion.bCFoto) == 0) {
+=======
+        }else if (actComm.compareTo(PanelConfiguracion.bCFoto) == 0) {
+>>>>>>> 78830aae3df31205e3f879661e611b2aa62b099d
 
             JComponent comp = (JComponent) e.getSource();
             Window win = SwingUtilities.getWindowAncestor(comp);

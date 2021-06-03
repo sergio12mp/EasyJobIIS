@@ -68,14 +68,18 @@ public class PanelHFavoritos extends JPanel implements VistaEasyJob {
 
         add(subpanelCentralDcho);
 
+<<<<<<< HEAD
         //Muestra los horarios favoritos
         add(subpanelCentralDcho);
         //boton atras
+=======
+>>>>>>> a2c16c3a2901d7b9b1ef0fe8029b100458281cc5
 
         p2.add(Box.createVerticalStrut(3));
         p2.add(fAtras);
         p2.add(Box.createVerticalStrut(3));
-        //aire para que on quede apretado
+
+
         p2.add(Box.createVerticalStrut(3));
         p2.add(Box.createVerticalStrut(3));
         p2.add(Box.createVerticalStrut(3));
