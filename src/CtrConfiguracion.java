@@ -12,12 +12,14 @@ public class CtrConfiguracion implements ActionListener {
 
     ConexionBD conex = new ConexionBaseDatosJDBC();
 
+
+
     @Override
     public void actionPerformed(ActionEvent e) {
 
         String actComm = e.getActionCommand();
 
-        if (!(conex.esOnoJefe()) && (actComm.compareTo(PanelConfiguracion.bCAtras) == 0)) {
+        if (!(PanelIniciarSesion.esJefe) && (actComm.compareTo(PanelConfiguracion.bCAtras) == 0)) {
 
             JComponent comp = (JComponent) e.getSource();
             Window win = SwingUtilities.getWindowAncestor(comp);
@@ -33,9 +35,10 @@ public class CtrConfiguracion implements ActionListener {
             frame.getContentPane().add(panel);
             frame.pack();
 
-            frame.setSize(600, 400);
+            frame.setSize(1000, 500);
             frame.setVisible(true);
-        } else if ((actComm.compareTo(PanelConfiguracion.bCAtras) == 0)) {
+        } else if ((actComm.compareTo(PanelConfiguracion.bCAtras) == 0)&&(PanelIniciarSesion.esJefe)) {
+            System.out.println("SI ES JEFE");
 
             JComponent comp = (JComponent) e.getSource();
             Window win = SwingUtilities.getWindowAncestor(comp);
@@ -51,7 +54,7 @@ public class CtrConfiguracion implements ActionListener {
             frame.getContentPane().add(panel);
             frame.pack();
 
-            frame.setSize(600, 400);
+            frame.setSize(1000, 500);
             frame.setVisible(true);
         }
         /*else if (actComm.compareTo(PanelConfiguracion.bCContraseña) == 0) {
