@@ -14,6 +14,7 @@ public class PanelJefe extends JPanel implements VistaEasyJob {
     static String bCerrarS = "CERRAR SESION \n";
     static String bConf = "CONFIGURACION \n";
     static String bChatJ = "CHAT \n";
+    static String bHelpJ = "HELP";
 
 
     public PanelJefe() {
@@ -39,6 +40,10 @@ public class PanelJefe extends JPanel implements VistaEasyJob {
         Conf = new JButton(bConf);
         Conf.setAlignmentX(Component.CENTER_ALIGNMENT);
         Conf.setFont(new Font(fuente, Font.BOLD, 20));
+
+        HelpJ = new JButton(bHelpJ);
+        HelpJ.setAlignmentX(Component.CENTER_ALIGNMENT);
+        HelpJ.setFont(new Font(fuente, Font.BOLD, 20));
 
         ChatJ = new JButton(bChatJ);
         ChatJ.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -68,6 +73,10 @@ public class PanelJefe extends JPanel implements VistaEasyJob {
 
         add(Box.createVerticalStrut(3));
         add(Conf);
+        add(Box.createVerticalStrut(3));
+
+        add(Box.createVerticalStrut(3));
+        add(HelpJ);
         add(Box.createVerticalStrut(3));
 
         add(Box.createVerticalStrut(3));
