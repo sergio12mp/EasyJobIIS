@@ -126,9 +126,6 @@ public class PanelCCContraseña extends JPanel implements VistaEasyJob {
 
 
     public void controlador(ActionListener ctr) {
-        contraseñaAntigua.addActionListener(ctr);
-        contraseñaNueva.addActionListener(ctr);
-        CContraseñaActualizar.addActionListener(ctr);
         CContraseñaAtras.addActionListener(ctr);
     }
 
