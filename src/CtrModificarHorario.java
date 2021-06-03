@@ -25,7 +25,7 @@ public class CtrModificarHorario implements ActionListener {
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
             PanelJefe panel = new PanelJefe();
-            CtrHorario ctr = new CtrHorario(panel);
+            CtrJefe ctr = new CtrJefe(panel);
             panel.controlador(ctr);
 
             frame.getContentPane().add(panel);

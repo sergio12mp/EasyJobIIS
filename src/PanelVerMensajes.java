@@ -6,43 +6,54 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-public class PanelJVerEmpleados extends JPanel implements VistaEasyJob, ListSelectionListener {
+public class PanelVerMensajes extends JPanel implements VistaEasyJob, ListSelectionListener {
+
     private String fuente = "Arial";
 
     ConexionBD conex = new ConexionBaseDatosJDBC();
 
     private String usuarios[];
-    private JList<String> listaUsuarios;
+    private JList<String> listaMensajes;
     static String seleccionado = "";
     private int index = -1;
     private DefaultListModel listModel;
 
-    JButton borrar, ascender, jAtras;
+    JButton borrar, jAtras;
 
     static String bBorrar = "BORRAR";
-    static String bAscender = "ASCENDER";
     static String bJVE = "VOLVER AL MENU";
 
-    public PanelJVerEmpleados(){
+    public PanelVerMensajes(){
 
         setLayout(new BorderLayout());
 
         JPanel botones = new JPanel();
-        botones.setLayout(new GridLayout(1, 3, 5, 5));
+        botones.setLayout(new GridLayout(1, 2, 5, 5));
 
         JScrollPane subpanelCentralDcho = new JScrollPane();
-        List<Usuario> lista = conex.verUsuarios();
+
+        List<Mensaje> lista = conex.verMensajes();
 
         listModel = new DefaultListModel();
 
-        for(Usuario u : lista) {
-            listModel.addElement(u.toString());
+        for(Mensaje m : lista) {
+            listModel.addElement(m.toString());
+        }
+
+        List<Mensaje> listaEnviados = conex.verMensajesEnviados();
+
+        listModel.addElement(" ");
+        listModel.addElement("-------------------------------------------------------------------------------------");
+        listModel.addElement(" ");
+
+        for(Mensaje m : listaEnviados) {
+            listModel.addElement(m.toString());
         }
 
 
-        listaUsuarios = new JList<String>(listModel);
-        listaUsuarios.addListSelectionListener(this);
-        subpanelCentralDcho.setViewportView(listaUsuarios);
+        listaMensajes = new JList<String>(listModel);
+        listaMensajes.addListSelectionListener(this);
+        subpanelCentralDcho.setViewportView(listaMensajes);
 
         borrar = new JButton(bBorrar);
         borrar.setFont(new Font(fuente, Font.BOLD, 20));
@@ -50,27 +61,25 @@ public class PanelJVerEmpleados extends JPanel implements VistaEasyJob, ListSele
         borrar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(PanelJVerEmpleados.seleccionado.isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun usuario");
+                if(PanelVerMensajes.seleccionado.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun mensaje");
                 } else {
-                    String[] parts = seleccionado.split(",");
-                    conex.eliminarUsuario(parts[0]);
+                    String[] parts = seleccionado.split(" ");
+                    System.out.println(parts[0]);
+
+                    char c = parts[0].charAt(1);
+                    int id = Character.getNumericValue(c);
+                    conex.BorrarMensaje(id);
+
                     listModel.remove(index);
-                    JOptionPane.showMessageDialog(null, "Usuario eliminado con exito");
                 }
             }
         });
-
-        ascender = new JButton(bAscender);
-        ascender.setFont(new Font(fuente, Font.BOLD, 20));
-        ascender.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         jAtras = new JButton(bJVE);
         jAtras.setFont(new Font(fuente, Font.BOLD, 20));
         jAtras.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-
-        botones.add(ascender);
         botones.add(borrar);
         botones.add(jAtras);
 
@@ -82,21 +91,19 @@ public class PanelJVerEmpleados extends JPanel implements VistaEasyJob, ListSele
     public void valueChanged(ListSelectionEvent e) {
         if (e.getValueIsAdjusting() == false) {
 
-            if (listaUsuarios.getSelectedIndex() == -1) {
+            if (listaMensajes.getSelectedIndex() == -1) {
                 //No selection, disable fire button.
                 System.out.println("Ningún elemento seleccionado");
 
             } else {
                 //Selection, enable the fire button.
-                seleccionado = listaUsuarios.getSelectedValue();
-                index = listaUsuarios.getSelectedIndex();
-
+                seleccionado = listaMensajes.getSelectedValue();
+                index = listaMensajes.getSelectedIndex();
             }
         }
     }
 
     public void controlador(ActionListener ctrl) {
-        ascender.addActionListener(ctrl);
         jAtras.addActionListener(ctrl);
     }
 

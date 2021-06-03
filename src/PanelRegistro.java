@@ -8,9 +8,9 @@ public class PanelRegistro extends JPanel implements VistaEasyJob{
 
     private static final String BT_NEW_USUARIO_ACCION_COMMAND = "BT_NEW_USUARIO_ACCION_COMMAND" ;
 
-    private JLabel registro, status, nom, apell, cor, tele, dn, cont;
+    private JLabel registro, status, nom, apell, cor, tele, dn, cont, cont2;
     private JTextField nombre, apellidos, correo, telefono, dni;
-    private JPasswordField contrasena;
+    private JPasswordField contrasena,contrasena2;
     private JButton registrar;
 
     ConexionBD conex = new ConexionBaseDatosJDBC();
@@ -41,6 +41,8 @@ public class PanelRegistro extends JPanel implements VistaEasyJob{
         dn.setAlignmentX(Component.CENTER_ALIGNMENT);
         cont = new JLabel("Contraseña: ");
         cont.setAlignmentX(Component.CENTER_ALIGNMENT);
+        cont2 = new JLabel("Repita Contraseña: ");
+        cont2.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         nombre = new JTextField("", 20);
         nombre.setMaximumSize(new Dimension(300, 20));
@@ -66,6 +68,9 @@ public class PanelRegistro extends JPanel implements VistaEasyJob{
         contrasena.setMaximumSize(new Dimension(300, 20));
         contrasena.setAlignmentX(Component.CENTER_ALIGNMENT);
 
+        contrasena2 = new JPasswordField("", 45);
+        contrasena2.setMaximumSize(new Dimension(300, 20));
+        contrasena2.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         registrar = new JButton("Registrar");
         registrar.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -78,11 +83,14 @@ public class PanelRegistro extends JPanel implements VistaEasyJob{
                 String telef = telefono.getText();
                 String id = dni.getText();
                 String contra = contrasena.getText();
+                String contra2 = contrasena2.getText();
 
-                if(nomb.isEmpty() || apellid.isEmpty() || corr.isEmpty() || telef.isEmpty() || id.isEmpty() || contra.isEmpty()) {
+                if (nomb.isEmpty() || apellid.isEmpty() || corr.isEmpty() || telef.isEmpty() || id.isEmpty() || contra.isEmpty()) {
                     //status.setText("Tienes que introducir todos los campos");
                     JOptionPane.showMessageDialog(null, "Tienes que rellenar todos los campos");
-                } else {
+                } else if (!contra.equals(contra2)){
+                    JOptionPane.showMessageDialog(null, "Las contraseñan no coinciden");
+                }else {
                     Usuario usu = new Empleado(nomb, apellid, corr, id, telef, contra);
                     //status.setText("Registrado con exito");
 
@@ -127,6 +135,8 @@ public class PanelRegistro extends JPanel implements VistaEasyJob{
         add(Box.createVerticalStrut(2));
         add(cont);
         add(contrasena);
+        add(cont2);
+        add(contrasena2);
         add(Box.createVerticalStrut(2));
         add(status);
         add(Box.createVerticalStrut(10));
@@ -158,5 +168,10 @@ public class PanelRegistro extends JPanel implements VistaEasyJob{
     public void controlador (CtrlNuevoUsuario c) {
         registrar.addActionListener(c);
         registrar.setActionCommand(BT_NEW_USUARIO_ACCION_COMMAND);
+    }
+
+    @Override
+    public void controlador(ActionListener ctrl) {
+
     }
 }

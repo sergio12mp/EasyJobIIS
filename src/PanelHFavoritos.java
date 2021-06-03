@@ -12,7 +12,7 @@ public class PanelHFavoritos extends JPanel implements VistaEasyJob {
     private JButton fAtras;
     private JLabel fav, hFav;
     private DefaultListModel listModel;
-
+    private String[] dias = {"Lunes","Martes","Miercoles","Jueves","Viernes","Sábado","Domingo"};
     static String bFAtras = "ATRAS \n";
 
     ConexionBD conex = new ConexionBaseDatosJDBC();
@@ -28,12 +28,11 @@ public class PanelHFavoritos extends JPanel implements VistaEasyJob {
         p2.setLayout(new GridLayout(2, 3, 5, 5));
 
 
-
         fAtras = new JButton(bFAtras);
         fAtras.setFont(new Font(fuente, Font.BOLD, 18));
         fAtras.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        JLabel fav = new JLabel("              FAVORITOS");
+        JLabel fav = new JLabel("FAVORITOS");
         fav.setFont(new Font(fuente, Font.BOLD, 25));
 
         JScrollPane subpanelCentralDcho = new JScrollPane();
@@ -41,17 +40,22 @@ public class PanelHFavoritos extends JPanel implements VistaEasyJob {
 
         Horario h = conex.horarioFavorito(PanelIniciarSesion.identificador);
         int semana[] = h.getSemana();
-        Integer semana2[] = new Integer[7];
-        for(int i=0;i<7;i++){
-            semana2[i] = Integer.valueOf(semana[i]);
+        String semana2[] = new String[7];
+        for (int i = 0; i < 7; i++) {
+            if(semana[i] == 0){
+                semana2[i] = dias[i] + ":       " + "Libre";
+            }else if(semana[i] == 1){
+                semana2[i] = dias[i] + ":       "+ "Mañana";
+            }else{
+                semana2[i] = dias[i] + ":       "+ "Tarde";
+            }
         }
 
-
-        JList<Integer> listaSemana = new JList<Integer>(semana2);
+        JList listaSemana = new JList(semana2);
 
         subpanelCentralDcho.setViewportView(listaSemana);
 
-
+        //aire para que on quede apretado
         p1.add(Box.createVerticalStrut(3));
         p1.add(Box.createVerticalStrut(3));
         p1.add(Box.createVerticalStrut(3));
@@ -62,11 +66,12 @@ public class PanelHFavoritos extends JPanel implements VistaEasyJob {
 
         add(p1);
 
-        add(hFav);
+        add(subpanelCentralDcho);
 
         p2.add(Box.createVerticalStrut(3));
         p2.add(fAtras);
         p2.add(Box.createVerticalStrut(3));
+
 
         p2.add(Box.createVerticalStrut(3));
         p2.add(Box.createVerticalStrut(3));
@@ -77,6 +82,7 @@ public class PanelHFavoritos extends JPanel implements VistaEasyJob {
     }
 
     public void controlador(ActionListener ctrl) {
+
         fAtras.addActionListener(ctrl);
     }
 

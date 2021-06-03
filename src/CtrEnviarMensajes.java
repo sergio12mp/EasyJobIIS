@@ -3,12 +3,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class CtrJEmpleados implements ActionListener {
+public class CtrEnviarMensajes implements ActionListener {
 
     VistaEasyJob vistaEasy;     // Vista
-    ConexionBD conex = new ConexionBaseDatosJDBC();
 
-    public CtrJEmpleados(VistaEasyJob vb) {
+    public CtrEnviarMensajes(VistaEasyJob vb) {
         vistaEasy = vb;
     }
 
@@ -17,19 +16,18 @@ public class CtrJEmpleados implements ActionListener {
 
         String actComm = e.getActionCommand();
 
-        if(actComm.compareTo(PanelJVerEmpleados.bJVE) == 0) {
+        if(actComm.compareTo(PanelEnviarMensaje.bAtras) == 0) {
 
             JComponent comp = (JComponent) e.getSource();
             Window win = SwingUtilities.getWindowAncestor(comp);
             win.dispose();
 
-            JFrame frame = new JFrame("PanelJefe");
-            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            JFrame frame = new JFrame("Chat");
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-            PanelJefe panel = new PanelJefe();
-
-            CtrJefe ctr = new CtrJefe(panel);
-            panel.controlador(ctr);
+            PanelChat panel = new PanelChat();
+            CtrChat ctrChat = new CtrChat(panel);
+            panel.controlador(ctrChat);
 
             frame.getContentPane().add(panel);
             frame.pack();

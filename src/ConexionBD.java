@@ -15,13 +15,22 @@ public abstract class ConexionBD {
     public abstract boolean buscarUsuario(String dni,String contraseña);
     public abstract void eliminarUsuario(String dni);
     public abstract boolean esOnoJefe();
-    public abstract  void cambiarCorreo(String dni, String actual, String nuevo);
-    public abstract  void cambiarTelefono(String dni, String actual, String nuevo);
-    public abstract  void cambiarContraseña(String dni, String actual, String nuevo);
-    public abstract  void cambiarFoto(String dni, String actual, String nuevo);
+    public abstract  void cambiarCorreo(String dni, String nuevo);
+    public abstract  void cambiarTelefono(String dni, String nuevo);
+    public abstract  void cambiarContraseña(String dni, String nuevo);
+    public abstract  void cambiarFoto(String dni, String nuevo);
     public abstract Horario horarioFavorito(String dni);
     public abstract List<Usuario> verUsuarios();
+
     public abstract void anadirQR(byte[] img, String dni);
     public abstract boolean tieneQR (String dni);
     public abstract byte[] getQR (String dni);
+
+    public abstract List<Mensaje> verMensajes();
+
+    public abstract List<Mensaje> verMensajesEnviados();
+
+    public abstract void EnviarMensaje(String dni, String mensaje);
+    public abstract void BorrarMensaje(int iden);
+
 }

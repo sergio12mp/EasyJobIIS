@@ -113,7 +113,7 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
                 u.setCorreoElectronico(rs.getString("Correo"));
                 u.setTelefono(rs.getString("Telefono"));
                 u.setFotoPerfil(rs.getString("FotoPerfil"));
-                u.setQR(rs.getString("QR"));
+                u.setQR(rs.getBytes("QR"));
                 u.setEsJefe(rs.getBoolean("Jefe"));
 
                 list.add(u);
@@ -125,7 +125,90 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
         return list;
     }
 
-    public void cambiarCorreo(String dni, String actual, String nuevo) {
+    @Override
+    public List<Mensaje> verMensajes() {
+        List<Mensaje> list = new ArrayList<>();
+        try {
+            ps = conn.prepareStatement("SELECT * FROM Mensaje Where DNI_Destino = ? ");
+            ps.setString(1, PanelIniciarSesion.identificador);
+            rs = ps.executeQuery();
+
+            while(rs.next()){
+                Mensaje m = new Mensaje();
+                m.setAutor(rs.getString("DNI_Origen"));
+                m.setContenido(rs.getString("Mensaje"));
+                m.setDestino(rs.getString("DNI_Destino"));
+                m.setIdentificador(rs.getInt("Identificador"));
+
+                list.add(m);
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return list;
+    }
+
+    @Override
+    public List<Mensaje> verMensajesEnviados() {
+        List<Mensaje> list = new ArrayList<>();
+        try {
+            ps = conn.prepareStatement("SELECT * FROM Mensaje Where DNI_Origen = ? ");
+            ps.setString(1, PanelIniciarSesion.identificador);
+            rs = ps.executeQuery();
+
+            while(rs.next()){
+                Mensaje m = new Mensaje();
+                m.setAutor(rs.getString("DNI_Origen"));
+                m.setContenido(rs.getString("Mensaje"));
+                m.setDestino(rs.getString("DNI_Destino"));
+                m.setIdentificador(rs.getInt("Identificador"));
+
+                list.add(m);
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return list;
+    }
+
+    @Override
+    public void EnviarMensaje(String dni, String mensaje) {
+        String insertBody = "INSERT INTO Mensaje (Mensaje,DNI_DESTINO,DNI_ORIGEN) VALUES (?, ?, ?)";
+        try {
+            ps = conn.prepareStatement(insertBody);
+            ps.setString(1,mensaje);
+            ps.setString(2,dni);
+            ps.setString(3,PanelIniciarSesion.identificador);
+            int res = ps.executeUpdate();
+
+            if (res > 0) {
+                JOptionPane.showMessageDialog(null, "Mensaje enviado con exito");
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    @Override
+    public void BorrarMensaje(int iden) {
+        try {
+            ps = conn.prepareStatement("DELETE FROM Mensaje WHERE Identificador = ?");
+            ps.setInt(1,iden);
+
+            int res = ps.executeUpdate();
+
+            if (res > 0) {
+                JOptionPane.showMessageDialog(null, "Borrado con éxito");
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public void cambiarCorreo(String dni, String nuevo) {
         try {
             ps = conn.prepareStatement("UPDATE Usuario  SET Correo =  ?  WHERE DNI = ?");
             ps.setString(1,nuevo);
@@ -160,9 +243,9 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
     }
 
     @Override
-    public void cambiarTelefono(String dni, String actual, String nuevo) {
+    public void cambiarTelefono(String dni, String nuevo) {
         try {
-            ps =   ps = conn.prepareStatement("UPDATE Usuario  SET Telefono =  ?  WHERE DNI = ?");
+            ps = conn.prepareStatement("UPDATE Usuario  SET Telefono =  ?  WHERE DNI = ?");
             ps.setString(1,nuevo);
             ps.setString(2,dni);
             int res = ps.executeUpdate();
@@ -179,9 +262,9 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
     }
 
     @Override
-    public void cambiarContraseña(String dni, String actual, String nuevo) {
+    public void cambiarContraseña(String dni,String nuevo) {
         try {
-            ps =   ps = conn.prepareStatement("UPDATE Usuario  SET Contraseña =  ?  WHERE DNI = ?");
+            ps = conn.prepareStatement("UPDATE Usuario  SET Contraseña =  ?  WHERE DNI = ?");
             ps.setString(1,nuevo);
             ps.setString(2,dni);
             int res = ps.executeUpdate();
@@ -199,9 +282,9 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
 
 
     @Override
-    public void cambiarFoto(String dni, String actual, String nuevo) {
+    public void cambiarFoto(String dni, String nuevo) {
         try {
-            ps =   ps = conn.prepareStatement("UPDATE Usuario  SET FotoPerfil =  ?  WHERE DNI = ?");
+            ps = conn.prepareStatement("UPDATE Usuario  SET FotoPerfil =  ?  WHERE DNI = ?");
             ps.setString(1,nuevo);
             ps.setString(2,dni);
             int res = ps.executeUpdate();
