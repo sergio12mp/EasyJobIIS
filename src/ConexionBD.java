@@ -1,3 +1,4 @@
+import java.awt.image.BufferedImage;
 import java.util.List;
 
 public abstract class ConexionBD {
@@ -20,4 +21,7 @@ public abstract class ConexionBD {
     public abstract  void cambiarFoto(String dni, String actual, String nuevo);
     public abstract Horario horarioFavorito(String dni);
     public abstract List<Usuario> verUsuarios();
+    public abstract void anadirQR(byte[] img, String dni);
+    public abstract boolean tieneQR (String dni);
+    public abstract byte[] getQR (String dni);
 }

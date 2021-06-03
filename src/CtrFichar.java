@@ -32,7 +32,7 @@ public class CtrFichar implements ActionListener {
             frame.getContentPane().add(panel);
             frame.pack();
 
-            frame.setSize(1000, 500);
+            frame.setSize(1000, 600);
             frame.setVisible(true);
         }
     }
