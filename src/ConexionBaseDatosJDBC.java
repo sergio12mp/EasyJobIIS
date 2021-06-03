@@ -120,7 +120,7 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
         return list;
     }
 
-    public void cambiarCorreo(String dni, String actual, String nuevo) {
+    public void cambiarCorreo(String dni, String nuevo) {
         try {
             ps = conn.prepareStatement("UPDATE Usuario  SET Correo =  ?  WHERE DNI = ?");
             ps.setString(1,nuevo);
@@ -155,9 +155,9 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
     }
 
     @Override
-    public void cambiarTelefono(String dni, String actual, String nuevo) {
+    public void cambiarTelefono(String dni, String nuevo) {
         try {
-            ps =   ps = conn.prepareStatement("UPDATE Usuario  SET Telefono =  ?  WHERE DNI = ?");
+            ps = conn.prepareStatement("UPDATE Usuario  SET Telefono =  ?  WHERE DNI = ?");
             ps.setString(1,nuevo);
             ps.setString(2,dni);
             int res = ps.executeUpdate();
@@ -174,9 +174,9 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
     }
 
     @Override
-    public void cambiarContraseña(String dni, String actual, String nuevo) {
+    public void cambiarContraseña(String dni,String nuevo) {
         try {
-            ps =   ps = conn.prepareStatement("UPDATE Usuario  SET Contraseña =  ?  WHERE DNI = ?");
+            ps = conn.prepareStatement("UPDATE Usuario  SET Contraseña =  ?  WHERE DNI = ?");
             ps.setString(1,nuevo);
             ps.setString(2,dni);
             int res = ps.executeUpdate();
@@ -194,9 +194,9 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
 
 
     @Override
-    public void cambiarFoto(String dni, String actual, String nuevo) {
+    public void cambiarFoto(String dni, String nuevo) {
         try {
-            ps =   ps = conn.prepareStatement("UPDATE Usuario  SET FotoPerfil =  ?  WHERE DNI = ?");
+            ps = conn.prepareStatement("UPDATE Usuario  SET FotoPerfil =  ?  WHERE DNI = ?");
             ps.setString(1,nuevo);
             ps.setString(2,dni);
             int res = ps.executeUpdate();
