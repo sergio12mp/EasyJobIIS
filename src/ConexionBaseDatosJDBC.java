@@ -108,7 +108,7 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
                 u.setCorreoElectronico(rs.getString("Correo"));
                 u.setTelefono(rs.getString("Telefono"));
                 u.setFotoPerfil(rs.getString("FotoPerfil"));
-                u.setQR(rs.getString("QR"));
+                u.setQR(rs.getBytes("QR"));
                 u.setEsJefe(rs.getBoolean("Jefe"));
 
                 list.add(u);
@@ -146,7 +146,7 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
 
     @Override
     public void EnviarMensaje(String dni, String mensaje) {
-        String insertBody = "INSERT INTO Mensaje (Mensaje,DNI_DESTINO,DNI_ORIGEN,Identificador) VALUES (?, ?, ?)";
+        String insertBody = "INSERT INTO Mensaje (Mensaje,DNI_DESTINO,DNI_ORIGEN) VALUES (?, ?, ?)";
         try {
             ps = conn.prepareStatement(insertBody);
             ps.setString(1,mensaje);

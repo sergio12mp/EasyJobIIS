@@ -36,8 +36,8 @@ public class Mensaje {
     }
 
 
-    public String toString() {
-        return ("Mensaje de " + autor + " con ID " + Identificador + ", " + contenido);
+    public String toString() {return ("Mensaje de " + autor + " con ID " + Identificador + ", " + contenido);
+
     }
 
 }
