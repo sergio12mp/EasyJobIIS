@@ -18,7 +18,7 @@ public class PanelVerMensajes extends JPanel implements VistaEasyJob, ListSelect
     private int index = -1;
     private DefaultListModel listModel;
 
-    JButton borrar, ascender, jAtras;
+    JButton borrar, jAtras;
 
     static String bBorrar = "BORRAR";
     static String bJVE = "VOLVER AL MENU";
@@ -31,12 +31,12 @@ public class PanelVerMensajes extends JPanel implements VistaEasyJob, ListSelect
         botones.setLayout(new GridLayout(1, 2, 5, 5));
 
         JScrollPane subpanelCentralDcho = new JScrollPane();
-        List<Usuario> lista = conex.verUsuarios();
+        List<Mensaje> lista = conex.verMensajes();
 
         listModel = new DefaultListModel();
 
-        for(Usuario u : lista) {
-            listModel.addElement(u.toString());
+        for(Mensaje m : lista) {
+            listModel.addElement(m.toString());
         }
 
 
@@ -53,8 +53,10 @@ public class PanelVerMensajes extends JPanel implements VistaEasyJob, ListSelect
                 if(PanelJVerEmpleados.seleccionado.isEmpty()) {
                     JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun mensaje");
                 } else {
+                    /*
                     String[] parts = seleccionado.split(",");
                     conex.eliminarUsuario(parts[0]);
+                     */
                     listModel.remove(index);
                     JOptionPane.showMessageDialog(null, "Mensaje eliminado con exito");
                 }
@@ -91,7 +93,6 @@ public class PanelVerMensajes extends JPanel implements VistaEasyJob, ListSelect
     }
 
     public void controlador(ActionListener ctrl) {
-        ascender.addActionListener(ctrl);
         jAtras.addActionListener(ctrl);
     }
 

@@ -11,7 +11,6 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
     ResultSet rs;
     private Connection conn;
     private boolean esJefe= false;
-    private int IdentificadorMensaje = 0;
 
     public ConexionBaseDatosJDBC() {
         try {
@@ -125,7 +124,8 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
     public List<Mensaje> verMensajes() {
         List<Mensaje> list = new ArrayList<>();
         try {
-            ps = conn.prepareStatement("SELECT * FROM Mensaje Where DNI_Destino = " + PanelIniciarSesion.identificador);
+            ps = conn.prepareStatement("SELECT * FROM Mensaje Where DNI_Destino = ? ");
+            ps.setString(1, PanelIniciarSesion.identificador);
             rs = ps.executeQuery();
 
             while(rs.next()){
@@ -146,14 +146,12 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
 
     @Override
     public void EnviarMensaje(String dni, String mensaje) {
-        String insertBody = "INSERT INTO Mensaje (Mensaje,DNI_DESTINO,DNI_ORIGEN,Identificador) VALUES (?, ?, ?, ?)";
+        String insertBody = "INSERT INTO Mensaje (Mensaje,DNI_DESTINO,DNI_ORIGEN,Identificador) VALUES (?, ?, ?)";
         try {
             ps = conn.prepareStatement(insertBody);
             ps.setString(1,mensaje);
             ps.setString(2,dni);
             ps.setString(3,PanelIniciarSesion.identificador);
-            ps.setInt(4,IdentificadorMensaje);
-            IdentificadorMensaje++;
             int res = ps.executeUpdate();
 
             if (res > 0) {
