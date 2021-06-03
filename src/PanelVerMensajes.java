@@ -70,9 +70,8 @@ public class PanelVerMensajes extends JPanel implements VistaEasyJob, ListSelect
                     try {
                         String[] parts = seleccionado.split(" ");
 
-                        char c = parts[0].charAt(1);
-                        System.out.println(c);
-                        int id = Character.getNumericValue(c);
+                        String c = parts[0].substring(1, parts[0].length()-1);
+                        int id = Integer.parseInt(c);
                         conex.BorrarMensaje(id);
 
                         listModel.remove(index);
