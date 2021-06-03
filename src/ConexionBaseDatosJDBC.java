@@ -208,6 +208,24 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
         }
     }
 
+    @Override
+    public void Ascender(boolean esJefe) {
+        try {
+            ps = conn.prepareStatement("UPDATE Usuario SET Jefe =  ?  WHERE DNI = ?");
+            ps.setBoolean(1,esJefe);
+            ps.setString(2,PanelIniciarSesion.identificador);
+            int res = ps.executeUpdate();
+
+            if (res > 0){
+                JOptionPane.showMessageDialog(null, "Ascendido con éxito");
+            }
+
+            conn.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
     public void cambiarCorreo(String dni, String nuevo) {
         try {
             ps = conn.prepareStatement("UPDATE Usuario  SET Correo =  ?  WHERE DNI = ?");
@@ -384,8 +402,4 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
 
         return bytes;
     }
-
-
-
-
 }
