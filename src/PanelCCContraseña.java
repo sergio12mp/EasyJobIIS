@@ -20,7 +20,7 @@ public class PanelCCContraseña extends JPanel implements VistaEasyJob {
         setLayout(new GridLayout(7, 4, 5, 5));
 
         JLabel LcontraseñaAntigua = new JLabel("CONTRASEÑA ACTUAL:");
-        JLabel LcontraseñaActual = new JLabel("CONTRASEÑA NUEVA:");
+        JLabel LcontraseñaNueva = new JLabel("CONTRASEÑA NUEVA:");
 
 
         contraseñaAntigua = new JPasswordField("", 45);
