@@ -9,7 +9,7 @@ public class PanelChat extends JPanel implements VistaEasyJob{
     private String fuente = "Arial";
 
     static String ENVIARMENSAJE = "ENVIAR MENSAJE";
-    static String MENSAJESPENDIENTES = "MENSAJES PENDIENTES";
+    static String MENSAJESPENDIENTES = "VER MENSAJES";
     static String chatATRAS = "VOLVER AL MENU";
 
     public PanelChat() {
