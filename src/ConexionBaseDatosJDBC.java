@@ -165,7 +165,18 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
 
     @Override
     public void BorrarMensaje(int iden) {
+        try {
+            ps = conn.prepareStatement("DELETE FROM Mensaje WHERE Identificador = ?");
+            ps.setInt(1,iden);
 
+            int res = ps.executeUpdate();
+
+            if (res > 0) {
+                JOptionPane.showMessageDialog(null, "Borrado con éxito");
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     public void cambiarCorreo(String dni, String nuevo) {
