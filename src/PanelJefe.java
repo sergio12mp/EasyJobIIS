@@ -6,13 +6,14 @@ public class PanelJefe extends JPanel implements VistaEasyJob {
 
     private String fuente = "Arial";
 
-    public JButton ModH, VerEmpleados, Solicitudes, CerrarS, Conf;
+    public JButton ModH, VerEmpleados, Solicitudes, CerrarS, Conf, ChatJ;
 
     static String bModH = "MODIFICAR HORARIO";
     static String bVerEmpleados = "VER EMPLEADOS";
     static String bSolicitudes = "SOLICITUDES DE HORARIO";
     static String bCerrarS = "CERRAR SESION \n";
     static String bConf = "CONFIGURACION \n";
+    static String bChatJ = "CHAT \n";
 
 
     public PanelJefe() {
@@ -58,6 +59,10 @@ public class PanelJefe extends JPanel implements VistaEasyJob {
         add(Box.createVerticalStrut(3));
 
         add(Box.createVerticalStrut(3));
+        add(ChatJ, BorderLayout.NORTH);
+        add(Box.createVerticalStrut(3));
+
+        add(Box.createVerticalStrut(3));
         add(Conf, BorderLayout.NORTH);
         add(Box.createVerticalStrut(3));
 
@@ -76,6 +81,7 @@ public class PanelJefe extends JPanel implements VistaEasyJob {
         Solicitudes.addActionListener(ctrl);
         VerEmpleados.addActionListener(ctrl);
         ModH.addActionListener(ctrl);
+        ChatJ.addActionListener(ctrl);
         Conf.addActionListener(ctrl);
     }
 

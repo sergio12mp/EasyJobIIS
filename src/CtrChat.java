@@ -54,7 +54,7 @@ public class CtrChat implements ActionListener {
             frame.setSize(1000, 500);
             frame.setVisible(true);
 
-        } else if (actComm.compareTo(PanelChat.chatATRAS) == 0) {
+        } else if (!(PanelIniciarSesion.esJefe) && actComm.compareTo(PanelChat.chatATRAS) == 0) {
 
             JComponent comp = (JComponent) e.getSource();
             Window win = SwingUtilities.getWindowAncestor(comp);
@@ -67,6 +67,27 @@ public class CtrChat implements ActionListener {
             PanelVistaPrincipal panel = new PanelVistaPrincipal();
 
             CtrEasyJob ctr = new CtrEasyJob(panel);
+
+            panel.controlador(ctr);
+
+            frame.getContentPane().add(panel);
+            frame.pack();
+
+            frame.setSize(1000, 500);
+            frame.setVisible(true);
+        }else if ((PanelIniciarSesion.esJefe) && actComm.compareTo(PanelChat.chatATRAS) == 0) {
+
+            JComponent comp = (JComponent) e.getSource();
+            Window win = SwingUtilities.getWindowAncestor(comp);
+            win.dispose();
+
+            JFrame frame = new JFrame("MENU");
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+
+            PanelJefe panel = new PanelJefe();
+
+            CtrJefe ctr = new CtrJefe(panel);
 
             panel.controlador(ctr);
 
