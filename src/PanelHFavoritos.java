@@ -12,7 +12,7 @@ public class PanelHFavoritos extends JPanel implements VistaEasyJob {
     private JButton fAtras;
     private JLabel fav, hFav;
     private DefaultListModel listModel;
-
+    private String[] dias = {"Lunes","Martes","Miercoles","Jueves","Viernes","Sábado","Domingo"};
     static String bFAtras = "ATRAS \n";
 
     ConexionBD conex = new ConexionBaseDatosJDBC();
@@ -40,13 +40,18 @@ public class PanelHFavoritos extends JPanel implements VistaEasyJob {
 
         Horario h = conex.horarioFavorito(PanelIniciarSesion.identificador);
         int semana[] = h.getSemana();
-        Integer semana2[] = new Integer[7];
+        String semana2[] = new String[7];
         for (int i = 0; i < 7; i++) {
-            semana2[i] = Integer.valueOf(semana[i]);
+            if(semana[i] == 0){
+                semana2[i] = dias[i] + ":       " + "Libre";
+            }else if(semana[i] == 1){
+                semana2[i] = dias[i] + ":       "+ "Mañana";
+            }else{
+                semana2[i] = dias[i] + ":       "+ "Tarde";
+            }
         }
 
-
-        JList<Integer> listaSemana = new JList<Integer>(semana2);
+        JList listaSemana = new JList(semana2);
 
         subpanelCentralDcho.setViewportView(listaSemana);
 
