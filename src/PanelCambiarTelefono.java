@@ -3,41 +3,41 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class PanelCCCorreo extends JPanel implements VistaEasyJob {
+public class PanelCambiarTelefono extends JPanel implements VistaEasyJob {
 
     JButton aceptar, atras;
     static final String bAceptar = "ACEPTAR";
     static final String bAtras = "ATRAS";
 
-    private JLabel correoAnt, correoNuevo, correoConf;
-    private JTextField antCorreo, nuevoCorreo, confCorreo;
+    private JLabel tlfnAnt, tlfnNuevo, tlfnConf;
+    private JTextField anttlfn, nuevotlfn, conftlfn;
 
     ConexionBD conex = new ConexionBaseDatosJDBC();
 
-    public PanelCCCorreo(){
+    public PanelCambiarTelefono(){
 
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-        correoAnt = new JLabel("Correo antiguo");
-        correoAnt.setAlignmentX(Component.CENTER_ALIGNMENT);
+        tlfnAnt = new JLabel("Telefono antiguo");
+        tlfnAnt.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        correoNuevo = new JLabel("Correo nuevo");
-        correoNuevo.setAlignmentX(Component.CENTER_ALIGNMENT);
+        tlfnNuevo = new JLabel("Telefono nuevo");
+        tlfnNuevo.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        correoConf = new JLabel("Confirmar correo");
-        correoConf.setAlignmentX(Component.CENTER_ALIGNMENT);
+        tlfnConf = new JLabel("Confirmar telefono");
+        tlfnConf.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        antCorreo = new JTextField("", 40);
-        antCorreo.setMaximumSize(new Dimension(300, 20));
-        antCorreo.setAlignmentX(Component.CENTER_ALIGNMENT);
+        anttlfn = new JTextField("", 40);
+        anttlfn.setMaximumSize(new Dimension(300, 20));
+        anttlfn.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        nuevoCorreo = new JTextField("", 40);
-        nuevoCorreo.setMaximumSize(new Dimension(300, 20));
-        nuevoCorreo.setAlignmentX(Component.CENTER_ALIGNMENT);
+        nuevotlfn = new JTextField("", 40);
+        nuevotlfn.setMaximumSize(new Dimension(300, 20));
+        nuevotlfn.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        confCorreo = new JTextField("", 40);
-        confCorreo.setMaximumSize(new Dimension(300, 20));
-        confCorreo.setAlignmentX(Component.CENTER_ALIGNMENT);
+        conftlfn = new JTextField("", 40);
+        conftlfn.setMaximumSize(new Dimension(300, 20));
+        conftlfn.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         aceptar = new JButton(bAceptar);
         aceptar.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -45,13 +45,13 @@ public class PanelCCCorreo extends JPanel implements VistaEasyJob {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                String actual = antCorreo.getText();
-                String nuevo = nuevoCorreo.getText();
-                String confirmacion = confCorreo.getText();
+                String actual = anttlfn.getText();
+                String nuevo = nuevotlfn.getText();
+                String confirmacion = conftlfn.getText();
 
                 if(nuevo.compareTo(confirmacion) == 0 && !nuevo.isEmpty() && !actual.isEmpty() && !confirmacion.isEmpty()) {
 
-                    conex.cambiarCorreo(PanelIniciarSesion.identificador, nuevo);
+                    conex.cambiarTelefono(PanelIniciarSesion.identificador, nuevo);
 
                     JComponent comp = (JComponent) e.getSource();
                     Window win = SwingUtilities.getWindowAncestor(comp);
@@ -80,21 +80,19 @@ public class PanelCCCorreo extends JPanel implements VistaEasyJob {
         atras.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         add(Box.createVerticalStrut(5));
-        add(correoAnt);
-        add(antCorreo);
+        add(tlfnAnt);
+        add(anttlfn);
         add(Box.createVerticalStrut(2));
-        add(correoNuevo);
-        add(nuevoCorreo);
+        add(tlfnNuevo);
+        add(nuevotlfn);
         add(Box.createVerticalStrut(2));
-        add(correoConf);
-        add(confCorreo);
+        add(tlfnConf);
+        add(conftlfn);
         add(Box.createVerticalStrut(5));
         add(aceptar);
         add(Box.createVerticalStrut(2));
         add(atras);
     }
-
-
 
 
     public void controlador(ActionListener ctrl) {
