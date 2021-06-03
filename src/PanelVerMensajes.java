@@ -31,11 +31,22 @@ public class PanelVerMensajes extends JPanel implements VistaEasyJob, ListSelect
         botones.setLayout(new GridLayout(1, 2, 5, 5));
 
         JScrollPane subpanelCentralDcho = new JScrollPane();
+
         List<Mensaje> lista = conex.verMensajes();
 
         listModel = new DefaultListModel();
 
         for(Mensaje m : lista) {
+            listModel.addElement(m.toString());
+        }
+
+        List<Mensaje> listaEnviados = conex.verMensajesEnviados();
+
+        listModel.addElement(" ");
+        listModel.addElement("-------------------------------------------------------------------------------------");
+        listModel.addElement(" ");
+
+        for(Mensaje m : listaEnviados) {
             listModel.addElement(m.toString());
         }
 
@@ -50,15 +61,17 @@ public class PanelVerMensajes extends JPanel implements VistaEasyJob, ListSelect
         borrar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(PanelJVerEmpleados.seleccionado.isEmpty()) {
+                if(PanelVerMensajes.seleccionado.isEmpty()) {
                     JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun mensaje");
                 } else {
-                    /*
-                    String[] parts = seleccionado.split(",");
-                    conex.eliminarUsuario(parts[0]);
-                     */
+                    String[] parts = seleccionado.split(" ");
+                    System.out.println(parts[0]);
+
+                    char c = parts[0].charAt(1);
+                    int id = Character.getNumericValue(c);
+                    conex.BorrarMensaje(id);
+
                     listModel.remove(index);
-                    JOptionPane.showMessageDialog(null, "Mensaje eliminado con exito");
                 }
             }
         });
@@ -66,7 +79,6 @@ public class PanelVerMensajes extends JPanel implements VistaEasyJob, ListSelect
         jAtras = new JButton(bJVE);
         jAtras.setFont(new Font(fuente, Font.BOLD, 20));
         jAtras.setAlignmentX(Component.CENTER_ALIGNMENT);
-
 
         botones.add(borrar);
         botones.add(jAtras);
@@ -87,7 +99,6 @@ public class PanelVerMensajes extends JPanel implements VistaEasyJob, ListSelect
                 //Selection, enable the fire button.
                 seleccionado = listaMensajes.getSelectedValue();
                 index = listaMensajes.getSelectedIndex();
-
             }
         }
     }

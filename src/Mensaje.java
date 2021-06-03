@@ -36,8 +36,15 @@ public class Mensaje {
     }
 
 
-    public String toString() {return ("Mensaje de " + autor + " con ID " + Identificador + ", " + contenido);
+    public String toString() {
 
+        String recibido = "RECIBIDO";
+
+        if(autor.compareTo(PanelIniciarSesion.identificador) == 0) {
+            recibido = "ENVIADO";
+        }
+
+        return ( "(" + Identificador + ") " + recibido + " Mensaje de " + autor + " para " + destino + ": " + contenido);
     }
 
 }

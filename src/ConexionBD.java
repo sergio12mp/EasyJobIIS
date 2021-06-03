@@ -21,6 +21,9 @@ public abstract class ConexionBD {
     public abstract Horario horarioFavorito(String dni);
     public abstract List<Usuario> verUsuarios();
     public abstract List<Mensaje> verMensajes();
-    public abstract void EnviarMensaje(String dni,String mensaje);
+
+    public abstract List<Mensaje> verMensajesEnviados();
+
+    public abstract void EnviarMensaje(String dni, String mensaje);
     public abstract void BorrarMensaje(int iden);
 }

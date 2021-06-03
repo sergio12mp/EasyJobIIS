@@ -5,7 +5,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
-import java.util.concurrent.Flow;
 
 public class PanelJVerEmpleados extends JPanel implements VistaEasyJob, ListSelectionListener {
     private String fuente = "Arial";

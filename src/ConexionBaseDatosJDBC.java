@@ -145,6 +145,30 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
     }
 
     @Override
+    public List<Mensaje> verMensajesEnviados() {
+        List<Mensaje> list = new ArrayList<>();
+        try {
+            ps = conn.prepareStatement("SELECT * FROM Mensaje Where DNI_Origen = ? ");
+            ps.setString(1, PanelIniciarSesion.identificador);
+            rs = ps.executeQuery();
+
+            while(rs.next()){
+                Mensaje m = new Mensaje();
+                m.setAutor(rs.getString("DNI_Origen"));
+                m.setContenido(rs.getString("Mensaje"));
+                m.setDestino(rs.getString("DNI_Destino"));
+                m.setIdentificador(rs.getInt("Identificador"));
+
+                list.add(m);
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return list;
+    }
+
+    @Override
     public void EnviarMensaje(String dni, String mensaje) {
         String insertBody = "INSERT INTO Mensaje (Mensaje,DNI_DESTINO,DNI_ORIGEN) VALUES (?, ?, ?)";
         try {
