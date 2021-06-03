@@ -31,7 +31,7 @@ public abstract class ConexionBD {
 
     public abstract List<Mensaje> verMensajesEnviados();
 
-    public abstract void EnviarMensaje(String dni, String mensaje);
+    public abstract void EnviarMensaje(String dni, String mensaje, String date);
     public abstract void BorrarMensaje(int iden);
 
     public abstract void Ascender(String dni, boolean esunJefe);

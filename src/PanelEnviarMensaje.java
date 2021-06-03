@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class PanelEnviarMensaje extends JPanel implements VistaEasyJob {
 
@@ -48,8 +50,9 @@ public class PanelEnviarMensaje extends JPanel implements VistaEasyJob {
                 String mensj = mensajeField.getText();
 
                 if(!dest.isEmpty() && !mensj.isEmpty()) {
+                    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 
-                    conex.EnviarMensaje(dest, mensj);
+                    conex.EnviarMensaje(dest, mensj, dtf.format(LocalDateTime.now()));
 
                     JComponent comp = (JComponent) e.getSource();
                     Window win = SwingUtilities.getWindowAncestor(comp);

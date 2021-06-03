@@ -71,6 +71,7 @@ public class PanelVerMensajes extends JPanel implements VistaEasyJob, ListSelect
                         String[] parts = seleccionado.split(" ");
 
                         char c = parts[0].charAt(1);
+                        System.out.println(c);
                         int id = Character.getNumericValue(c);
                         conex.BorrarMensaje(id);
 

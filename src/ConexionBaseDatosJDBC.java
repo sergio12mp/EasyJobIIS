@@ -5,6 +5,8 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.sql.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -139,6 +141,7 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
                 m.setContenido(rs.getString("Mensaje"));
                 m.setDestino(rs.getString("DNI_Destino"));
                 m.setIdentificador(rs.getInt("Identificador"));
+                m.setFecha(rs.getString("Hora"));
 
                 list.add(m);
             }
@@ -163,6 +166,7 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
                 m.setContenido(rs.getString("Mensaje"));
                 m.setDestino(rs.getString("DNI_Destino"));
                 m.setIdentificador(rs.getInt("Identificador"));
+                m.setFecha(rs.getString("Hora"));
 
                 list.add(m);
             }
@@ -174,13 +178,15 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
     }
 
     @Override
-    public void EnviarMensaje(String dni, String mensaje) {
-        String insertBody = "INSERT INTO Mensaje (Mensaje,DNI_DESTINO,DNI_ORIGEN) VALUES (?, ?, ?)";
+    public void EnviarMensaje(String dni, String mensaje ,String date) {
+        String insertBody = "INSERT INTO Mensaje (Mensaje,DNI_DESTINO,DNI_ORIGEN, Hora) VALUES (?, ?, ?,?)";
+
         try {
             ps = conn.prepareStatement(insertBody);
             ps.setString(1,mensaje);
             ps.setString(2,dni);
             ps.setString(3,PanelIniciarSesion.identificador);
+            ps.setString(4,date);
             int res = ps.executeUpdate();
 
             if (res > 0) {
