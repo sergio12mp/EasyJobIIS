@@ -159,4 +159,9 @@ public class PanelRegistro extends JPanel implements VistaEasyJob{
         registrar.addActionListener(c);
         registrar.setActionCommand(BT_NEW_USUARIO_ACCION_COMMAND);
     }
+
+    @Override
+    public void controlador(ActionListener ctrl) {
+
+    }
 }

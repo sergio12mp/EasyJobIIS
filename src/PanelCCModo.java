@@ -1,4 +1,9 @@
+import java.awt.event.ActionListener;
+
 public class PanelCCModo {
-    public void controlador(CtrCCModo ctr) {
+
+
+
+    public void controlador(ActionListener ctr) {
     }
 }
