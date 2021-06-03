@@ -208,19 +208,35 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
         }
     }
 
+    public boolean esOnoJefe(String dni){
+        boolean loes = false;
+        try {
+            ps = conn.prepareStatement("SELECT Jefe FROM Usuario WHERE DNI = ?");
+            ps.setString(1,dni);
+            rs = ps.executeQuery();
+
+            if (rs.next()){
+                loes = rs.getBoolean("Jefe");
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return loes;
+    }
+
     @Override
-    public void Ascender(boolean esJefe) {
+    public void Ascender(String dni, boolean esunJefe) {
         try {
             ps = conn.prepareStatement("UPDATE Usuario SET Jefe =  ?  WHERE DNI = ?");
-            ps.setBoolean(1,esJefe);
-            ps.setString(2,PanelIniciarSesion.identificador);
+            ps.setBoolean(1,!esunJefe);
+            ps.setString(2,dni);
             int res = ps.executeUpdate();
 
             if (res > 0){
                 JOptionPane.showMessageDialog(null, "Ascendido con éxito");
             }
 
-            conn.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

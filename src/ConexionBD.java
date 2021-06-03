@@ -15,6 +15,7 @@ public abstract class ConexionBD {
     public abstract boolean buscarUsuario(String dni,String contraseña);
     public abstract void eliminarUsuario(String dni);
     public abstract boolean esOnoJefe();
+    public abstract boolean esOnoJefe(String dni);
     public abstract  void cambiarCorreo(String dni, String nuevo);
     public abstract  void cambiarTelefono(String dni, String nuevo);
     public abstract  void cambiarContraseña(String dni, String nuevo);
@@ -33,6 +34,6 @@ public abstract class ConexionBD {
     public abstract void EnviarMensaje(String dni, String mensaje);
     public abstract void BorrarMensaje(int iden);
 
-    public abstract void Ascender(boolean esJefe);
+    public abstract void Ascender(String dni, boolean esunJefe);
 
 }

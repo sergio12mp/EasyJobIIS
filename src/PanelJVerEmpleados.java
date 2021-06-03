@@ -64,6 +64,41 @@ public class PanelJVerEmpleados extends JPanel implements VistaEasyJob, ListSele
         ascender = new JButton(bAscender);
         ascender.setFont(new Font(fuente, Font.BOLD, 20));
         ascender.setAlignmentX(Component.CENTER_ALIGNMENT);
+        ascender.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(PanelJVerEmpleados.seleccionado.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun usuario");
+                } else {
+
+                    System.out.println(seleccionado);
+
+                    String aux = seleccionado;
+                    String[] parts = aux.split(",");
+                    String dni = parts[0];
+
+                    boolean jefe = conex.esOnoJefe(dni);
+
+                    conex.Ascender(dni, jefe);
+
+                    listModel.remove(index);
+
+                    if(!jefe) {
+                        seleccionado = seleccionado + ", ES JEFE";
+                    } else {
+                        StringBuilder sb = new StringBuilder();
+                        for(int i=0; i<parts.length-2; i++) {
+                            sb.append(parts[i]);
+                            sb.append(", ");
+                        }
+                        sb.append(parts[parts.length-2]);
+                        seleccionado = sb.toString();
+                    }
+
+                    listModel.add(index, seleccionado);
+                }
+            }
+        });
 
         jAtras = new JButton(bJVE);
         jAtras.setFont(new Font(fuente, Font.BOLD, 20));
@@ -84,7 +119,6 @@ public class PanelJVerEmpleados extends JPanel implements VistaEasyJob, ListSele
 
             if (listaUsuarios.getSelectedIndex() == -1) {
                 //No selection, disable fire button.
-                System.out.println("Ningún elemento seleccionado");
 
             } else {
                 //Selection, enable the fire button.
@@ -96,7 +130,6 @@ public class PanelJVerEmpleados extends JPanel implements VistaEasyJob, ListSele
     }
 
     public void controlador(ActionListener ctrl) {
-        ascender.addActionListener(ctrl);
         jAtras.addActionListener(ctrl);
     }
 
