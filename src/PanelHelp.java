@@ -1,5 +1,7 @@
 import java.awt.*;
-import java.net.CookieHandler;
+
+import java.awt.event.ActionListener;
+
 
 import javax.swing.*;
 public class PanelHelp  extends JPanel implements VistaEasyJob {
@@ -23,7 +25,7 @@ public class PanelHelp  extends JPanel implements VistaEasyJob {
         correo.setAlignmentX(Component.CENTER_ALIGNMENT);
     
 
-        HAtras= new JButton(bModH);
+        HAtras= new JButton(bHAtras);
         HAtras.setFont(new Font(fuente, Font.BOLD, 20));
         HAtras.setAlignmentX(Component.CENTER_ALIGNMENT);
     
