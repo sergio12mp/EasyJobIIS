@@ -9,7 +9,7 @@ public class Usuario {
     private String DNI;
     private String Telefono;
     private String Contrasena;
-    private String QR;
+    private byte[] QR;
     private boolean esJefe;
 
     public Usuario(){
@@ -102,11 +102,11 @@ public class Usuario {
         Contrasena = contrasena;
     }
 
-    public String getQR() {
+    public byte[] getQR() {
         return QR;
     }
 
-    public void setQR(String QR) {
+    public void setQR(byte[] QR) {
         this.QR = QR;
     }
 
