@@ -1,4 +1,9 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -318,4 +323,69 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
 
         return h;
     }
+
+    public void anadirQR (byte[] img, String dni) {
+        try {
+
+            ps = conn.prepareStatement("UPDATE Usuario SET QR =  ?  WHERE DNI = ?");
+            ps.setBytes(1, img);
+            ps.setString(2,dni);
+            ps.executeUpdate();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public boolean tieneQR (String dni) {
+        boolean res = false;
+        try {
+
+            ps = conn.prepareStatement("SELECT QR FROM Usuario WHERE DNI = ?");
+            ps.setString(1,dni);
+            rs = ps.executeQuery();
+
+            if (rs.next()){
+                if (rs.getString("QR") == null) {
+                    res = false;
+                } else {
+                    res = true;
+                }
+            }
+
+
+
+
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return res;
+    }
+
+    public byte[] getQR (String dni) {
+        byte[] bytes = null;
+        try {
+
+            ps = conn.prepareStatement("SELECT QR FROM Usuario WHERE DNI = ?");
+            ps.setString(1,dni);
+            rs = ps.executeQuery();
+
+
+            if (rs.next()) {
+                bytes = rs.getBytes("QR");
+            }
+
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return bytes;
+    }
+
+
+
+
 }

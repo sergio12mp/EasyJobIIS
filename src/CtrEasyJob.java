@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 
 public class CtrEasyJob implements ActionListener {
@@ -87,14 +88,19 @@ public class CtrEasyJob implements ActionListener {
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 
-            PanelFichar panel = new PanelFichar();
+            PanelFichar panel = null;
+            try {
+                panel = new PanelFichar();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
             CtrFichar ctr = new CtrFichar(panel);
             panel.controlador(ctr);
 
             frame.getContentPane().add(panel);
             frame.pack();
 
-            frame.setSize(1000, 500);
+            frame.setSize(1000, 600);
             frame.setVisible(true);
 
         }else if (actComm.compareTo(PanelVistaPrincipal.bConfiguracion) == 0) {
