@@ -56,8 +56,7 @@ public class CtrConfiguracion implements ActionListener {
 
             frame.setSize(1000, 500);
             frame.setVisible(true);
-        }
-        /*else if (actComm.compareTo(PanelConfiguracion.bCContraseña) == 0) {
+        }else if (actComm.compareTo(PanelConfiguracion.bCContraseña) == 0) {
 
             JComponent comp = (JComponent) e.getSource();
             Window win = SwingUtilities.getWindowAncestor(comp);
@@ -67,7 +66,7 @@ public class CtrConfiguracion implements ActionListener {
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
             PanelCCContraseña panel = new PanelCCContraseña();
-            CtrCContraseña ctr = new CtrCContraseña(panel);
+            CtrCCContraseña ctr = new CtrCCContraseña(panel);
             panel.controlador(ctr);
 
             frame.getContentPane().add(panel);
@@ -75,7 +74,7 @@ public class CtrConfiguracion implements ActionListener {
 
             frame.setSize(600, 400);
             frame.setVisible(true);
-        }else if (actComm.compareTo(PanelConfiguracion.bCCorreo) == 0) {
+        }/*else if (actComm.compareTo(PanelConfiguracion.bCCorreo) == 0) {
 
             JComponent comp = (JComponent) e.getSource();
             Window win = SwingUtilities.getWindowAncestor(comp);
