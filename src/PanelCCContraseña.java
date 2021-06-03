@@ -6,9 +6,9 @@ public class PanelCCContraseña extends JPanel implements VistaEasyJob {
     private String fuente = "Arial";
 
     JButton CContraseñaAtras, CContraseñaActualizar;
-    JPasswordField contraseñaAntigua, contraseñaNueva;
+    JPasswordField contraseñaAntigua, contraseñaNueva,contraseñaConf;
 
-    JLabel LcontraseñaAntigua, LcontraseñaNueva;
+    JLabel LcontraseñaAntigua, LcontraseñaNueva,LcontraseñaConf;
 
 
     static String bCContraseñaAtras = "ATRAS";
@@ -61,6 +61,9 @@ public class PanelCCContraseña extends JPanel implements VistaEasyJob {
         add(Box.createVerticalStrut(3));
         add(Box.createVerticalStrut(3));
         add(Box.createVerticalStrut(3));
+
+        add(CContraseñaAtras);
+        add(CContraseñaActualizar);
     }
 
 
