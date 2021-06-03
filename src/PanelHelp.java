@@ -19,7 +19,7 @@ public class PanelHelp  extends JPanel implements VistaEasyJob {
 
     public PanelHelp(){
         
-        setLayout(new GridLayout(5, 3, 5, 5));
+        setLayout(new GridLayout(5, 3, 1, 5));
 
         correo = new JFormattedTextField("CORREO: easyjob@easyjob.com");
         correo.setFont(new Font(fuente, Font.BOLD, 20));
@@ -49,7 +49,7 @@ public class PanelHelp  extends JPanel implements VistaEasyJob {
 
         add(Box.createVerticalStrut(3));
         add(Box.createVerticalStrut(3));
-        add(Box.createVerticalStrut(3));
+
 
 
         add(Box.createVerticalStrut(3));
@@ -61,11 +61,13 @@ public class PanelHelp  extends JPanel implements VistaEasyJob {
         add(Box.createVerticalStrut(3));
         add(correo);
         add(Box.createVerticalStrut(3));
+        add(Box.createVerticalStrut(3));
 
         add(Box.createVerticalStrut(3));
         add(telefono);
         add(Box.createVerticalStrut(3));
 
+        add(Box.createVerticalStrut(3));
 
         add(Box.createVerticalStrut(3));
         add(HAtras);
