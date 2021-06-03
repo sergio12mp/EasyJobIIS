@@ -20,4 +20,7 @@ public abstract class ConexionBD {
     public abstract  void cambiarFoto(String dni, String nuevo);
     public abstract Horario horarioFavorito(String dni);
     public abstract List<Usuario> verUsuarios();
+    public abstract List<Mensaje> verMensajes(String dni);
+    public abstract void EnviarMensaje(String dni,String dni2,String mensaje);
+    public abstract void BorrarMensaje(int iden);
 }

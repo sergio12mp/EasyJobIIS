@@ -120,6 +120,53 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
         return list;
     }
 
+    @Override
+    public List<Mensaje> verMensajes(String dni) {
+        List<Mensaje> list = new ArrayList<>();
+        try {
+            ps = conn.prepareStatement("SELECT * FROM Mensaje");
+            rs = ps.executeQuery();
+
+            while(rs.next()){
+                Mensaje m = new Mensaje();
+                m.setAutor(rs.getString("DNI_Origen"));
+                m.setContenido(rs.getString("Mensaje"));
+                m.setDestino(rs.getString("DNI_Destino"));
+                m.setIdentificador(rs.getInt("Identificador"));
+
+                list.add(m);
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return list;
+    }
+
+    @Override
+    public void EnviarMensaje(String dni, String dni2, String mensaje) {
+        String insertBody = "INSERT INTO Mensaje (Mensaje,DNI_DESTINO,DNI_ORIGEN,Identificador) VALUES (?, ?, ?, ?)";
+        try {
+            ps = conn.prepareStatement(insertBody);
+            ps.setString(1,mensaje);
+            ps.setString(2,dni);
+            ps.setString(3,dni2);
+            int res = ps.executeUpdate();
+
+            if (res > 0) {
+                JOptionPane.showMessageDialog(null, "Mensaje enviado con exito");
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    @Override
+    public void BorrarMensaje(int iden) {
+
+    }
+
     public void cambiarCorreo(String dni, String nuevo) {
         try {
             ps = conn.prepareStatement("UPDATE Usuario  SET Correo =  ?  WHERE DNI = ?");
