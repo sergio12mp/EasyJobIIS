@@ -9,7 +9,7 @@ public class PanelHelp  extends JPanel implements VistaEasyJob {
 
     private String fuente = "Arial";
 
-    public JFormattedTextField correo;
+    public JFormattedTextField correo, telefono;
 
     public JButton HAtras;
     static String bHAtras = "Atras";
@@ -20,9 +20,13 @@ public class PanelHelp  extends JPanel implements VistaEasyJob {
         
         setLayout(new GridLayout(8, 3, 5, 5));
 
-        correo = new JFormattedTextField("HOLA");
+        correo = new JFormattedTextField("CORREO: easyjob@easyjob.com");
         correo.setFont(new Font(fuente, Font.BOLD, 20));
         correo.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        telefono = new JFormattedTextField("TELEFONO: +34 987 987 987");
+        telefono.setFont(new Font(fuente, Font.BOLD, 20));
+        telefono.setAlignmentX(Component.CENTER_ALIGNMENT);
     
 
         HAtras= new JButton(bHAtras);
