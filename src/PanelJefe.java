@@ -6,7 +6,7 @@ public class PanelJefe extends JPanel implements VistaEasyJob {
 
     private String fuente = "Arial";
 
-    public JButton ModH, VerEmpleados, Solicitudes, CerrarS, Conf, ChatJ;
+    public JButton ModH, VerEmpleados, Solicitudes, CerrarS, Conf, ChatJ,HelpJ;
 
     static String bModH = "MODIFICAR HORARIO";
     static String bVerEmpleados = "VER EMPLEADOS";
@@ -14,11 +14,12 @@ public class PanelJefe extends JPanel implements VistaEasyJob {
     static String bCerrarS = "CERRAR SESION \n";
     static String bConf = "CONFIGURACION \n";
     static String bChatJ = "CHAT \n";
+    static String bHelpJ = "HELP";
 
 
     public PanelJefe() {
 
-        setLayout(new GridLayout(8, 3, 5, 5));
+        setLayout(new GridLayout(10, 3, 5, 5));
 
         ModH = new JButton(bModH);
         ModH.setFont(new Font(fuente, Font.BOLD, 20));
@@ -39,6 +40,10 @@ public class PanelJefe extends JPanel implements VistaEasyJob {
         Conf = new JButton(bConf);
         Conf.setAlignmentX(Component.CENTER_ALIGNMENT);
         Conf.setFont(new Font(fuente, Font.BOLD, 20));
+
+        HelpJ = new JButton(bHelpJ);
+        HelpJ.setAlignmentX(Component.CENTER_ALIGNMENT);
+        HelpJ.setFont(new Font(fuente, Font.BOLD, 20));
 
         ChatJ = new JButton(bChatJ);
         ChatJ.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -71,6 +76,10 @@ public class PanelJefe extends JPanel implements VistaEasyJob {
         add(Box.createVerticalStrut(3));
 
         add(Box.createVerticalStrut(3));
+        add(HelpJ);
+        add(Box.createVerticalStrut(3));
+
+        add(Box.createVerticalStrut(3));
         add(CerrarS);
         add(Box.createVerticalStrut(3));
 
@@ -87,6 +96,7 @@ public class PanelJefe extends JPanel implements VistaEasyJob {
         ModH.addActionListener(ctrl);
         ChatJ.addActionListener(ctrl);
         Conf.addActionListener(ctrl);
+        HelpJ.addActionListener(ctrl);
     }
 
 }
