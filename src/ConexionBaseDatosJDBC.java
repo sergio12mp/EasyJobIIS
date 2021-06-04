@@ -208,7 +208,7 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
             int res = ps.executeUpdate();
 
             if (res > 0) {
-                JOptionPane.showMessageDialog(null, "Borrado con éxito");
+                JOptionPane.showMessageDialog(null, "Solicitud borrada con éxito");
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -246,9 +246,8 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
     public void cambiarHorario(String dni,int[] semana) {
         try {
             ps = conn.prepareStatement("UPDATE Horario SET " +
-                    "Lunes=? && Martes=? && Miercoles=? && Jueves=? && Viernes=?" +
-                    "Sabado=? && Domingo=?   WHERE DNI = ?");
-            ps.setString(8,dni);
+                    "Lunes=? , Martes=? , Miercoles=? , Jueves=? , Viernes=? , Sabado=?, Domingo=? WHERE DNI = ?");
+
             ps.setInt(1,semana[0]);
             ps.setInt(2,semana[1]);
             ps.setInt(3,semana[2]);
@@ -256,12 +255,11 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
             ps.setInt(5,semana[4]);
             ps.setInt(6,semana[5]);
             ps.setInt(7,semana[6]);
+            ps.setString(8,dni);
 
             int res = ps.executeUpdate();
 
-            if (res > 0) {
-                JOptionPane.showMessageDialog(null, "Horario del empleado cambiado con éxito");
-            }
+
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
