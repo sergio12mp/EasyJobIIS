@@ -28,7 +28,7 @@ public class PanelVistaPrincipal extends JPanel implements VistaEasyJob {
 
 
         // setLayout(null);
-        setLayout(new GridLayout(9, 3, 5, 5));
+        setLayout(new GridLayout(0, 3, 5, 5));
 
         //Inicializamos las variables
 
@@ -84,16 +84,13 @@ public class PanelVistaPrincipal extends JPanel implements VistaEasyJob {
 
 
         //AÑADIMOS AL PANEL
-        add(Box.createVerticalStrut(3));
-        add(Box.createVerticalStrut(3));
-        add(Box.createVerticalStrut(3));
 
         add(Box.createVerticalStrut(3));
         add(imagenPanel);
-        add(Box.createVerticalStrut(3));
+
 
         add(Box.createVerticalStrut(3));
-
+        add(Box.createVerticalStrut(3));
         add(Horario, BorderLayout.NORTH);
         add(Box.createVerticalStrut(3));
         add(Box.createVerticalStrut(3));
@@ -144,7 +141,7 @@ public class PanelVistaPrincipal extends JPanel implements VistaEasyJob {
             super.paintComponent(g);
             if (image != null)
             {
-                g.drawImage(image, 0, 0, null);
+                g.drawImage(image,10,10,50,50,null);
             }
         }
 
