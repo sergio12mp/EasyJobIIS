@@ -30,9 +30,15 @@ public abstract class ConexionBD {
     public abstract boolean TelefAntiguoCorrecto(String dni,String actual);
 
     public abstract  void cambiarFoto(String dni, String nuevo);
-    public abstract Horario horarioFavorito(String dni);
-    public abstract List<Usuario> verUsuarios();
 
+    public abstract Horario horarioFavorito(String dni);
+    public abstract List<SolicitudHorario> verSolicitudes();
+    public abstract void eliminarSolicitud(int Identificador);
+    public abstract void añadirSolicitud(String dni,int[] semana);
+    public abstract void cambiarHorario(String dni,int[] semana);
+
+
+    public abstract List<Usuario> verUsuarios();
     public abstract void anadirQR(byte[] img, String dni);
     public abstract boolean tieneQR (String dni);
     public abstract byte[] getQR (String dni);
