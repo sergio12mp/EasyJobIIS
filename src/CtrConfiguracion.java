@@ -124,9 +124,6 @@ public class CtrConfiguracion implements ActionListener {
             frame.getContentPane().add(panel);
             frame.pack();
 
-
-            frame.setSize(1000, 500);
-
             frame.setBounds(450,300,1000,500);
 
             frame.setVisible(true);
