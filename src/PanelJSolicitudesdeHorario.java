@@ -71,7 +71,7 @@ public class PanelJSolicitudesdeHorario extends JPanel implements VistaEasyJob, 
 
                         conex.cambiarHorario(dni, semana);
                         conex.eliminarSolicitud(iden);
-                        
+
                         listModel.remove(index);
                         JOptionPane.showMessageDialog(null, "Solicitud aceptada: Horario del empleado " +dni + " cambiado");
                     } catch (ArrayIndexOutOfBoundsException ex) {
