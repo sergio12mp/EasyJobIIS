@@ -55,7 +55,6 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
                 JOptionPane.showMessageDialog(null, "Registrado con exito");
             }
 
-            conn.close();
         } catch(SQLIntegrityConstraintViolationException e){
             JOptionPane.showMessageDialog(null, "DNI ya registrado. Pruebe a iniciar sesión");
         } catch (SQLException e) {
