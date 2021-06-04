@@ -2,8 +2,7 @@ import java.util.*;
 
 public class Horario {
 
-    private String Dia;
-
+    private String dni;
     private int[] semana = new int[7];
 
     public Horario() {
@@ -11,14 +10,15 @@ public class Horario {
             semana[i] = 0;
         }
     }
-
-    public Horario (int [] s) {
-        semana = s;
+    public Horario(String dni,int[] semana){
+        this.dni = dni;
+        this.semana = semana;
     }
 
     public int[] getSemana(){
         return semana;
     }
+    public String getDni() { return dni;}
 
     public String toString() {
         return  Arrays.toString(semana);

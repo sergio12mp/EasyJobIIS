@@ -177,6 +177,105 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
         return list;
     }
 
+    public List<SolicitudHorario> verSolicitudes() {
+        List<SolicitudHorario> list = new ArrayList<>();
+        try {
+            ps = conn.prepareStatement("SELECT * FROM SolicitudHorario Where DNI_Jefe = ? ");
+            ps.setString(1, PanelIniciarSesion.identificador);
+            rs = ps.executeQuery();
+
+            while(rs.next()){
+
+                int[] semana = new int[7];
+                int iden = rs.getInt("Identificador");
+                String dni_e = rs.getString("DNI_Empleado");
+                String dni_j = rs.getString("DNI_Jefe");
+                semana[0] = rs.getInt("Lunes");
+                semana[1] = rs.getInt("Martes");
+                semana[2] = rs.getInt("Miercoles");
+                semana[3] = rs.getInt("Jueves");
+                semana[4] = rs.getInt("Viernes");
+                semana[5] = rs.getInt("Sabado");
+                semana[6] = rs.getInt("Domingo");
+                SolicitudHorario sh = new SolicitudHorario(iden,dni_e,dni_j,semana);
+                list.add(sh);
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return list;
+    }
+
+    @Override
+    public void eliminarSolicitud(int Identificador) {
+        try {
+            ps = conn.prepareStatement("DELETE FROM SolicitudHorario WHERE Identificador = ?");
+            ps.setInt(1,Identificador);
+
+            int res = ps.executeUpdate();
+
+            if (res > 0) {
+                JOptionPane.showMessageDialog(null, "Borrado con éxito");
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    @Override
+    public void añadirSolicitud(String dni, int[] semana) {
+        try{
+            ps = conn.prepareStatement("INSERT INTO SolicitudHorario" +
+                    "(DNI_Empleado,DNI_Jefe,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,Domingo) " +
+                    "VALUES (?,?,?,?,?,?,?,?,?)");
+
+            ps.setString(1,PanelIniciarSesion.identificador);
+            ps.setString(2,dni);
+            ps.setInt(3,semana[0]);
+            ps.setInt(4,semana[1]);
+            ps.setInt(5,semana[2]);
+            ps.setInt(6,semana[3]);
+            ps.setInt(7,semana[4]);
+            ps.setInt(8,semana[5]);
+            ps.setInt(9,semana[6]);
+
+            int res = ps.executeUpdate();
+
+            if (res > 0) {
+                JOptionPane.showMessageDialog(null, "Solicitud enviada con éxito");
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    @Override
+    public void cambiarHorario(String dni,int[] semana) {
+        try {
+            ps = conn.prepareStatement("UPDATE Horario SET " +
+                    "Lunes=? && Martes=? && Miercoles=? && Jueves=? && Viernes=?" +
+                    "Sabado=? && Domingo=?   WHERE DNI = ?");
+            ps.setString(8,dni);
+            ps.setInt(1,semana[0]);
+            ps.setInt(2,semana[1]);
+            ps.setInt(3,semana[2]);
+            ps.setInt(4,semana[3]);
+            ps.setInt(5,semana[4]);
+            ps.setInt(6,semana[5]);
+            ps.setInt(7,semana[6]);
+
+            int res = ps.executeUpdate();
+
+            if (res > 0) {
+                JOptionPane.showMessageDialog(null, "Horario del empleado cambiado con éxito");
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+
     @Override
     public void EnviarMensaje(String dni, String mensaje ,String date) {
         String insertBody = "INSERT INTO Mensaje (Mensaje,DNI_DESTINO,DNI_ORIGEN, Hora) VALUES (?, ?, ?,?)";
@@ -468,7 +567,7 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
                 semana[4] = rs.getInt("Viernes");
                 semana[5] = rs.getInt("Sabado");
                 semana[6] = rs.getInt("Domingo");
-                h = new Horario(semana);
+                h = new Horario(dni,semana);
             }
             } catch(SQLException throwables){
                 throwables.printStackTrace();
