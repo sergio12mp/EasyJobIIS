@@ -35,7 +35,7 @@ public class CtrJefe implements ActionListener {
             frame.getContentPane().add(panel);
             frame.pack();
 
-            frame.setSize(1000, 500);
+            frame.setBounds(250,180,1000,500);
             frame.setVisible(true);
 
         }else if (actComm.compareTo(PanelJefe.bModH) == 0) {
@@ -54,8 +54,7 @@ public class CtrJefe implements ActionListener {
             frame.getContentPane().add(panel);
             frame.pack();
 
-            frame.setSize(600, 400);
-            frame.setVisible(true);
+            frame.setBounds(450,200,600,400);            frame.setVisible(true);
 
 
         }else if (actComm.compareTo(PanelJefe.bSolicitudes) == 0) {
@@ -94,7 +93,7 @@ public class CtrJefe implements ActionListener {
             frame.getContentPane().add(panel);
             frame.pack();
 
-            frame.setSize(1000, 500);
+            frame.setBounds(250,180,1000,500);
             frame.setVisible(true);
 
         } else if (actComm.compareTo(PanelJefe.bChatJ) == 0) {
@@ -113,7 +112,7 @@ public class CtrJefe implements ActionListener {
             frame.getContentPane().add(panel);
             frame.pack();
 
-            frame.setSize(1000, 500);
+            frame.setBounds(250,180,1000,500);
             frame.setVisible(true);
 
         }  else if (actComm.compareTo(PanelJefe.bHelpJ) == 0) {
@@ -132,7 +131,7 @@ public class CtrJefe implements ActionListener {
         frame.getContentPane().add(panel);
         frame.pack();
 
-        frame.setSize(1000, 500);
+        frame.setBounds(250,180,1000,500);
         frame.setVisible(true);
 
         }
