@@ -51,5 +51,6 @@ public abstract class ConexionBD {
     public abstract void BorrarMensaje(int iden);
 
     public abstract void Ascender(String dni, boolean esunJefe);
+    public abstract void añadirHorario(String dni, int[] semana);
 
 }

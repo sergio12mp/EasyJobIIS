@@ -99,7 +99,7 @@ public class PanelRegistro extends JPanel implements VistaEasyJob{
                         semana[i] = 0;
                     }
                     conex.introducirUsuario(usu);
-                    conex.cambiarHorario(id,semana);
+                    conex.añadirHorario(id,semana);
                     JComponent comp = (JComponent) e.getSource();
                     Window win = SwingUtilities.getWindowAncestor(comp);
                     win.dispose();

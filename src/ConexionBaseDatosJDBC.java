@@ -214,6 +214,32 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
         }
     }
 
+    public void añadirHorario(String dni, int[] semana) {
+        try{
+            ps = conn.prepareStatement("INSERT INTO Horario" +
+                    "(Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,Domingo,DNI) " +
+                    "VALUES (?,?,?,?,?,?,?,?)");
+
+            ps.setInt(1,semana[0]);
+            ps.setInt(2,semana[1]);
+            ps.setInt(3,semana[2]);
+            ps.setInt(4,semana[3]);
+            ps.setInt(5,semana[4]);
+            ps.setInt(6,semana[5]);
+            ps.setInt(7,semana[6]);
+            ps.setString(8,dni);
+
+
+            int res = ps.executeUpdate();
+
+            if (res > 0) {
+                JOptionPane.showMessageDialog(null, "Solicitud enviada con éxito");
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
     @Override
     public void añadirSolicitud(String dni, int[] semana) {
         try{
@@ -594,10 +620,6 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
                     res = true;
                 }
             }
-
-
-
-
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
