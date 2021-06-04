@@ -1,6 +1,7 @@
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,7 +9,7 @@ import java.awt.event.ActionListener;
 import java.util.List;
 
 
-public class PanelJSolicitudesdeHorario extends JPanel implements VistaEasyJob {
+public class PanelJSolicitudesdeHorario extends JPanel implements VistaEasyJob, ListSelectionListener {
 
     private String fuente = "Arial";
 
@@ -23,21 +24,12 @@ public class PanelJSolicitudesdeHorario extends JPanel implements VistaEasyJob {
     static String seleccionado = "";
     private int index = -1;
 
-
-
-    enum xProvinciaAndaluza {
-        Almería, Cádiz, XCórdobaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa, Granada, Huelva, Jaén, Málaga, Sevilla
-    }
-
-
     public PanelJSolicitudesdeHorario() {
 
         setLayout(new BorderLayout());
 
         JPanel botones = new JPanel();
         botones.setLayout(new GridLayout(1,3,5,5));
-
-
 
         // Subpanel central derecho
         JScrollPane subpanelCentralDcho = new JScrollPane();
@@ -49,6 +41,9 @@ public class PanelJSolicitudesdeHorario extends JPanel implements VistaEasyJob {
          for(SolicitudHorario s:lista){
              listModel.addElement(s.toString());
          }
+        listaSolicitudes = new JList<String>(listModel);
+        listaSolicitudes.addListSelectionListener(this);
+        subpanelCentralDcho.setViewportView(listaSolicitudes);
 
 
         volverAlMenu = new JButton(bVAM);
@@ -79,7 +74,7 @@ public class PanelJSolicitudesdeHorario extends JPanel implements VistaEasyJob {
                         String c = parts[0].substring(1, parts[0].length()-1);
                         System.out.println(c);
                         int id = Integer.parseInt(c);
-                        conex.BorrarMensaje(id);
+                        conex.eliminarSolicitud(id);
 
                         listModel.remove(index);
                     } catch (ArrayIndexOutOfBoundsException ex) {
@@ -91,11 +86,12 @@ public class PanelJSolicitudesdeHorario extends JPanel implements VistaEasyJob {
 
 
 
-
+        botones.add(Declinar);
+        botones.add(Aceptar);
+        botones.add(volverAlMenu);
         add(subpanelCentralDcho, BorderLayout.NORTH);
-        add(Declinar, BorderLayout.SOUTH);
-        add(Aceptar, BorderLayout.SOUTH);
-        add(volverAlMenu, BorderLayout.SOUTH);
+        add(botones, BorderLayout.SOUTH);
+
     }
 
     public void valueChanged(ListSelectionEvent e) {

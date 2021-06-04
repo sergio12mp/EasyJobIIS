@@ -1,5 +1,6 @@
 
 import java.util.Arrays;
+import java.util.StringJoiner;
 
 public class SolicitudHorario{
         private int iden;
@@ -26,6 +27,20 @@ public class SolicitudHorario{
         public String getDni_jefe() { return dni_jefe;}
 
         public String toString() {
-            return  Arrays.toString(semana);
+            String[] dias = {"Lunes","Martes","Miercoles","Jueves","Viernes","Sabado","Domingo"};
+            StringJoiner sb = new StringJoiner(",");
+            sb.add(" [");
+            for(int i = 0;i<semana.length;i++){
+                if(semana[i] == 3){
+                    sb.add( dias[i]+ " " + "Mañana y tarde");
+                }else if(semana[i] == 2){
+                    sb.add(dias[i]+ " " + "Mañana");
+                }else if(semana[i] == 1){
+                   sb.add(dias[i]+ " " + "Tarde");
+                }
+            }
+            sb.add("]");
+
+            return  "("+iden+") " + "Solicitud del empleado:  "+ dni_empleado + "  " + sb.toString();
         }
 }
