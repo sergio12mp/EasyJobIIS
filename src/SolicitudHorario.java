@@ -24,11 +24,10 @@ public class SolicitudHorario {
     public int[] getSemana() {
         return semana;
     }
-
+    public int getIden(){ return iden;}
     public String getDni_empleado() {
         return dni_empleado;
     }
-
     public String getDni_jefe() {
         return dni_jefe;
     }
