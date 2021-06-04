@@ -82,7 +82,7 @@ public class PanelIniciarSesion extends JPanel implements VistaEasyJob {
                             frame.getContentPane().add(panel);
                             frame.pack();
 
-                            frame.setBounds(250,180,1000,500);
+                            frame.setSize(1000, 500);
                             frame.setVisible(true);
 
                         }
