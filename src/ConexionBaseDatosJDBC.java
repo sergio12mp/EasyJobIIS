@@ -339,11 +339,6 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
         }
     }
 
-    @Override
-    public List<SolicitudHorario> verSolicitudes() {
-
-        return null;
-    }
 
     @Override
     public void eliminarUsuario(String dni){

@@ -34,27 +34,6 @@ public class CtrHorario implements ActionListener {
             frame.setBounds(250,180,1000,500);
             frame.setVisible(true);
 
-
-        } else if (actComm.compareTo(PanelHorario.bFav) == 0) {
-
-            JComponent comp = (JComponent) e.getSource();
-            Window win = SwingUtilities.getWindowAncestor(comp);
-            win.dispose();
-
-            JFrame frame = new JFrame("FAVORITOS");
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-
-            PanelHFavoritos panel = new PanelHFavoritos();
-            CtrHFavoritos ctr = new CtrHFavoritos(panel);
-            panel.controlador(ctr);
-
-            frame.getContentPane().add(panel);
-            frame.pack();
-
-            frame.setBounds(250,180,1000,500);
-            frame.setVisible(true);
-
         } else if (actComm.compareTo(PanelHorario.bHAtras) == 0) {
 
             JComponent comp = (JComponent) e.getSource();
