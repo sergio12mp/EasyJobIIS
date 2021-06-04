@@ -52,7 +52,6 @@ public class PanelJSolicitudesdeHorario extends JPanel implements VistaEasyJob, 
         volverAlMenu.setAlignmentY(Component.BOTTOM_ALIGNMENT);
 
 
-
         // Aceptar.setAlignmentY(Component.BOTTOM_ALIGNMENT);
 
         Aceptar = new JButton(bAceptar);
@@ -66,18 +65,28 @@ public class PanelJSolicitudesdeHorario extends JPanel implements VistaEasyJob, 
                     JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun mensaje");
                 } else {
                     try {
-                        String[] parts = seleccionado.split("[(, :)]" +"()"+ " " );
-                        //System.out.println(parts[0].length() + " " + parts[0]);
-                        String dni = "";
-                       // String c = parts[0].substring(1, parts[0].length() - 1);
-                        for (int i =0; i<parts.length; i++){
+                        int[] semana = new int[7];
+                        String[] parts = seleccionado.split("[(, :)]" + "()" + " ");
 
-                            System.out.println(i + parts[i]);
+                        int j = 0;
+                        //dni 3
+                        String[] fuera = parts[3].split(" ");
+                        String dni = fuera[1];
+                        for (int i = 5; i < parts.length; i = i + 2) {
+                            if (parts[i].equals("Mañana")) {
+                                semana[j] = 1;
+                            } else if (parts[i].equals("Tarde")) {
+                                semana[j] = 2;
+                            } else if (parts[i].equals("Libre")) {
+                                semana[j] = 0;
+                            } else {
+                                semana[j] = 3;
+                            }
+                            j++;
 
                         }
-                        //System.out.println(c);
-                       // int id = Integer.parseInt(c);
-                       // conex.cambiarHorario(dni, semana);
+
+                         conex.cambiarHorario(dni, semana);
 
                         listModel.remove(index);
                     } catch (ArrayIndexOutOfBoundsException ex) {
