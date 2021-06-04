@@ -89,6 +89,7 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
         return esJefe;
     }
 
+
     @Override
     public List<Usuario> verUsuarios() {
         List<Usuario> list = new ArrayList<>();
@@ -549,23 +550,7 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
         }
     }
 
-    @Override
-    public void cambiarFoto(String dni, String nuevo) {
-        try {
-            ps = conn.prepareStatement("UPDATE Usuario  SET FotoPerfil =  ?  WHERE DNI = ?");
-            ps.setString(1,nuevo);
-            ps.setString(2,dni);
-            int res = ps.executeUpdate();
 
-            if (res > 0){
-                JOptionPane.showMessageDialog(null, "FotoPerfil actualizado con exito");
-            }
-
-            conn.close();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-    }
     public Horario horarioFavorito (String dni) {
         Horario h = null;
         try {
@@ -648,4 +633,73 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
 
         return bytes;
     }
+
+
+    public boolean tieneFoto (String dni) {
+        boolean res = false;
+        try {
+
+            ps = conn.prepareStatement("SELECT FotoPerfil FROM Usuario WHERE DNI = ?");
+            ps.setString(1,dni);
+            rs = ps.executeQuery();
+
+            if (rs.next()){
+                if (rs.getString("FotoPerfil") == null) {
+                    res = false;
+                } else {
+                    res = true;
+                }
+            }
+
+
+
+
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return res;
+    }
+
+    public byte[] getFoto (String dni) {
+        byte[] bytes = null;
+        try {
+
+            ps = conn.prepareStatement("SELECT FotoPerfil FROM Usuario WHERE DNI = ?");
+            ps.setString(1,dni);
+            rs = ps.executeQuery();
+
+
+            if (rs.next()) {
+                bytes = rs.getBytes("FotoPerfil");
+            }
+
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return bytes;
+    }
+
+    public void anadirFoto (byte[] img, String dni) {
+        try {
+
+            ps = conn.prepareStatement("UPDATE Usuario SET FotoPerfil =  ?  WHERE DNI = ?");
+            ps.setBytes(1, img);
+            ps.setString(2,dni);
+            ps.executeUpdate();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+
+
+
+
+
+
 }

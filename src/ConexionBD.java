@@ -19,6 +19,7 @@ public abstract class ConexionBD {
     public abstract void borrarSolicitudHorario(String dni);
 
     public abstract boolean esOnoJefe();
+
     public abstract boolean esOnoJefe(String dni);
 
     public abstract  void cambiarCorreo(String dni,String actual, String nuevo);
@@ -29,7 +30,7 @@ public abstract class ConexionBD {
     public abstract boolean CorreoAntiguoCorrecto(String dni,String actual);
     public abstract boolean TelefAntiguoCorrecto(String dni,String actual);
 
-    public abstract  void cambiarFoto(String dni, String nuevo);
+
 
     public abstract Horario horarioFavorito(String dni);
     public abstract List<SolicitudHorario> verSolicitudes();
@@ -43,6 +44,9 @@ public abstract class ConexionBD {
     public abstract boolean tieneQR (String dni);
     public abstract byte[] getQR (String dni);
 
+    public abstract boolean tieneFoto (String dni);
+    public abstract byte[] getFoto (String dni);
+
     public abstract List<Mensaje> verMensajes();
 
     public abstract List<Mensaje> verMensajesEnviados();
@@ -50,7 +54,11 @@ public abstract class ConexionBD {
     public abstract void EnviarMensaje(String dni, String mensaje, String date);
     public abstract void BorrarMensaje(int iden);
 
+
+    public abstract void anadirFoto(byte[] bytes, String dni);
+
     public abstract void Ascender(String dni, boolean esunJefe);
     public abstract void añadirHorario(String dni, int[] semana);
+
 
 }

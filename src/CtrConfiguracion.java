@@ -124,7 +124,11 @@ public class CtrConfiguracion implements ActionListener {
             frame.getContentPane().add(panel);
             frame.pack();
 
+<<<<<<< HEAD
+            frame.setSize(1000, 500);
+=======
             frame.setBounds(450,300,600,200);
+>>>>>>> 2a7d08d34a2cefeab89508141518c46983bb321b
             frame.setVisible(true);
 
         }/*else if (actComm.compareTo(PanelConfiguracion.bCIdioma) == 0) {
