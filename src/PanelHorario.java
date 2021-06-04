@@ -7,68 +7,67 @@ public class PanelHorario extends JPanel implements VistaEasyJob {
     private String fuente = "Arial";
 
 
-    private JButton Favoritos, sHorario, hAtras;
-    private JLabel horas;
+    private JButton sHorario, hAtras;
 
-    static String bFav = "FAVORITOS";
     static String bSHorario = "SOLICITAR HORARIO";
     static String bHAtras = "ATRAS";
 
+    private DefaultListModel listModel;
+    private String[] dias = {"Lunes","Martes","Miercoles","Jueves","Viernes","Sábado","Domingo"};
+    static String bFAtras = "ATRAS \n";
+
+    ConexionBD conex = new ConexionBaseDatosJDBC();
+
     public PanelHorario() {
 
-        setLayout(new GridLayout(3, 3, 5, 5));
+        setLayout(new BorderLayout());
 
-        JPanel p1 = new JPanel();
-        p1.setLayout(new GridLayout(2, 3, 5, 5));
-
-        JPanel p2 = new JPanel();
-        p2.setLayout(new GridLayout(3, 3, 5, 5));
-
-        Favoritos = new JButton(bFav);
-        Favoritos.setFont(new Font(fuente, Font.BOLD, 18));
-        Favoritos.setAlignmentX(Component.CENTER_ALIGNMENT);
-
+        JPanel botones = new JPanel();
+        botones.setLayout(new GridLayout(1, 2, 5, 5));
 
         sHorario = new JButton(bSHorario);
         sHorario.setFont(new Font(fuente, Font.BOLD, 18));
         sHorario.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        JLabel horas = new JLabel("AQUI TIENE QUE IR LOS HORARIOS");
-
         hAtras = new JButton(bHAtras);
         hAtras.setFont(new Font(fuente, Font.BOLD, 18));
         hAtras.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        p1.add(Box.createVerticalStrut(3));
-        p1.add(Box.createVerticalStrut(3));
-        p1.add(Box.createVerticalStrut(3));
+        JScrollPane subpanelCentralDcho = new JScrollPane();
 
-        p1.add(Box.createVerticalStrut(3));
-        p1.add(Favoritos);
-        p1.add(Box.createVerticalStrut(3));
+        Horario h = conex.horarioFavorito(PanelIniciarSesion.identificador);
+        int semana[] = h.getSemana();
+        String semana2[] = new String[10];
+        semana2[0] = "\n";
+        semana2[1] = "\n";
+        semana2[2] = "\n";
+        for (int i = 0; i < 7; i++) {
+            if(semana[i] == 0){
+                semana2[i+3] = dias[i] + ":       " + "Libre";
+            }else if(semana[i] == 1){
+                semana2[i+3] = dias[i] + ":       "+ "Mañana";
+            }else{
+                semana2[i+3] = dias[i] + ":       "+ "Tarde";
+            }
+        }
 
-        add(p1);
+        JList listaSemana = new JList(semana2);
 
-        add(horas);
+        listaSemana.setFont(new Font("Arial",Font.BOLD,20));
 
-        p2.add(Box.createVerticalStrut(3));
-        p2.add(sHorario);
-        p2.add(Box.createVerticalStrut(3));
+        DefaultListCellRenderer renderer = (DefaultListCellRenderer) listaSemana.getCellRenderer();
+        renderer.setHorizontalAlignment(SwingConstants.CENTER);
 
-        p2.add(Box.createVerticalStrut(3));
-        p2.add(hAtras);
-        p2.add(Box.createVerticalStrut(3));
+        subpanelCentralDcho.setViewportView(listaSemana);
 
-        p2.add(Box.createVerticalStrut(3));
-        p2.add(Box.createVerticalStrut(3));
-        p2.add(Box.createVerticalStrut(3));
+        botones.add(sHorario);
+        botones.add(hAtras);
 
-        add(p2);
-
+        add(subpanelCentralDcho, BorderLayout.CENTER);
+        add(botones, BorderLayout.SOUTH);
     }
 
     public void controlador(ActionListener ctrl) {
-        Favoritos.addActionListener(ctrl);
         sHorario.addActionListener(ctrl);
         hAtras.addActionListener(ctrl);
     }

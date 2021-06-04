@@ -1,15 +1,7 @@
-import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.sql.*;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
 public class ConexionBaseDatosJDBC extends ConexionBD {
 
@@ -345,6 +337,12 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+    }
+
+    @Override
+    public List<SolicitudHorario> verSolicitudes() {
+
+        return null;
     }
 
     @Override

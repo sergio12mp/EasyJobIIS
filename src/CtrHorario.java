@@ -31,7 +31,7 @@ public class CtrHorario implements ActionListener {
             frame.getContentPane().add(panel);
             frame.pack();
 
-            frame.setSize(1000, 500);
+            frame.setBounds(250,180,1000,500);
             frame.setVisible(true);
 
 
@@ -52,7 +52,7 @@ public class CtrHorario implements ActionListener {
             frame.getContentPane().add(panel);
             frame.pack();
 
-            frame.setSize(1000, 500);
+            frame.setBounds(250,180,1000,500);
             frame.setVisible(true);
 
         } else if (actComm.compareTo(PanelHorario.bHAtras) == 0) {
@@ -74,7 +74,7 @@ public class CtrHorario implements ActionListener {
             frame.getContentPane().add(panel);
             frame.pack();
 
-            frame.setSize(1000, 500);
+            frame.setBounds(250,180,1000,500);
             frame.setVisible(true);
         }
     }

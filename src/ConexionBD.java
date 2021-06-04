@@ -1,4 +1,3 @@
-import java.awt.image.BufferedImage;
 import java.util.List;
 
 public abstract class ConexionBD {
@@ -52,5 +51,8 @@ public abstract class ConexionBD {
     public abstract void BorrarMensaje(int iden);
 
     public abstract void Ascender(String dni, boolean esunJefe);
+   
+    public abstract List<SolicitudHorario> verSolicitudes();
+
 
 }

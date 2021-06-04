@@ -32,7 +32,7 @@ public class CtrChat implements ActionListener {
             frame.getContentPane().add(panel);
             frame.pack();
 
-            frame.setSize(1000, 500);
+            frame.setBounds(250,180,1000,500);
             frame.setVisible(true);
 
         } else if (actComm.compareTo(PanelChat.ENVIARMENSAJE) == 0) {
@@ -51,7 +51,7 @@ public class CtrChat implements ActionListener {
             frame.getContentPane().add(panel);
             frame.pack();
 
-            frame.setSize(1000, 500);
+            frame.setBounds(250,180,1000,500);
             frame.setVisible(true);
 
         } else if (!(PanelIniciarSesion.esJefe) && actComm.compareTo(PanelChat.chatATRAS) == 0) {
@@ -73,7 +73,7 @@ public class CtrChat implements ActionListener {
             frame.getContentPane().add(panel);
             frame.pack();
 
-            frame.setSize(1000, 500);
+            frame.setBounds(250,180,1000,500);
             frame.setVisible(true);
         }else if ((PanelIniciarSesion.esJefe) && actComm.compareTo(PanelChat.chatATRAS) == 0) {
 
@@ -94,7 +94,7 @@ public class CtrChat implements ActionListener {
             frame.getContentPane().add(panel);
             frame.pack();
 
-            frame.setSize(1000, 500);
+            frame.setBounds(250,180,1000,500);
             frame.setVisible(true);
         }
     }
