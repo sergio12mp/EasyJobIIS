@@ -6,18 +6,20 @@ public class PanelJefe extends JPanel implements VistaEasyJob {
 
     private String fuente = "Arial";
 
-    public JButton ModH, VerEmpleados, Solicitudes, CerrarS, Conf;
+    public JButton ModH, VerEmpleados, Solicitudes, CerrarS, Conf, ChatJ,HelpJ;
 
     static String bModH = "MODIFICAR HORARIO";
     static String bVerEmpleados = "VER EMPLEADOS";
     static String bSolicitudes = "SOLICITUDES DE HORARIO";
     static String bCerrarS = "CERRAR SESION \n";
     static String bConf = "CONFIGURACION \n";
+    static String bChatJ = "CHAT \n";
+    static String bHelpJ = "HELP";
 
 
     public PanelJefe() {
 
-        setLayout(new GridLayout(7, 3, 5, 5));
+        setLayout(new GridLayout(10, 3, 5, 5));
 
         ModH = new JButton(bModH);
         ModH.setFont(new Font(fuente, Font.BOLD, 20));
@@ -39,6 +41,14 @@ public class PanelJefe extends JPanel implements VistaEasyJob {
         Conf.setAlignmentX(Component.CENTER_ALIGNMENT);
         Conf.setFont(new Font(fuente, Font.BOLD, 20));
 
+        HelpJ = new JButton(bHelpJ);
+        HelpJ.setAlignmentX(Component.CENTER_ALIGNMENT);
+        HelpJ.setFont(new Font(fuente, Font.BOLD, 20));
+
+        ChatJ = new JButton(bChatJ);
+        ChatJ.setAlignmentX(Component.CENTER_ALIGNMENT);
+        ChatJ.setFont(new Font(fuente, Font.BOLD, 20));
+
 
         add(Box.createVerticalStrut(3));
         add(Box.createVerticalStrut(3));
@@ -46,23 +56,31 @@ public class PanelJefe extends JPanel implements VistaEasyJob {
 
 
         add(Box.createVerticalStrut(3));
-        add(ModH, BorderLayout.NORTH);
+        add(ModH);
         add(Box.createVerticalStrut(3));
 
         add(Box.createVerticalStrut(3));
-        add(VerEmpleados, BorderLayout.NORTH);
+        add(VerEmpleados);
         add(Box.createVerticalStrut(3));
 
         add(Box.createVerticalStrut(3));
-        add(Solicitudes, BorderLayout.NORTH);
+        add(Solicitudes);
         add(Box.createVerticalStrut(3));
 
         add(Box.createVerticalStrut(3));
-        add(Conf, BorderLayout.NORTH);
+        add(ChatJ);
         add(Box.createVerticalStrut(3));
 
         add(Box.createVerticalStrut(3));
-        add(CerrarS, BorderLayout.NORTH);
+        add(Conf);
+        add(Box.createVerticalStrut(3));
+
+        add(Box.createVerticalStrut(3));
+        add(HelpJ);
+        add(Box.createVerticalStrut(3));
+
+        add(Box.createVerticalStrut(3));
+        add(CerrarS);
         add(Box.createVerticalStrut(3));
 
         add(Box.createVerticalStrut(3));
@@ -76,7 +94,9 @@ public class PanelJefe extends JPanel implements VistaEasyJob {
         Solicitudes.addActionListener(ctrl);
         VerEmpleados.addActionListener(ctrl);
         ModH.addActionListener(ctrl);
+        ChatJ.addActionListener(ctrl);
         Conf.addActionListener(ctrl);
+        HelpJ.addActionListener(ctrl);
     }
 
 }

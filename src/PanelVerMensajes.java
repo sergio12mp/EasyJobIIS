@@ -42,9 +42,11 @@ public class PanelVerMensajes extends JPanel implements VistaEasyJob, ListSelect
 
         List<Mensaje> listaEnviados = conex.verMensajesEnviados();
 
-        listModel.addElement(" ");
-        listModel.addElement("-------------------------------------------------------------------------------------");
-        listModel.addElement(" ");
+        if(!lista.isEmpty()) {
+            listModel.addElement(" ");
+            listModel.addElement(" ");
+            listModel.addElement(" ");
+        }
 
         for(Mensaje m : listaEnviados) {
             listModel.addElement(m.toString());
@@ -64,14 +66,18 @@ public class PanelVerMensajes extends JPanel implements VistaEasyJob, ListSelect
                 if(PanelVerMensajes.seleccionado.isEmpty()) {
                     JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun mensaje");
                 } else {
-                    String[] parts = seleccionado.split(" ");
-                    System.out.println(parts[0]);
+                    try {
+                        String[] parts = seleccionado.split(" ");
+                        System.out.println(parts[0].length() + " " + parts[0]);
+                        String c = parts[0].substring(1, parts[0].length()-1);
+                        System.out.println(c);
+                        int id = Integer.parseInt(c);
+                        conex.BorrarMensaje(id);
 
-                    char c = parts[0].charAt(1);
-                    int id = Character.getNumericValue(c);
-                    conex.BorrarMensaje(id);
-
-                    listModel.remove(index);
+                        listModel.remove(index);
+                    } catch (ArrayIndexOutOfBoundsException ex) {
+                        JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun mensaje");
+                    }
                 }
             }
         });
@@ -93,7 +99,6 @@ public class PanelVerMensajes extends JPanel implements VistaEasyJob, ListSelect
 
             if (listaMensajes.getSelectedIndex() == -1) {
                 //No selection, disable fire button.
-                System.out.println("Ningún elemento seleccionado");
 
             } else {
                 //Selection, enable the fire button.

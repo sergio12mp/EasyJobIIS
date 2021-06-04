@@ -31,7 +31,7 @@ public class CtrConfiguracion implements ActionListener {
             frame.getContentPane().add(panel);
             frame.pack();
 
-            frame.setSize(1000, 500);
+            frame.setBounds(250,180,1000,500);
             frame.setVisible(true);
         } else if ((actComm.compareTo(PanelConfiguracion.bCAtras) == 0)&&(PanelIniciarSesion.esJefe)) {
 
@@ -49,7 +49,7 @@ public class CtrConfiguracion implements ActionListener {
             frame.getContentPane().add(panel);
             frame.pack();
 
-            frame.setSize(1000, 500);
+            frame.setBounds(250,180,1000,500);
             frame.setVisible(true);
         }else if (actComm.compareTo(PanelConfiguracion.bCContraseña) == 0) {
 
@@ -67,7 +67,7 @@ public class CtrConfiguracion implements ActionListener {
             frame.getContentPane().add(panel);
             frame.pack();
 
-            frame.setSize(600, 400);
+            frame.setBounds(450,200,600,300);
             frame.setVisible(true);
         }else if (actComm.compareTo(PanelConfiguracion.bCCorreo) == 0) {
 
@@ -85,7 +85,7 @@ public class CtrConfiguracion implements ActionListener {
             frame.getContentPane().add(panel);
             frame.pack();
 
-            frame.setSize(600, 400);
+            frame.setBounds(450,200,600,400);
             frame.setVisible(true);
 
         } else if (actComm.compareTo(PanelConfiguracion.bCTelefono) == 0) {
@@ -104,7 +104,7 @@ public class CtrConfiguracion implements ActionListener {
             frame.getContentPane().add(panel);
             frame.pack();
 
-            frame.setSize(600, 300);
+            frame.setBounds(450,200,600,300);
             frame.setVisible(true);
 
         }else if (actComm.compareTo(PanelConfiguracion.bCFoto) == 0) {
@@ -124,7 +124,11 @@ public class CtrConfiguracion implements ActionListener {
             frame.getContentPane().add(panel);
             frame.pack();
 
+<<<<<<< HEAD
             frame.setSize(1000, 500);
+=======
+            frame.setBounds(450,300,600,200);
+>>>>>>> 2a7d08d34a2cefeab89508141518c46983bb321b
             frame.setVisible(true);
 
         }/*else if (actComm.compareTo(PanelConfiguracion.bCIdioma) == 0) {

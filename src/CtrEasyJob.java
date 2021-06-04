@@ -31,7 +31,7 @@ public class CtrEasyJob implements ActionListener {
             frame.getContentPane().add(panel);
             frame.pack();
 
-            frame.setSize(600, 400);
+            frame.setBounds(450,200,600,400);
             frame.setVisible(true);
 
         } else if (actComm.compareTo(PanelVistaPrincipal.bCS) == 0) {
@@ -54,7 +54,7 @@ public class CtrEasyJob implements ActionListener {
             frame.getContentPane().add(panel);
             frame.pack();
 
-            frame.setSize(1000, 500);
+            frame.setBounds(250,180,1000,500);
             frame.setVisible(true);
 
         } else if (actComm.compareTo(PanelVistaPrincipal.bChat) == 0) {
@@ -75,7 +75,7 @@ public class CtrEasyJob implements ActionListener {
             frame.getContentPane().add(panel);
             frame.pack();
 
-            frame.setSize(1000, 500);
+            frame.setBounds(250,180,1000,500);
             frame.setVisible(true);
 
         }else if (actComm.compareTo(PanelVistaPrincipal.bFichar) == 0) {
@@ -100,7 +100,7 @@ public class CtrEasyJob implements ActionListener {
             frame.getContentPane().add(panel);
             frame.pack();
 
-            frame.setSize(1000, 600);
+            frame.setBounds(250,140,1000,600);
             frame.setVisible(true);
 
         }else if (actComm.compareTo(PanelVistaPrincipal.bConfiguracion) == 0) {
@@ -120,7 +120,27 @@ public class CtrEasyJob implements ActionListener {
             frame.getContentPane().add(panel);
             frame.pack();
 
-            frame.setSize(1000, 500);
+            frame.setBounds(250,180,1000,500);
+            frame.setVisible(true);
+
+        }else if (actComm.compareTo(PanelVistaPrincipal.bHelp) == 0) {
+
+            JComponent comp = (JComponent) e.getSource();
+            Window win = SwingUtilities.getWindowAncestor(comp);
+            win.dispose();
+
+            JFrame frame = new JFrame("HELP");
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+
+            PanelHelp panel = new PanelHelp();
+            CtrHelp ctr = new CtrHelp(panel);
+            panel.controlador(ctr);
+
+            frame.getContentPane().add(panel);
+            frame.pack();
+
+            frame.setBounds(250,180,1000,500);
             frame.setVisible(true);
 
         }
