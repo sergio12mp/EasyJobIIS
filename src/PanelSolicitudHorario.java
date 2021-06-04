@@ -152,7 +152,7 @@ public class PanelSolicitudHorario extends JPanel implements VistaEasyJob {
                         frame.getContentPane().add(panel);
                         frame.pack();
 
-                        frame.setSize(1000, 500);
+                        frame.setBounds(250,180,1000,500);
                         frame.setVisible(true);
                     }
                 } else {

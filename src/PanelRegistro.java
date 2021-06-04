@@ -114,9 +114,7 @@ public class PanelRegistro extends JPanel implements VistaEasyJob{
                     frame.getContentPane().add(panel);
                     frame.pack();
 
-                    frame.setBounds(500,300,500,200);
-
-                    frame.setSize(450, 200);
+                    frame.setBounds(500,300,400,200);
                     frame.setVisible(true);
                 }
             }
