@@ -56,7 +56,6 @@ public class PanelJVerEmpleados extends JPanel implements VistaEasyJob, ListSele
                     String[] parts = seleccionado.split(",");
                     conex.eliminarUsuario(parts[0]);
                     listModel.remove(index);
-                    JOptionPane.showMessageDialog(null, "Usuario eliminado con exito");
                 }
             }
         });

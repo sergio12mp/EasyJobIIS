@@ -1,3 +1,6 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Mensaje {
 
 
@@ -5,6 +8,9 @@ public class Mensaje {
     private String destino;
     private String contenido;
     private int Identificador;
+    private String fecha;
+
+    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 
     public void setAutor(String autor) {
         this.autor = autor;
@@ -22,17 +28,22 @@ public class Mensaje {
         Identificador = identificador;
     }
 
+    public void setFecha(String date) {fecha = date;}
+
     public Mensaje(){
         Identificador = 0;
         autor = null;
         destino = null;
         contenido = null;
+        fecha = null;
+
     }
-    public Mensaje(int id, String aut, String asu, String cont) {
+    public Mensaje(int id, String aut, String asu, String cont, String date) {
         Identificador = id;
         autor = aut;
         destino = asu;
         contenido = cont;
+        fecha = date;
     }
 
 
@@ -44,7 +55,7 @@ public class Mensaje {
             recibido = "ENVIADO";
         }
 
-        return ( "(" + Identificador + ") " + recibido + " Mensaje de " + autor + " para " + destino + ": " + contenido);
+        return ( "(" + Identificador + ") " + "("+ fecha + ") " + recibido + " Mensaje de " + autor + " para " + destino + ": " + contenido);
     }
 
 }

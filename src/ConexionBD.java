@@ -13,12 +13,23 @@ public abstract class ConexionBD {
 
     public abstract void introducirUsuario(Usuario u);
     public abstract boolean buscarUsuario(String dni,String contraseña);
+
     public abstract void eliminarUsuario(String dni);
+    public abstract void borrarHorario(String dni);
+    public abstract void borrarMensajes(String dni);
+    public abstract void borrarSolicitudHorario(String dni);
+
     public abstract boolean esOnoJefe();
     public abstract boolean esOnoJefe(String dni);
-    public abstract  void cambiarCorreo(String dni, String nuevo);
-    public abstract  void cambiarTelefono(String dni, String nuevo);
-    public abstract  void cambiarContraseña(String dni, String nuevo);
+
+    public abstract  void cambiarCorreo(String dni,String actual, String nuevo);
+    public abstract  void cambiarTelefono(String dni,String actual, String nuevo);
+    public abstract  void cambiarContraseña(String dni, String actual,String nuevo);
+
+    public abstract boolean ContrAntiguaCorrecta(String dni,String actual);
+    public abstract boolean CorreoAntiguoCorrecto(String dni,String actual);
+    public abstract boolean TelefAntiguoCorrecto(String dni,String actual);
+
     public abstract  void cambiarFoto(String dni, String nuevo);
     public abstract Horario horarioFavorito(String dni);
     public abstract List<Usuario> verUsuarios();
@@ -31,9 +42,12 @@ public abstract class ConexionBD {
 
     public abstract List<Mensaje> verMensajesEnviados();
 
-    public abstract void EnviarMensaje(String dni, String mensaje);
+    public abstract void EnviarMensaje(String dni, String mensaje, String date);
     public abstract void BorrarMensaje(int iden);
 
     public abstract void Ascender(String dni, boolean esunJefe);
+   
+    public abstact void verSolicitudes();
+
 
 }

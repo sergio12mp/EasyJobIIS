@@ -11,7 +11,7 @@ public class PanelRegistro extends JPanel implements VistaEasyJob{
     private JLabel registro, status, nom, apell, cor, tele, dn, cont, cont2;
     private JTextField nombre, apellidos, correo, telefono, dni;
     private JPasswordField contrasena,contrasena2;
-    private JButton registrar;
+    private JButton registrar,atras;
 
     ConexionBD conex = new ConexionBaseDatosJDBC();
 
@@ -116,6 +116,31 @@ public class PanelRegistro extends JPanel implements VistaEasyJob{
                 }
             }
         });
+        atras = new JButton("Atras");
+        atras.setAlignmentX(Component.CENTER_ALIGNMENT);
+        atras.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JComponent comp = (JComponent) e.getSource();
+                Window win = SwingUtilities.getWindowAncestor(comp);
+                win.dispose();
+
+                JFrame frame = new JFrame("Login");
+                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+                PanelIniciarSesion panel = new PanelIniciarSesion();
+                CtrEasyJob ctr = new CtrEasyJob(panel);
+                panel.controlador(ctr);
+
+                frame.getContentPane().add(panel);
+                frame.pack();
+
+                frame.setBounds(500,300,500,200);
+
+                frame.setSize(450, 200);
+                frame.setVisible(true);
+            }
+        });
 
         add(registro);
         add(nom);
@@ -141,6 +166,8 @@ public class PanelRegistro extends JPanel implements VistaEasyJob{
         add(status);
         add(Box.createVerticalStrut(10));
         add(registrar);
+        add(Box.createVerticalStrut(2));
+        add(atras);
     }
 
     public JTextField getNombre() {return nombre;}

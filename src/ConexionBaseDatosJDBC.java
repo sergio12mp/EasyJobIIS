@@ -5,6 +5,8 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.sql.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -139,6 +141,7 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
                 m.setContenido(rs.getString("Mensaje"));
                 m.setDestino(rs.getString("DNI_Destino"));
                 m.setIdentificador(rs.getInt("Identificador"));
+                m.setFecha(rs.getString("Hora"));
 
                 list.add(m);
             }
@@ -163,6 +166,7 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
                 m.setContenido(rs.getString("Mensaje"));
                 m.setDestino(rs.getString("DNI_Destino"));
                 m.setIdentificador(rs.getInt("Identificador"));
+                m.setFecha(rs.getString("Hora"));
 
                 list.add(m);
             }
@@ -174,13 +178,15 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
     }
 
     @Override
-    public void EnviarMensaje(String dni, String mensaje) {
-        String insertBody = "INSERT INTO Mensaje (Mensaje,DNI_DESTINO,DNI_ORIGEN) VALUES (?, ?, ?)";
+    public void EnviarMensaje(String dni, String mensaje ,String date) {
+        String insertBody = "INSERT INTO Mensaje (Mensaje,DNI_DESTINO,DNI_ORIGEN, Hora) VALUES (?, ?, ?,?)";
+
         try {
             ps = conn.prepareStatement(insertBody);
             ps.setString(1,mensaje);
             ps.setString(2,dni);
             ps.setString(3,PanelIniciarSesion.identificador);
+            ps.setString(4,date);
             int res = ps.executeUpdate();
 
             if (res > 0) {
@@ -242,27 +248,13 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
         }
     }
 
-    public void cambiarCorreo(String dni, String nuevo) {
-        try {
-            ps = conn.prepareStatement("UPDATE Usuario  SET Correo =  ?  WHERE DNI = ?");
-            ps.setString(1,nuevo);
-            ps.setString(2,dni);
-            int res = ps.executeUpdate();
-
-            if (res > 0){
-                JOptionPane.showMessageDialog(null, "Correo actualizado con exito");
-            }
-
-            conn.close();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-
-    }
-
     @Override
     public void eliminarUsuario(String dni){
         try {
+            ConexionBD conex = new ConexionBaseDatosJDBC();
+            conex.borrarHorario(dni);
+            conex.borrarMensajes(dni);
+            conex.borrarSolicitudHorario(dni);
             ps = conn.prepareStatement("DELETE FROM Usuario WHERE DNI = ?");
             ps.setString(1,dni);
 
@@ -276,44 +268,171 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
         }
     }
 
-    @Override
-    public void cambiarTelefono(String dni, String nuevo) {
+    public void borrarHorario(String dni){
         try {
-            ps = conn.prepareStatement("UPDATE Usuario  SET Telefono =  ?  WHERE DNI = ?");
-            ps.setString(1,nuevo);
+            ps = conn.prepareStatement("DELETE FROM Horario WHERE DNI = ?");
+            ps.setString(1,dni);
+
+            int res = ps.executeUpdate();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public void borrarMensajes(String dni){
+        try {
+            ps = conn.prepareStatement("DELETE FROM Mensaje WHERE DNI_Origen = ? or DNI_Destino = ?");
+            ps.setString(1,dni);
             ps.setString(2,dni);
             int res = ps.executeUpdate();
 
-            if (res > 0){
-                JOptionPane.showMessageDialog(null, "Telefono actualizado con exito");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+    public void borrarSolicitudHorario(String dni){
+        try {
+            ps = conn.prepareStatement("DELETE FROM SolicitudHorario WHERE DNI_Empleado = ? or DNI_Jefe = ?");
+            ps.setString(1,dni);
+            ps.setString(2,dni);
+            int res = ps.executeUpdate();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public boolean ContrAntiguaCorrecta(String dni,String actual){
+        boolean esCorrecta = false;
+        try {
+            ps = conn.prepareStatement("SELECT Contraseña FROM Usuario WHERE DNI = ?");
+            ps.setString(1,dni);
+            rs = ps.executeQuery();
+
+            String contra = null;
+            if(rs.next()){
+                contra = rs.getString("Contraseña");
+            }
+            if(contra.equals(actual))
+                esCorrecta = true;
+
+            } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return esCorrecta;
+    }
+
+    @Override
+    public boolean CorreoAntiguoCorrecto(String dni, String actual) {
+        boolean esCorrecta = false;
+        try {
+            ps = conn.prepareStatement("SELECT Correo FROM Usuario WHERE DNI = ?");
+            ps.setString(1,dni);
+            rs = ps.executeQuery();
+
+            String correo = null;
+            if(rs.next()){
+                correo = rs.getString("Correo");
+            }
+            if(correo.equals(actual))
+                esCorrecta = true;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return esCorrecta;
+    }
+
+    @Override
+    public boolean TelefAntiguoCorrecto(String dni, String actual) {
+        boolean esCorrecta = false;
+        try {
+            ps = conn.prepareStatement("SELECT Telefono FROM Usuario WHERE DNI = ?");
+            ps.setString(1,dni);
+            rs = ps.executeQuery();
+
+            String telef = null;
+            if(rs.next()){
+                telef = rs.getString("Telefono");
+            }
+            if(telef.equals(actual))
+                esCorrecta = true;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return esCorrecta;
+    }
+
+    @Override
+    public void cambiarCorreo(String dni, String actual, String nuevo) {
+        try {
+            ConexionBD conex = new ConexionBaseDatosJDBC();
+            if(conex.CorreoAntiguoCorrecto(dni, actual)){
+                ps = conn.prepareStatement("UPDATE Usuario  SET Correo=  ?  WHERE DNI = ?");
+                ps.setString(1,nuevo);
+                ps.setString(2,dni);
+                int res = ps.executeUpdate();
+
+                if (res > 0){
+                    JOptionPane.showMessageDialog(null, "Correo actualizado con éxito");
+                }
+            }else{
+                JOptionPane.showMessageDialog(null, "Correo actual incorrecto");
             }
 
             conn.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
     }
 
     @Override
-    public void cambiarContraseña(String dni,String nuevo) {
+    public void cambiarContraseña(String dni,String actual,String nuevo) {
         try {
-            ps = conn.prepareStatement("UPDATE Usuario  SET Contraseña =  ?  WHERE DNI = ?");
-            ps.setString(1,nuevo);
-            ps.setString(2,dni);
-            int res = ps.executeUpdate();
+            ConexionBD conex = new ConexionBaseDatosJDBC();
+            if(conex.ContrAntiguaCorrecta(dni, actual)){
+                ps = conn.prepareStatement("UPDATE Usuario  SET Contraseña =  ?  WHERE DNI = ?");
+                ps.setString(1,nuevo);
+                ps.setString(2,dni);
+                int res = ps.executeUpdate();
 
-            if (res > 0){
-                JOptionPane.showMessageDialog(null, "Contraseña actualizado con exito");
+                if (res > 0){
+                    JOptionPane.showMessageDialog(null, "Contraseña actualizada con éxito");
+                }
+            }else{
+                JOptionPane.showMessageDialog(null, "Contraseña actual incorrecta");
             }
 
             conn.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
     }
 
+    @Override
+    public void cambiarTelefono(String dni, String actual,String nuevo) {
+        try {
+            ConexionBD conex = new ConexionBaseDatosJDBC();
+            if(conex.TelefAntiguoCorrecto(dni,actual)){
+                ps = conn.prepareStatement("UPDATE Usuario  SET Telefono =  ?  WHERE DNI = ?");
+                ps.setString(1,nuevo);
+                ps.setString(2,dni);
+                int res = ps.executeUpdate();
+
+                if (res > 0){
+                    JOptionPane.showMessageDialog(null, "Telefono actualizado con éxito");
+                }
+            }else{
+                JOptionPane.showMessageDialog(null, "Telefono actual incorrecto");
+            }
+
+            conn.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
 
     @Override
     public void cambiarFoto(String dni, String nuevo) {

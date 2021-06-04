@@ -51,7 +51,7 @@ public class PanelCCCorreo extends JPanel implements VistaEasyJob {
 
                 if(nuevo.compareTo(confirmacion) == 0 && !nuevo.isEmpty() && !actual.isEmpty() && !confirmacion.isEmpty()) {
 
-                    conex.cambiarCorreo(PanelIniciarSesion.identificador, nuevo);
+                    conex.cambiarCorreo(PanelIniciarSesion.identificador,actual, nuevo);
 
                     JComponent comp = (JComponent) e.getSource();
                     Window win = SwingUtilities.getWindowAncestor(comp);
