@@ -89,6 +89,7 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
         return esJefe;
     }
 
+
     @Override
     public List<Usuario> verUsuarios() {
         List<Usuario> list = new ArrayList<>();
@@ -610,7 +611,7 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
 
         return bytes;
     }
-<<<<<<< HEAD
+
 
     public boolean tieneFoto (String dni) {
         boolean res = false;
@@ -676,6 +677,7 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
 
 
 
-=======
->>>>>>> 2a7d08d34a2cefeab89508141518c46983bb321b
+
+
+
 }

@@ -19,11 +19,7 @@ public abstract class ConexionBD {
     public abstract void borrarSolicitudHorario(String dni);
 
     public abstract boolean esOnoJefe();
-<<<<<<< HEAD
-    public abstract  void cambiarCorreo(String dni, String nuevo);
-    public abstract  void cambiarTelefono(String dni, String nuevo);
-    public abstract  void cambiarContraseña(String dni, String nuevo);
-=======
+
     public abstract boolean esOnoJefe(String dni);
 
     public abstract  void cambiarCorreo(String dni,String actual, String nuevo);
@@ -34,9 +30,8 @@ public abstract class ConexionBD {
     public abstract boolean CorreoAntiguoCorrecto(String dni,String actual);
     public abstract boolean TelefAntiguoCorrecto(String dni,String actual);
 
-    public abstract  void cambiarFoto(String dni, String nuevo);
 
->>>>>>> 2a7d08d34a2cefeab89508141518c46983bb321b
+
     public abstract Horario horarioFavorito(String dni);
     public abstract List<SolicitudHorario> verSolicitudes();
     public abstract void eliminarSolicitud(int Identificador);
@@ -59,10 +54,10 @@ public abstract class ConexionBD {
     public abstract void EnviarMensaje(String dni, String mensaje, String date);
     public abstract void BorrarMensaje(int iden);
 
-<<<<<<< HEAD
+
     public abstract void anadirFoto(byte[] bytes, String dni);
-=======
+
     public abstract void Ascender(String dni, boolean esunJefe);
 
->>>>>>> 2a7d08d34a2cefeab89508141518c46983bb321b
+
 }
