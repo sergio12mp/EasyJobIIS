@@ -46,5 +46,8 @@ public abstract class ConexionBD {
     public abstract void BorrarMensaje(int iden);
 
     public abstract void Ascender(String dni, boolean esunJefe);
+   
+    public abstact void verSolicitudes();
+
 
 }
