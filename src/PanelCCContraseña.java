@@ -46,11 +46,9 @@ public class PanelCCContraseña extends JPanel implements VistaEasyJob {
 
         CContraseñaAtras = new JButton(bCContraseñaAtras);
         CContraseñaAtras.setAlignmentX(Component.CENTER_ALIGNMENT);
-        CContraseñaAtras.setFont(new Font(fuente, Font.BOLD, 20));
 
         CContraseñaActualizar = new JButton(bCContraseñaActualizar);
         CContraseñaActualizar.setAlignmentX(Component.CENTER_ALIGNMENT);
-        CContraseñaActualizar.setFont(new Font(fuente, Font.BOLD, 20));
         CContraseñaActualizar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -113,14 +111,13 @@ public class PanelCCContraseña extends JPanel implements VistaEasyJob {
         add(contraseñaConf);
         add(Box.createVerticalStrut(3));
 
-
         add(Box.createVerticalStrut(3));
+        add(CContraseñaActualizar);
+        add(Box.createVerticalStrut(2));
         add(CContraseñaAtras);
         add(Box.createVerticalStrut(3));
 
-        add(Box.createVerticalStrut(3));
-        add(CContraseñaActualizar);
-        add(Box.createVerticalStrut(3));
+
 
     }
 

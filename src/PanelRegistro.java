@@ -166,7 +166,7 @@ public class PanelRegistro extends JPanel implements VistaEasyJob{
         add(status);
         add(Box.createVerticalStrut(10));
         add(registrar);
-        add(Box.createVerticalStrut(10));
+        add(Box.createVerticalStrut(2));
         add(atras);
     }
 
