@@ -59,7 +59,7 @@ public class PanelCCContraseña extends JPanel implements VistaEasyJob {
 
                 if(nuevo.compareTo(confirmacion) == 0 && !nuevo.isEmpty() && !actual.isEmpty() && !confirmacion.isEmpty()) {
 
-                    conex.cambiarContraseña(PanelIniciarSesion.identificador, nuevo);
+                    conex.cambiarContraseña(PanelIniciarSesion.identificador,actual, nuevo);
 
                     JComponent comp = (JComponent) e.getSource();
                     Window win = SwingUtilities.getWindowAncestor(comp);

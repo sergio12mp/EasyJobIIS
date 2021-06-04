@@ -51,7 +51,7 @@ public class PanelCambiarTelefono extends JPanel implements VistaEasyJob {
 
                 if(nuevo.compareTo(confirmacion) == 0 && !nuevo.isEmpty() && !actual.isEmpty() && !confirmacion.isEmpty()) {
 
-                    conex.cambiarTelefono(PanelIniciarSesion.identificador, nuevo);
+                    conex.cambiarTelefono(PanelIniciarSesion.identificador,actual, nuevo);
 
                     JComponent comp = (JComponent) e.getSource();
                     Window win = SwingUtilities.getWindowAncestor(comp);

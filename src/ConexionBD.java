@@ -21,9 +21,15 @@ public abstract class ConexionBD {
 
     public abstract boolean esOnoJefe();
     public abstract boolean esOnoJefe(String dni);
-    public abstract  void cambiarCorreo(String dni, String nuevo);
-    public abstract  void cambiarTelefono(String dni, String nuevo);
-    public abstract  void cambiarContraseña(String dni, String nuevo);
+
+    public abstract  void cambiarCorreo(String dni,String actual, String nuevo);
+    public abstract  void cambiarTelefono(String dni,String actual, String nuevo);
+    public abstract  void cambiarContraseña(String dni, String actual,String nuevo);
+
+    public abstract boolean ContrAntiguaCorrecta(String dni,String actual);
+    public abstract boolean CorreoAntiguoCorrecto(String dni,String actual);
+    public abstract boolean TelefAntiguoCorrecto(String dni,String actual);
+
     public abstract  void cambiarFoto(String dni, String nuevo);
     public abstract Horario horarioFavorito(String dni);
     public abstract List<Usuario> verUsuarios();
