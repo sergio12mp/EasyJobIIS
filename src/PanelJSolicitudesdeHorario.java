@@ -66,7 +66,7 @@ public class PanelJSolicitudesdeHorario extends JPanel implements VistaEasyJob, 
                     JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun mensaje");
                 } else {
                     try {
-                        String[] parts = seleccionado.split("[(, :)]" + " ");
+                        String[] parts = seleccionado.split("[(, :)]" +"()"+ " " );
                         //System.out.println(parts[0].length() + " " + parts[0]);
                         String dni = "";
                        // String c = parts[0].substring(1, parts[0].length() - 1);

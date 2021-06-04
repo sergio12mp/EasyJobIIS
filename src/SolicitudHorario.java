@@ -39,17 +39,17 @@ public class SolicitudHorario {
 
         for (int i = 0; i < semana.length; i++) {
             if (semana[i] == 3) {
-                sb.add(dias[i] + " " + "Mañana y tarde");
+                sb.add(dias[i] + " " + " Mañana y tarde ");
             } else if (semana[i] == 2) {
-                sb.add(dias[i] + " " + "Tarde");
+                sb.add(dias[i] + " " + " Tarde ");
             } else if (semana[i] == 1) {
-                sb.add(dias[i] + " " + "Mañana");
+                sb.add(dias[i] + " " + " Mañana ");
             }else{
-                sb.add(dias[i] + " " + "Libre");
+                sb.add(dias[i] + " " + " Libre ");
             }
         }
 
 
-        return "(" + iden + ") " + "Solicitud del empleado:  " + dni_empleado + "(" + sb.toString() + " )";
+        return "( " + iden + " ) " + " Solicitud del empleado:  " + dni_empleado + " ( " + sb.toString() + " ) ";
     }
 }
