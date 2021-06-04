@@ -67,30 +67,36 @@ public class PanelJSolicitudesdeHorario extends JPanel implements VistaEasyJob, 
                     try {
                         int[] semana = new int[7];
                         String[] parts = seleccionado.split("[(, :)]" + "()" + " ");
-
                         int j = 0;
-                        //dni 3
+
                         String[] fuera = parts[3].split(" ");
+                        String[] iden = parts[1].split(" ");
+
                         String dni = fuera[1];
-                        for (int i = 5; i < parts.length; i = i + 2) {
-                            if (parts[i].equals("Mañana")) {
+                        parts[17] = parts[17] + " ";
+                        for (int i = 5; i < 19; i = i + 2) {
+                            if (parts[i].compareTo("Mañana ") == 0) {
                                 semana[j] = 1;
-                            } else if (parts[i].equals("Tarde")) {
+                            } else if (parts[i].equals("Tarde ")) {
                                 semana[j] = 2;
-                            } else if (parts[i].equals("Libre")) {
+                            } else if (parts[i].equals("Libre ")) {
                                 semana[j] = 0;
                             } else {
                                 semana[j] = 3;
                             }
+
                             j++;
 
                         }
-
-                         conex.cambiarHorario(dni, semana);
-
+                        for(int i=0;i<7;i++){
+                            System.out.println(semana[i]);
+                        }
+                        conex.cambiarHorario(dni, semana);
+                        conex.eliminarSolicitud(Integer.parseInt(iden[0]));
                         listModel.remove(index);
+                        JOptionPane.showMessageDialog(null, "Solicitud aceptada: Horario del empleado " +dni + " cambiado");
                     } catch (ArrayIndexOutOfBoundsException ex) {
-                        JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun mensaje");
+                        JOptionPane.showMessageDialog(null, "No se ha seleccionado ninguna solicitud");
                     }
                 }
             }
