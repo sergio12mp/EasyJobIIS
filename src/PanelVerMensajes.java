@@ -22,7 +22,6 @@ public class PanelVerMensajes extends JPanel implements VistaEasyJob, ListSelect
 
     static String bBorrar = "BORRAR";
     static String bJVE = "VOLVER AL MENU";
-    private final String separador = "-------------------------------------------------------------------------------------";
 
     public PanelVerMensajes(){
 
@@ -45,7 +44,7 @@ public class PanelVerMensajes extends JPanel implements VistaEasyJob, ListSelect
 
         if(!lista.isEmpty()) {
             listModel.addElement(" ");
-            listModel.addElement(separador);
+            listModel.addElement(" ");
             listModel.addElement(" ");
         }
 
@@ -64,13 +63,14 @@ public class PanelVerMensajes extends JPanel implements VistaEasyJob, ListSelect
         borrar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(PanelVerMensajes.seleccionado.isEmpty() || PanelVerMensajes.seleccionado.compareTo(separador) == 0) {
+                if(PanelVerMensajes.seleccionado.isEmpty()) {
                     JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun mensaje");
                 } else {
                     try {
                         String[] parts = seleccionado.split(" ");
-
+                        System.out.println(parts[0].length() + " " + parts[0]);
                         String c = parts[0].substring(1, parts[0].length()-1);
+                        System.out.println(c);
                         int id = Integer.parseInt(c);
                         conex.BorrarMensaje(id);
 
