@@ -13,7 +13,12 @@ public abstract class ConexionBD {
 
     public abstract void introducirUsuario(Usuario u);
     public abstract boolean buscarUsuario(String dni,String contraseña);
+
     public abstract void eliminarUsuario(String dni);
+    public abstract void borrarHorario(String dni);
+    public abstract void borrarMensajes(String dni);
+    public abstract void borrarSolicitudHorario(String dni);
+
     public abstract boolean esOnoJefe();
     public abstract boolean esOnoJefe(String dni);
     public abstract  void cambiarCorreo(String dni, String nuevo);

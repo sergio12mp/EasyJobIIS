@@ -269,6 +269,10 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
     @Override
     public void eliminarUsuario(String dni){
         try {
+            ConexionBD conex = new ConexionBaseDatosJDBC();
+            conex.borrarHorario(dni);
+            conex.borrarMensajes(dni);
+            conex.borrarSolicitudHorario(dni);
             ps = conn.prepareStatement("DELETE FROM Usuario WHERE DNI = ?");
             ps.setString(1,dni);
 
@@ -281,7 +285,41 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
             throwables.printStackTrace();
         }
     }
+    public void borrarHorario(String dni){
+        try {
+            ps = conn.prepareStatement("DELETE FROM Horario WHERE DNI = ?");
+            ps.setString(1,dni);
 
+            int res = ps.executeUpdate();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public void borrarMensajes(String dni){
+        try {
+            ps = conn.prepareStatement("DELETE FROM Mensaje WHERE DNI_Origen = ? or DNI_Destino = ?");
+            ps.setString(1,dni);
+            ps.setString(2,dni);
+            int res = ps.executeUpdate();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public void borrarSolicitudHorario(String dni){
+        try {
+            ps = conn.prepareStatement("DELETE FROM SolicitudHorario WHERE DNI_Empleado = ? or DNI_Jefe = ?");
+            ps.setString(1,dni);
+            ps.setString(2,dni);
+            int res = ps.executeUpdate();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
     @Override
     public void cambiarTelefono(String dni, String nuevo) {
         try {
