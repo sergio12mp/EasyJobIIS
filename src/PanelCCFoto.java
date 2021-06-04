@@ -1,16 +1,22 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.*;
 
 public class PanelCCFoto extends JPanel implements VistaEasyJob {
 
     JButton aceptar, atras;
-    static final String bAceptar = "ACEPTAR";
+    static final String bAceptar = "IMPORTAR IMAGEN";
     static final String bAtras = "ATRAS";
 
     private JLabel nuevaFoto;
-    private JTextField fotoNueva;
+
+    public ImagePanel imagenPanel;
+    public BufferedImage img;
 
     ConexionBD conex = new ConexionBaseDatosJDBC();
 
@@ -18,13 +24,30 @@ public class PanelCCFoto extends JPanel implements VistaEasyJob {
 
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-        nuevaFoto = new JLabel("Nueva URL");
+        nuevaFoto = new JLabel("Nueva imagen (Solo archivos PNG, JPG/JPEG) - Tamaño recomendado: 200x200px");
         nuevaFoto.setAlignmentX(Component.CENTER_ALIGNMENT);
 
 
-        fotoNueva = new JTextField("", 40);
-        fotoNueva.setMaximumSize(new Dimension(300, 20));
-        fotoNueva.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        imagenPanel = new ImagePanel();
+
+        JPanel p3 = new JPanel();
+        p3.setLayout(new GridLayout(1, 1, 5, 5));
+
+        if (conex.tieneFoto(PanelIniciarSesion.identificador)){
+            byte[] QRBytes = conex.getFoto(PanelIniciarSesion.identificador);
+
+            InputStream is = new ByteArrayInputStream(QRBytes);
+            BufferedImage newBi = null;
+            try {
+                newBi = ImageIO.read(is);
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+            imagenPanel.setImage(newBi);
+
+        }
+
 
         aceptar = new JButton(bAceptar);
         aceptar.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -32,32 +55,45 @@ public class PanelCCFoto extends JPanel implements VistaEasyJob {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                String actual = fotoNueva.getText();
+                   JFileChooser browseImg = new JFileChooser();
 
-                if(!actual.isEmpty()) {
+                   FileNameExtensionFilter fnef = new FileNameExtensionFilter("IMAGES","png","jpg","jpeg");
+                   browseImg.addChoosableFileFilter(fnef);
 
-                    conex.cambiarFoto(PanelIniciarSesion.identificador, actual);
+                   int showDialogue = browseImg.showOpenDialog(null);
 
-                    JComponent comp = (JComponent) e.getSource();
-                    Window win = SwingUtilities.getWindowAncestor(comp);
-                    win.dispose();
+                   if (showDialogue == JFileChooser.APPROVE_OPTION) {
+                       File fileimg = browseImg.getSelectedFile();
+                       try {
+                           img = ImageIO.read(fileimg);
+                       } catch (IOException ioException) {
+                           ioException.printStackTrace();
+                       }
 
-                    JFrame frame = new JFrame("CONFIGURACION");
-                    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                       imagenPanel.setImage(img);
 
-                    PanelConfiguracion panel = new PanelConfiguracion();
-                    CtrConfiguracion ctr = new CtrConfiguracion(panel);
-                    panel.controlador(ctr);
+                       String dni = PanelIniciarSesion.identificador;
 
-                    frame.getContentPane().add(panel);
-                    frame.pack();
 
-                    frame.setSize(1000, 500);
-                    frame.setVisible(true);
+                       byte[] bytes = new byte[0];
+                       try {
+                           bytes = toByteArray(img,"png");
+                       } catch (IOException ioException) {
+                           ioException.printStackTrace();
+                       }
+                       System.out.println(bytes.length);
 
-                } else {
-                    JOptionPane.showMessageDialog(null, "Datos introducidos incorrectamente");
-                }
+                       conex.anadirFoto(bytes,dni);
+
+
+
+                   }
+
+
+
+
+
+
             }
         });
 
@@ -66,7 +102,16 @@ public class PanelCCFoto extends JPanel implements VistaEasyJob {
 
         add(Box.createVerticalStrut(10));
         add(nuevaFoto);
-        add(fotoNueva);
+
+
+        p3.add(Box.createVerticalStrut(3));
+        p3.add(Box.createVerticalStrut(3));
+        p3.add(imagenPanel);
+        p3.add(Box.createVerticalStrut(3));
+        p3.add(Box.createVerticalStrut(3));
+        add(p3);
+
+
         add(Box.createVerticalStrut(5));
         add(aceptar);
         add(Box.createVerticalStrut(2));
@@ -78,6 +123,38 @@ public class PanelCCFoto extends JPanel implements VistaEasyJob {
 
     public void controlador(ActionListener ctrl) {
         atras.addActionListener(ctrl);
+    }
+
+    private static class ImagePanel extends JPanel
+    {
+        private BufferedImage image;
+
+        void setImage(BufferedImage image)
+        {
+            this.image = image;
+            repaint();
+        }
+
+        @Override
+        protected void paintComponent(Graphics g)
+        {
+            super.paintComponent(g);
+            if (image != null)
+            {
+                g.drawImage(image, 0, 0, null);
+            }
+        }
+
+    }
+
+    public static byte[] toByteArray(BufferedImage bi, String format)
+            throws IOException {
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ImageIO.write(bi, format, baos);
+        byte[] bytes = baos.toByteArray();
+        return bytes;
+
     }
 
 }

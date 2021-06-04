@@ -18,13 +18,15 @@ public abstract class ConexionBD {
     public abstract  void cambiarCorreo(String dni, String nuevo);
     public abstract  void cambiarTelefono(String dni, String nuevo);
     public abstract  void cambiarContraseña(String dni, String nuevo);
-    public abstract  void cambiarFoto(String dni, String nuevo);
     public abstract Horario horarioFavorito(String dni);
     public abstract List<Usuario> verUsuarios();
 
     public abstract void anadirQR(byte[] img, String dni);
     public abstract boolean tieneQR (String dni);
     public abstract byte[] getQR (String dni);
+
+    public abstract boolean tieneFoto (String dni);
+    public abstract byte[] getFoto (String dni);
 
     public abstract List<Mensaje> verMensajes();
 
@@ -33,4 +35,5 @@ public abstract class ConexionBD {
     public abstract void EnviarMensaje(String dni, String mensaje);
     public abstract void BorrarMensaje(int iden);
 
+    public abstract void anadirFoto(byte[] bytes, String dni);
 }
