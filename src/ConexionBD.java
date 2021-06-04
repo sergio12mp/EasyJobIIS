@@ -1,4 +1,3 @@
-import java.awt.image.BufferedImage;
 import java.util.List;
 
 public abstract class ConexionBD {
@@ -47,7 +46,7 @@ public abstract class ConexionBD {
 
     public abstract void Ascender(String dni, boolean esunJefe);
    
-    public abstact void verSolicitudes();
+    public abstract List<SolicitudHorario> verSolicitudes();
 
 
 }

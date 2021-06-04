@@ -30,7 +30,7 @@ public class SolicitudHorario {
 
     public void setFecha(String date) {fecha = date;}
 
-    public Mensaje(){
+    public SolicitudHorario(){
         Identificador = 0;
         autor = null;
         destino = null;
@@ -38,7 +38,7 @@ public class SolicitudHorario {
         fecha = null;
 
     }
-    public Mensaje(int id, String aut, String asu, String cont, String date) {
+    public SolicitudHorario(int id, String aut, String asu, String cont, String date) {
         Identificador = id;
         autor = aut;
         destino = asu;
