@@ -175,6 +175,7 @@ public class PanelRegistro extends JPanel implements VistaEasyJob{
         add(registrar);
         add(Box.createVerticalStrut(2));
         add(atras);
+        add(Box.createVerticalStrut(10));
     }
 
     public JTextField getNombre() {return nombre;}
