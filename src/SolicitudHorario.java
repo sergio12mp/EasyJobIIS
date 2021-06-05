@@ -49,6 +49,6 @@ public class SolicitudHorario {
         }
 
 
-        return "( " + iden + " ) " + " Solicitud del empleado:  " + dni_empleado + " ( " + sb.toString() + " ) ";
+        return "( " + iden + " ) " + " Solicitud del empleado:  " + dni_empleado + " [ " + sb.toString() + " ] ";
     }
 }

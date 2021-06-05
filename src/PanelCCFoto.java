@@ -81,12 +81,8 @@ public class PanelCCFoto extends JPanel implements VistaEasyJob {
                        } catch (IOException ioException) {
                            ioException.printStackTrace();
                        }
-                       System.out.println(bytes.length);
 
                        conex.anadirFoto(bytes,dni);
-
-
-
                    }
             }
         });
@@ -108,11 +104,10 @@ public class PanelCCFoto extends JPanel implements VistaEasyJob {
 
         add(Box.createVerticalStrut(5));
         add(aceptar);
-        add(Box.createVerticalStrut(2));
+        add(Box.createVerticalStrut(5));
         add(atras);
+        add(Box.createVerticalStrut(10));
     }
-
-
 
 
     public void controlador(ActionListener ctrl) {

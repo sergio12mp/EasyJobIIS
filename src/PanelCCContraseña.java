@@ -113,7 +113,7 @@ public class PanelCCContraseña extends JPanel implements VistaEasyJob {
 
         add(Box.createVerticalStrut(3));
         add(CContraseñaActualizar);
-        add(Box.createVerticalStrut(2));
+        add(Box.createVerticalStrut(5));
         add(CContraseñaAtras);
         add(Box.createVerticalStrut(3));
 
