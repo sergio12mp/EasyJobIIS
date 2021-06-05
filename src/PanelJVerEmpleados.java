@@ -69,9 +69,6 @@ public class PanelJVerEmpleados extends JPanel implements VistaEasyJob, ListSele
                 if(PanelJVerEmpleados.seleccionado.isEmpty()) {
                     JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun usuario");
                 } else {
-
-                    System.out.println(seleccionado);
-
                     String aux = seleccionado;
                     String[] parts = aux.split(",");
                     String dni = parts[0];

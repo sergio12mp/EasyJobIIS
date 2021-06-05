@@ -358,7 +358,11 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
             int res = ps.executeUpdate();
 
             if (res > 0){
-                JOptionPane.showMessageDialog(null, "Ascendido con éxito");
+                if(!esunJefe)
+                    JOptionPane.showMessageDialog(null, "Ascendido con éxito");
+                else
+                    JOptionPane.showMessageDialog(null, "Descendido con éxito");
+
             }
 
         } catch (SQLException throwables) {
