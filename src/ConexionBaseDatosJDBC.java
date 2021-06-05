@@ -110,7 +110,8 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
                 u.setQR(rs.getBytes("QR"));
                 u.setEsJefe(rs.getBoolean("Jefe"));
 
-                list.add(u);
+                if(!u.getDNI().equals("developer") && !u.getDNI().equals(PanelIniciarSesion.identificador))
+                    list.add(u);
             }
 
         } catch (SQLException throwables) {
