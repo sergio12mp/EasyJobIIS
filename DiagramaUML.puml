@@ -1,19 +1,60 @@
 @startuml
+class PanelHelp {
+- String fuente
++ JLabel correo
++ JButton HAtras
+~ {static} String bHAtras
+~ {static} String bHEnviar
++ void controlador(ActionListener)
+}
 class CtrChat {
 ~ VistaEasyJob vistaEasy
 + void actionPerformed(ActionEvent)
 }
+class CtrJEmpleados {
+~ VistaEasyJob vistaEasy
+~ ConexionBD conex
++ void actionPerformed(ActionEvent)
+}
 class PanelJefe {
 - String fuente
-+ JButton ModH
-~ {static} String bModH
++ JButton VerEmpleados
++ ImagePanel imagenPanel
 ~ {static} String bVerEmpleados
 ~ {static} String bSolicitudes
 ~ {static} String bCerrarS
 ~ {static} String bConf
 ~ {static} String bChatJ
 ~ {static} String bHelpJ
+~ ConexionBD conex
 + void controlador(ActionListener)
++ {static} byte[] toByteArray(BufferedImage,String)
+}
+class PanelJefe.ImagePanel {
+- BufferedImage image
+~ void setImage(BufferedImage)
+# void paintComponent(Graphics)
+}
+class PanelCCContraseña {
+- String fuente
+~ JButton CContraseñaAtras
+~ JPasswordField contraseñaAntigua
+~ JLabel LcontraseñaAntigua
+~ {static} String bCContraseñaAtras
+~ {static} String bCContraseñaActualizar
+~ ConexionBD conex
++ void controlador(ActionListener)
+}
+class CtrHSolicitud {
+~ VistaEasyJob vistaEasy
++ void actionPerformed(ActionEvent)
+}
+class CtrCCContraseña {
++ void actionPerformed(ActionEvent)
+}
+class CtrCambCorreo {
+~ VistaEasyJob vistaEasy
++ void actionPerformed(ActionEvent)
 }
 class ConexionBaseDatosJDBC {
 - {static} ConexionBaseDatosJDBC instanciaInterfaz
@@ -30,6 +71,7 @@ class ConexionBaseDatosJDBC {
 + List<Mensaje> verMensajesEnviados()
 + List<SolicitudHorario> verSolicitudes()
 + void eliminarSolicitud(int)
++ void añadirHorario(String,int[])
 + void añadirSolicitud(String,int[])
 + void cambiarHorario(String,int[])
 + void EnviarMensaje(String,String,String)
@@ -46,11 +88,13 @@ class ConexionBaseDatosJDBC {
 + void cambiarCorreo(String,String,String)
 + void cambiarContraseña(String,String,String)
 + void cambiarTelefono(String,String,String)
-+ void cambiarFoto(String,String)
 + Horario horarioFavorito(String)
 + void anadirQR(byte[],String)
 + boolean tieneQR(String)
 + byte[] getQR(String)
++ boolean tieneFoto(String)
++ byte[] getFoto(String)
++ void anadirFoto(byte[],String)
 }
 class CtrlNuevoUsuario {
 - ConexionBD conexionbd
@@ -60,6 +104,25 @@ class CtrlNuevoUsuario {
 class CtrJSolicitud {
 ~ VistaEasyJob vistaEasy
 + void actionPerformed(ActionEvent)
+}
+class CtrVerMensajes {
+~ VistaEasyJob vistaEasy
++ void actionPerformed(ActionEvent)
+}
+class PanelJVerEmpleados {
+- String fuente
+~ ConexionBD conex
+- String[] usuarios
+- JList<String> listaUsuarios
+~ {static} String seleccionado
+- int index
+- DefaultListModel listModel
+~ JButton borrar
+~ {static} String bBorrar
+~ {static} String bAscender
+~ {static} String bJVE
++ void valueChanged(ListSelectionEvent)
++ void controlador(ActionListener)
 }
 class PanelEnviarMensajeDeveloper {
 ~ JButton enviar
@@ -75,12 +138,50 @@ class CtrEnviarMensajes {
 ~ VistaEasyJob vistaEasy
 + void actionPerformed(ActionEvent)
 }
-class PanelCCIdioma {
+class PanelFichar {
+- String fuente
++ ImagePanel imagenPanel
++ ConexionBD conex
++ BufferedImage img
+- JButton ficharAtras
+- JLabel fichar
+~ {static} String bFichar
+~ {static} String bMFichar
+~ {static} String bQR
 + void controlador(ActionListener)
++ void generarQR()
++ {static} byte[] toByteArray(BufferedImage,String)
+}
+class PanelFichar.ImagePanel {
+- BufferedImage image
+~ void setImage(BufferedImage)
+# void paintComponent(Graphics)
 }
 class CtrFichar {
 ~ VistaEasyJob vistaEasy
 + void actionPerformed(ActionEvent)
+}
+class PanelChat {
+~ JButton enviarMensaje
+- String fuente
+~ {static} String ENVIARMENSAJE
+~ {static} String MENSAJESPENDIENTES
+~ {static} String chatATRAS
++ void controlador(ActionListener)
+}
+class Mensaje {
+- String autor
+- String destino
+- String contenido
+- int Identificador
+- String fecha
+~ DateTimeFormatter dtf
++ void setAutor(String)
++ void setDestino(String)
++ void setContenido(String)
++ void setIdentificador(int)
++ void setFecha(String)
++ String toString()
 }
 class CtrHorario {
 ~ VistaEasyJob vistaEasy
@@ -89,6 +190,17 @@ class CtrHorario {
 class CtrEnviarMensajesDeveloper {
 ~ VistaEasyJob vistaEasy
 + void actionPerformed(ActionEvent)
+}
+class Main {
+- {static} void createAndShowGui()
++ {static} void main(String[])
+}
+class Horario {
+- String dni
+- int[] semana
++ int[] getSemana()
++ String getDni()
++ String toString()
 }
 class PanelJSolicitudesdeHorario {
 - String fuente
@@ -104,17 +216,13 @@ class PanelJSolicitudesdeHorario {
 + void valueChanged(ListSelectionEvent)
 + void controlador(ActionListener)
 }
-class CtrJModificarHorarios {
-~ VistaEasyJob vistaEasy
-+ void actionPerformed(ActionEvent)
-}
-class PanelHFavoritos {
-- String fuente
-- JButton fAtras
-- JLabel fav
-- DefaultListModel listModel
-- String[] dias
-~ {static} String bFAtras
+class PanelEnviarMensaje {
+~ JButton enviar
+~ {static} String bEnviar
+~ {static} String bAtras
+- JLabel destinatario
+- JTextField destinatarioField
+- JTextArea mensajeField
 ~ ConexionBD conex
 + void controlador(ActionListener)
 }
@@ -127,19 +235,20 @@ class PanelCambiarTelefono {
 ~ ConexionBD conex
 + void controlador(ActionListener)
 }
-class Chat {
-- String nombreChat
-- List<Mensaje> mensajes
-+ void añadirMensaje(Mensaje)
-+ void eliminarMensaje(Mensaje)
-+ Mensaje buscarMensaje(Mensaje)
-+ String verMensajes()
-}
-class CtrCCFoto {
+class CtrConfiguracion {
 ~ VistaEasyJob vistaEasy
 + void actionPerformed(ActionEvent)
 }
-class CtrModificarHorario {
+class PanelCCCorreo {
+~ JButton aceptar
+~ {static} String bAceptar
+~ {static} String bAtras
+- JLabel correoAnt
+- JTextField antCorreo
+~ ConexionBD conex
++ void controlador(ActionListener)
+}
+class CtrCCFoto {
 ~ VistaEasyJob vistaEasy
 + void actionPerformed(ActionEvent)
 }
@@ -168,9 +277,15 @@ class PanelVistaPrincipal {
 ~ {static} String bConfiguracion
 ~ {static} String bHelp
 ~ {static} String bCS
++ ImagePanel imagenPanel
+~ ConexionBD conex
 + void controlador(ActionListener)
++ {static} byte[] toByteArray(BufferedImage,String)
 }
-class CtrCCModo {
+class PanelVistaPrincipal.ImagePanel {
+- BufferedImage image
+~ void setImage(BufferedImage)
+# void paintComponent(Graphics)
 }
 class Empleado {
 }
@@ -188,233 +303,6 @@ class PanelSolicitudHorario {
 ~ {static} String bSAtras
 ~ ConexionBD conex
 + void controlador(ActionListener)
-}
-class PanelJCerrarSesion {
-+ void controlador(ActionListener)
-}
-class PanelVerMensajes {
-- String fuente
-~ ConexionBD conex
-- String[] usuarios
-- JList<String> listaMensajes
-~ {static} String seleccionado
-- int index
-- DefaultListModel listModel
-~ JButton borrar
-~ {static} String bBorrar
-~ {static} String bJVE
-+ void valueChanged(ListSelectionEvent)
-+ void controlador(ActionListener)
-}
-class PanelConfiguracion {
-- String fuente
-~ Boolean oscuro
-~ JButton CFoto
-~ JCheckBox CModo
-~ {static} String bCFoto
-~ {static} String bCContraseña
-~ {static} String bCCorreo
-~ {static} String bCTelefono
-~ {static} String bCIdioma
-~ {static} String bCModo
-~ {static} String bCAtras
-+ void controlador(ActionListener)
-}
-class PanelHorario {
-- String fuente
-- JButton sHorario
-~ {static} String bSHorario
-~ {static} String bHAtras
-- DefaultListModel listModel
-- String[] dias
-~ {static} String bFAtras
-~ ConexionBD conex
-+ void controlador(ActionListener)
-}
-class CtrCambiarTelefono {
-~ VistaEasyJob vistaEasy
-+ void actionPerformed(ActionEvent)
-}
-class Usuario {
-- String Nombre
-- String Apellidos
-- String CorreoElectronico
-- String FotoPerfil
-- String DNI
-- String Telefono
-- String Contrasena
-- byte[] QR
-- boolean esJefe
-+ String toString()
-+ String getNombre()
-+ void setNombre(String)
-+ String getApellidos()
-+ void setApellidos(String)
-+ String getCorreoElectronico()
-+ void setCorreoElectronico(String)
-+ String getFotoPerfil()
-+ void setFotoPerfil(String)
-+ String getDNI()
-+ void setDNI(String)
-+ String getTelefono()
-+ void setTelefono(String)
-+ String getContrasena()
-+ void setContrasena(String)
-+ byte[] getQR()
-+ void setQR(byte[])
-+ void setEsJefe(boolean)
-+ boolean getesJefe()
-}
-class CtrEasyJob {
-~ VistaEasyJob vistaEasy
-~ Usuario usuario
-+ void actionPerformed(ActionEvent)
-}
-class PanelHelp {
-- String fuente
-+ JLabel correo
-+ JButton HAtras
-~ {static} String bHAtras
-~ {static} String bHEnviar
-+ void controlador(ActionListener)
-}
-class Jefe {
-}
-class CtrJEmpleados {
-~ VistaEasyJob vistaEasy
-~ ConexionBD conex
-+ void actionPerformed(ActionEvent)
-}
-class PanelCCContraseña {
-- String fuente
-~ JButton CContraseñaAtras
-~ JPasswordField contraseñaAntigua
-~ JLabel LcontraseñaAntigua
-~ {static} String bCContraseñaAtras
-~ {static} String bCContraseñaActualizar
-~ ConexionBD conex
-+ void controlador(ActionListener)
-}
-class CtrHSolicitud {
-~ VistaEasyJob vistaEasy
-+ void actionPerformed(ActionEvent)
-}
-class CtrCCContraseña {
-+ void actionPerformed(ActionEvent)
-}
-class CtrCambCorreo {
-~ VistaEasyJob vistaEasy
-+ void actionPerformed(ActionEvent)
-}
-class CtrVerMensajes {
-~ VistaEasyJob vistaEasy
-+ void actionPerformed(ActionEvent)
-}
-class PanelJVerEmpleados {
-- String fuente
-~ ConexionBD conex
-- String[] usuarios
-- JList<String> listaUsuarios
-~ {static} String seleccionado
-- int index
-- DefaultListModel listModel
-~ JButton borrar
-~ {static} String bBorrar
-~ {static} String bAscender
-~ {static} String bJVE
-+ void valueChanged(ListSelectionEvent)
-+ void controlador(ActionListener)
-}
-class PanelFichar {
-- String fuente
-+ ImagePanel imagenPanel
-+ ConexionBD conex
-+ BufferedImage img
-- JButton ficharAtras
-- JLabel fichar
-~ {static} String bFichar
-~ {static} String bMFichar
-~ {static} String bQR
-+ void controlador(ActionListener)
-+ void generarQR()
-+ {static} byte[] toByteArray(BufferedImage,String)
-}
-class PanelFichar.ImagePanel {
-- BufferedImage image
-~ void setImage(BufferedImage)
-# void paintComponent(Graphics)
-}
-class Mensaje {
-- String autor
-- String destino
-- String contenido
-- int Identificador
-- String fecha
-~ DateTimeFormatter dtf
-+ void setAutor(String)
-+ void setDestino(String)
-+ void setContenido(String)
-+ void setIdentificador(int)
-+ void setFecha(String)
-+ String toString()
-}
-class PanelChat {
-~ JButton enviarMensaje
-- String fuente
-~ {static} String ENVIARMENSAJE
-~ {static} String MENSAJESPENDIENTES
-~ {static} String chatATRAS
-+ void controlador(ActionListener)
-}
-class Main {
-- {static} void createAndShowGui()
-+ {static} void main(String[])
-}
-class CtrCCIdioma {
-}
-class Horario {
-- String dni
-- int[] semana
-+ int[] getSemana()
-+ String getDni()
-+ String toString()
-}
-class PanelEnviarMensaje {
-~ JButton enviar
-~ {static} String bEnviar
-~ {static} String bAtras
-- JLabel destinatario
-- JTextField destinatarioField
-- JTextArea mensajeField
-~ ConexionBD conex
-+ void controlador(ActionListener)
-}
-class CtrConfiguracion {
-~ VistaEasyJob vistaEasy
-+ void actionPerformed(ActionEvent)
-}
-class PanelCCCorreo {
-~ JButton aceptar
-~ {static} String bAceptar
-~ {static} String bAtras
-- JLabel correoAnt
-- JTextField antCorreo
-~ ConexionBD conex
-+ void controlador(ActionListener)
-}
-class PanelJModificarHorario {
-- String fuente
-+ JButton volverAlMenu
-+ JLabel modH
-~ {static} String bVAM
-+ void controlador(ActionListener)
-}
-class PanelCCModo {
-+ void controlador(ActionListener)
-}
-class CtrHFavoritos {
-~ VistaEasyJob vistaEasy
-+ void actionPerformed(ActionEvent)
 }
 class CtrHelp {
 ~ VistaEasyJob vistaEasy
@@ -452,7 +340,6 @@ abstract class ConexionBD {
 + {abstract}boolean ContrAntiguaCorrecta(String,String)
 + {abstract}boolean CorreoAntiguoCorrecto(String,String)
 + {abstract}boolean TelefAntiguoCorrecto(String,String)
-+ {abstract}void cambiarFoto(String,String)
 + {abstract}Horario horarioFavorito(String)
 + {abstract}List<SolicitudHorario> verSolicitudes()
 + {abstract}void eliminarSolicitud(int)
@@ -462,15 +349,56 @@ abstract class ConexionBD {
 + {abstract}void anadirQR(byte[],String)
 + {abstract}boolean tieneQR(String)
 + {abstract}byte[] getQR(String)
++ {abstract}boolean tieneFoto(String)
++ {abstract}byte[] getFoto(String)
 + {abstract}List<Mensaje> verMensajes()
 + {abstract}List<Mensaje> verMensajesEnviados()
 + {abstract}void EnviarMensaje(String,String,String)
 + {abstract}void BorrarMensaje(int)
++ {abstract}void anadirFoto(byte[],String)
 + {abstract}void Ascender(String,boolean)
++ {abstract}void añadirHorario(String,int[])
 }
-class PnaelCCTelefono {
+class PanelVerMensajes {
+- String fuente
+~ ConexionBD conex
+- String[] usuarios
+- JList<String> listaMensajes
+~ {static} String seleccionado
+- int index
+- DefaultListModel listModel
+~ JButton borrar
+~ {static} String bBorrar
+~ {static} String bJVE
++ void valueChanged(ListSelectionEvent)
++ void controlador(ActionListener)
+}
+class PanelConfiguracion {
+- String fuente
+~ JButton CFoto
+~ {static} String bCFoto
+~ {static} String bCContraseña
+~ {static} String bCCorreo
+~ {static} String bCTelefono
+~ {static} String bCAtras
++ void controlador(ActionListener)
+}
+class PanelHorario {
+- String fuente
+- JButton sHorario
+~ {static} String bSHorario
+~ {static} String bHAtras
+- DefaultListModel listModel
+- String[] dias
+~ {static} String bFAtras
+~ ConexionBD conex
++ void controlador(ActionListener)
 }
 class CtrJefe {
+~ VistaEasyJob vistaEasy
++ void actionPerformed(ActionEvent)
+}
+class CtrCambiarTelefono {
 ~ VistaEasyJob vistaEasy
 + void actionPerformed(ActionEvent)
 }
@@ -480,52 +408,119 @@ class SolicitudHorario {
 - String dni_jefe
 - int[] semana
 + int[] getSemana()
++ int getIden()
 + String getDni_empleado()
 + String getDni_jefe()
 + String toString()
+}
+class CtrEasyJob {
+~ VistaEasyJob vistaEasy
+~ Usuario usuario
++ void actionPerformed(ActionEvent)
+}
+class Usuario {
+- String Nombre
+- String Apellidos
+- String CorreoElectronico
+- String FotoPerfil
+- String DNI
+- String Telefono
+- String Contrasena
+- byte[] QR
+- boolean esJefe
++ String toString()
++ String getNombre()
++ void setNombre(String)
++ String getApellidos()
++ void setApellidos(String)
++ String getCorreoElectronico()
++ void setCorreoElectronico(String)
++ String getFotoPerfil()
++ void setFotoPerfil(String)
++ String getDNI()
++ void setDNI(String)
++ String getTelefono()
++ void setTelefono(String)
++ String getContrasena()
++ void setContrasena(String)
++ byte[] getQR()
++ void setQR(byte[])
++ void setEsJefe(boolean)
++ boolean getesJefe()
 }
 class PanelCCFoto {
 ~ JButton aceptar
 ~ {static} String bAceptar
 ~ {static} String bAtras
 - JLabel nuevaFoto
-- JTextField fotoNueva
++ ImagePanel imagenPanel
++ BufferedImage img
 ~ ConexionBD conex
 + void controlador(ActionListener)
++ {static} byte[] toByteArray(BufferedImage,String)
+}
+class PanelCCFoto.ImagePanel {
+- BufferedImage image
+~ void setImage(BufferedImage)
+# void paintComponent(Graphics)
 }
 
 
+VistaEasyJob <|.. PanelHelp
+JPanel <|-- PanelHelp
 java.awt.event.ActionListener <|.. CtrChat
+java.awt.event.ActionListener <|.. CtrJEmpleados
 VistaEasyJob <|.. PanelJefe
 JPanel <|-- PanelJefe
+PanelJefe +.. PanelJefe.ImagePanel
+JPanel <|-- PanelJefe.ImagePanel
+VistaEasyJob <|.. PanelCCContraseña
+JPanel <|-- PanelCCContraseña
+java.awt.event.ActionListener <|.. CtrHSolicitud
+java.awt.event.ActionListener <|.. CtrCCContraseña
+java.awt.event.ActionListener <|.. CtrCambCorreo
 ConexionBD <|-- ConexionBaseDatosJDBC
 java.awt.event.ActionListener <|.. CtrlNuevoUsuario
 java.awt.event.ActionListener <|.. CtrJSolicitud
+java.awt.event.ActionListener <|.. CtrVerMensajes
+VistaEasyJob <|.. PanelJVerEmpleados
+javax.swing.event.ListSelectionListener <|.. PanelJVerEmpleados
+JPanel <|-- PanelJVerEmpleados
 VistaEasyJob <|.. PanelEnviarMensajeDeveloper
 JPanel <|-- PanelEnviarMensajeDeveloper
 java.awt.event.ActionListener <|.. CtrEnviarMensajes
+VistaEasyJob <|.. PanelFichar
+JPanel <|-- PanelFichar
+PanelFichar +.. PanelFichar.ImagePanel
+JPanel <|-- PanelFichar.ImagePanel
 java.awt.event.ActionListener <|.. CtrFichar
+VistaEasyJob <|.. PanelChat
+JPanel <|-- PanelChat
 java.awt.event.ActionListener <|.. CtrHorario
 java.awt.event.ActionListener <|.. CtrEnviarMensajesDeveloper
 VistaEasyJob <|.. PanelJSolicitudesdeHorario
 javax.swing.event.ListSelectionListener <|.. PanelJSolicitudesdeHorario
 JPanel <|-- PanelJSolicitudesdeHorario
-java.awt.event.ActionListener <|.. CtrJModificarHorarios
-VistaEasyJob <|.. PanelHFavoritos
-JPanel <|-- PanelHFavoritos
+VistaEasyJob <|.. PanelEnviarMensaje
+JPanel <|-- PanelEnviarMensaje
 VistaEasyJob <|.. PanelCambiarTelefono
 JPanel <|-- PanelCambiarTelefono
+java.awt.event.ActionListener <|.. CtrConfiguracion
+VistaEasyJob <|.. PanelCCCorreo
+JPanel <|-- PanelCCCorreo
 java.awt.event.ActionListener <|.. CtrCCFoto
-java.awt.event.ActionListener <|.. CtrModificarHorario
 VistaEasyJob <|.. PanelRegistro
 JPanel <|-- PanelRegistro
 VistaEasyJob <|.. PanelVistaPrincipal
 JPanel <|-- PanelVistaPrincipal
+PanelVistaPrincipal +.. PanelVistaPrincipal.ImagePanel
+JPanel <|-- PanelVistaPrincipal.ImagePanel
 Usuario <|-- Empleado
 VistaEasyJob <|.. PanelSolicitudHorario
 JPanel <|-- PanelSolicitudHorario
-VistaEasyJob <|.. PanelJCerrarSesion
-JPanel <|-- PanelJCerrarSesion
+java.awt.event.ActionListener <|.. CtrHelp
+VistaEasyJob <|.. PanelIniciarSesion
+JPanel <|-- PanelIniciarSesion
 VistaEasyJob <|.. PanelVerMensajes
 javax.swing.event.ListSelectionListener <|.. PanelVerMensajes
 JPanel <|-- PanelVerMensajes
@@ -533,39 +528,11 @@ VistaEasyJob <|.. PanelConfiguracion
 JPanel <|-- PanelConfiguracion
 VistaEasyJob <|.. PanelHorario
 JPanel <|-- PanelHorario
+java.awt.event.ActionListener <|.. CtrJefe
 java.awt.event.ActionListener <|.. CtrCambiarTelefono
 java.awt.event.ActionListener <|.. CtrEasyJob
-VistaEasyJob <|.. PanelHelp
-JPanel <|-- PanelHelp
-Usuario <|-- Jefe
-java.awt.event.ActionListener <|.. CtrJEmpleados
-VistaEasyJob <|.. PanelCCContraseña
-JPanel <|-- PanelCCContraseña
-java.awt.event.ActionListener <|.. CtrHSolicitud
-java.awt.event.ActionListener <|.. CtrCCContraseña
-java.awt.event.ActionListener <|.. CtrCambCorreo
-java.awt.event.ActionListener <|.. CtrVerMensajes
-VistaEasyJob <|.. PanelJVerEmpleados
-javax.swing.event.ListSelectionListener <|.. PanelJVerEmpleados
-JPanel <|-- PanelJVerEmpleados
-VistaEasyJob <|.. PanelFichar
-JPanel <|-- PanelFichar
-PanelFichar +.. PanelFichar.ImagePanel
-JPanel <|-- PanelFichar.ImagePanel
-VistaEasyJob <|.. PanelChat
-JPanel <|-- PanelChat
-VistaEasyJob <|.. PanelEnviarMensaje
-JPanel <|-- PanelEnviarMensaje
-java.awt.event.ActionListener <|.. CtrConfiguracion
-VistaEasyJob <|.. PanelCCCorreo
-JPanel <|-- PanelCCCorreo
-VistaEasyJob <|.. PanelJModificarHorario
-JPanel <|-- PanelJModificarHorario
-java.awt.event.ActionListener <|.. CtrHFavoritos
-java.awt.event.ActionListener <|.. CtrHelp
-VistaEasyJob <|.. PanelIniciarSesion
-JPanel <|-- PanelIniciarSesion
-java.awt.event.ActionListener <|.. CtrJefe
 VistaEasyJob <|.. PanelCCFoto
 JPanel <|-- PanelCCFoto
+PanelCCFoto +.. PanelCCFoto.ImagePanel
+JPanel <|-- PanelCCFoto.ImagePanel
 @enduml
