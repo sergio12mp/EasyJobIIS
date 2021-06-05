@@ -4,21 +4,18 @@ import java.awt.event.ActionListener;
 
 public class PanelConfiguracion extends JPanel implements VistaEasyJob {
     private String fuente = "Arial";
-    Boolean oscuro = false;
-    JButton CFoto, CContraseña, CCorreo, CTelefono, CIdioma, CAtras;
-    JCheckBox CModo;
+    JButton CFoto, CContraseña, CCorreo, CTelefono, CAtras;
     static String bCFoto = "FOTO";
     static String bCContraseña = "CONTRASEÑA";
     static String bCCorreo = "CORREO";
     static String bCTelefono = "TELEFONO";
-    static String bCIdioma = "IDIOMA";
     static String bCModo = "MODO OSCURO";
     static String bCAtras = "VOLVER A MENU";
 
 
     public PanelConfiguracion() {
 
-        setLayout(new GridLayout(10, 3, 5, 5));
+        setLayout(new GridLayout(8, 3, 5, 5));
 
 
         CFoto = new JButton(bCFoto);
@@ -37,18 +34,10 @@ public class PanelConfiguracion extends JPanel implements VistaEasyJob {
         CTelefono.setFont(new Font(fuente, Font.BOLD, 20));
         CTelefono.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        CIdioma = new JButton(bCIdioma);
-        CIdioma.setFont(new Font(fuente, Font.BOLD, 20));
-        CIdioma.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         CAtras = new JButton(bCAtras);
         CAtras.setFont(new Font(fuente, Font.BOLD, 20));
         CAtras.setAlignmentX(Component.CENTER_ALIGNMENT);
-
-        CModo = new JCheckBox(bCModo);
-        CModo.setFont(new Font(fuente, Font.BOLD, 20));
-        CModo.setAlignmentX(Component.CENTER_ALIGNMENT);
-
 
         add(Box.createVerticalStrut(3));
         add(Box.createVerticalStrut(3));
@@ -71,14 +60,6 @@ public class PanelConfiguracion extends JPanel implements VistaEasyJob {
         add(Box.createVerticalStrut(3));
 
         add(Box.createVerticalStrut(3));
-        add(CIdioma, BorderLayout.NORTH);
-        add(Box.createVerticalStrut(3));
-
-        add(Box.createVerticalStrut(3));
-        add(CModo, BorderLayout.NORTH);
-        add(Box.createVerticalStrut(3));
-
-        add(Box.createVerticalStrut(3));
         add(CAtras, BorderLayout.NORTH);
         add(Box.createVerticalStrut(3));
 
@@ -86,9 +67,6 @@ public class PanelConfiguracion extends JPanel implements VistaEasyJob {
         add(Box.createVerticalStrut(3));
         add(Box.createVerticalStrut(3));
 
-        if(CModo.isSelected()){
-            oscuro=true;
-        }
     }
 
     public void controlador(ActionListener ctrl) {
@@ -97,10 +75,7 @@ public class PanelConfiguracion extends JPanel implements VistaEasyJob {
         CContraseña.addActionListener(ctrl);
         CCorreo.addActionListener(ctrl);
         CTelefono.addActionListener(ctrl);
-        CIdioma.addActionListener(ctrl);
         CAtras.addActionListener(ctrl);
-        CModo.addActionListener(ctrl);
-
     }
 
 

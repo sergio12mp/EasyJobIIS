@@ -26,14 +26,38 @@ public class PanelVistaPrincipal extends JPanel implements VistaEasyJob {
 
     public PanelVistaPrincipal() {
 
+        //setLayout(null);
+        //setLayout(new GridLayout(1, 2, 5, 5));
+        setLayout(new GridLayout(1, 3, 5, 5));
 
-        // setLayout(null);
-        setLayout(new GridLayout(0, 3, 5, 5));
+        JPanel botones = new JPanel();
+        botones.setLayout(new GridLayout(8, 1, 5, 5));
+
+        JPanel foto = new JPanel();
+        foto.setLayout(new BoxLayout(foto, BoxLayout.Y_AXIS));
 
         //Inicializamos las variables
 
         imagenPanel = new ImagePanel();
 
+/*
+        if (conex.tieneFoto(PanelIniciarSesion.identificador)){
+            byte[] QRBytes = conex.getFoto(PanelIniciarSesion.identificador);
+
+            InputStream is = new ByteArrayInputStream(QRBytes);
+            BufferedImage newBi = null;
+            try {
+                newBi = ImageIO.read(is);
+                newBi = new BufferedImage(200, 200, newBi.getType());
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+
+            imagenPanel.setImage(newBi);
+
+        }
+
+ */
 
         if (conex.tieneFoto(PanelIniciarSesion.identificador)){
             byte[] QRBytes = conex.getFoto(PanelIniciarSesion.identificador);
@@ -45,7 +69,6 @@ public class PanelVistaPrincipal extends JPanel implements VistaEasyJob {
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }
-
             imagenPanel.setImage(newBi);
 
         }
@@ -53,6 +76,10 @@ public class PanelVistaPrincipal extends JPanel implements VistaEasyJob {
         Horario = new JButton(bHorario);
         Horario.setFont(new Font(fuente, Font.BOLD, 20));
         Horario.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        JButton prueba = new JButton(bHorario);
+        prueba.setFont(new Font(fuente, Font.BOLD, 20));
+        prueba.setAlignmentX(Component.CENTER_ALIGNMENT);
 
 
         Chat = new JButton(bChat);
@@ -79,40 +106,22 @@ public class PanelVistaPrincipal extends JPanel implements VistaEasyJob {
         CS.setAlignmentX(Component.CENTER_ALIGNMENT);
         CS.setFont(new Font(fuente, Font.BOLD, 20));
 
-
-
-
-
         //AÑADIMOS AL PANEL
 
-        add(Box.createVerticalStrut(3));
-        add(imagenPanel);
+        botones.add(Box.createVerticalStrut(10));
+        botones.add(Horario);
+        botones.add(Chat);
+        botones.add(Fichar);
+        botones.add(Configuracion);
+        botones.add(Help);
+        botones.add(CS);
+        botones.add(Box.createVerticalStrut(10));
 
+        foto.add(imagenPanel);
 
-        add(Box.createVerticalStrut(3));
-        add(Box.createVerticalStrut(3));
-        add(Horario, BorderLayout.NORTH);
-        add(Box.createVerticalStrut(3));
-        add(Box.createVerticalStrut(3));
-
-        add(Chat);
-        add(Box.createVerticalStrut(3));
-        add(Box.createVerticalStrut(3));
-
-        add(Fichar);
-        add(Box.createVerticalStrut(3));
-        add(Box.createVerticalStrut(3));
-
-        add(Configuracion);
-        add(Box.createVerticalStrut(3));
-        add(Box.createVerticalStrut(3));
-
-        add(Help);
-        add(Box.createVerticalStrut(3));
-        add(Box.createVerticalStrut(3));
-
-        add(CS);
-        add(Box.createVerticalStrut(3));
+        add(foto);
+        add(botones);
+        add(Box.createVerticalStrut(10));
     }
 
     public void controlador(ActionListener ctrl) {

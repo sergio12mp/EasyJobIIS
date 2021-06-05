@@ -88,12 +88,6 @@ public class PanelCCFoto extends JPanel implements VistaEasyJob {
 
 
                    }
-
-
-
-
-
-
             }
         });
 
