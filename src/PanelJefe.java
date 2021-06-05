@@ -1,12 +1,20 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class PanelJefe extends JPanel implements VistaEasyJob {
 
     private String fuente = "Arial";
 
     public JButton VerEmpleados, Solicitudes, CerrarS, Conf, ChatJ,HelpJ;
+
+    public ImagePanel imagenPanel;
 
     static String bVerEmpleados = "VER EMPLEADOS";
     static String bSolicitudes = "SOLICITUDES DE HORARIO";
@@ -15,10 +23,35 @@ public class PanelJefe extends JPanel implements VistaEasyJob {
     static String bChatJ = "CHAT \n";
     static String bHelpJ = "HELP";
 
+    ConexionBD conex = new ConexionBaseDatosJDBC();
 
     public PanelJefe() {
 
-        setLayout(new GridLayout(9, 3, 5, 5));
+        setLayout(new GridLayout(1, 3, 5, 5));
+
+        JPanel botones = new JPanel();
+        botones.setLayout(new GridLayout(8, 1, 5, 5));
+
+        JPanel foto = new JPanel();
+        foto.setLayout(new GridLayout(1, 1, 5, 5));
+
+        imagenPanel = new ImagePanel();
+
+
+        if (conex.tieneFoto(PanelIniciarSesion.identificador)){
+            byte[] QRBytes = conex.getFoto(PanelIniciarSesion.identificador);
+
+            InputStream is = new ByteArrayInputStream(QRBytes);
+            BufferedImage newBi = null;
+            try {
+                newBi = ImageIO.read(is);
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+
+            imagenPanel.setImage(newBi);
+
+        }
 
         VerEmpleados = new JButton(bVerEmpleados);
         VerEmpleados.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -44,38 +77,21 @@ public class PanelJefe extends JPanel implements VistaEasyJob {
         ChatJ.setAlignmentX(Component.CENTER_ALIGNMENT);
         ChatJ.setFont(new Font(fuente, Font.BOLD, 20));
 
+        botones.add(Box.createVerticalStrut(3));
+        botones.add(VerEmpleados);
+        botones.add(Solicitudes);
+        botones.add(ChatJ);
+        botones.add(Conf);
+        botones.add(HelpJ);
+        botones.add(CerrarS);
+        botones.add(Box.createVerticalStrut(3));
 
-        add(Box.createVerticalStrut(3));
-        add(Box.createVerticalStrut(3));
-        add(Box.createVerticalStrut(3));
+        foto.add(imagenPanel);
 
-        add(Box.createVerticalStrut(3));
-        add(VerEmpleados);
-        add(Box.createVerticalStrut(3));
+        add(foto);
+        add(botones);
+        add(Box.createVerticalStrut(10));
 
-        add(Box.createVerticalStrut(3));
-        add(Solicitudes);
-        add(Box.createVerticalStrut(3));
-
-        add(Box.createVerticalStrut(3));
-        add(ChatJ);
-        add(Box.createVerticalStrut(3));
-
-        add(Box.createVerticalStrut(3));
-        add(Conf);
-        add(Box.createVerticalStrut(3));
-
-        add(Box.createVerticalStrut(3));
-        add(HelpJ);
-        add(Box.createVerticalStrut(3));
-
-        add(Box.createVerticalStrut(3));
-        add(CerrarS);
-        add(Box.createVerticalStrut(3));
-
-        add(Box.createVerticalStrut(3));
-        add(Box.createVerticalStrut(3));
-        add(Box.createVerticalStrut(3));
 
     }
 
@@ -87,5 +103,38 @@ public class PanelJefe extends JPanel implements VistaEasyJob {
         Conf.addActionListener(ctrl);
         HelpJ.addActionListener(ctrl);
     }
+
+    private static class ImagePanel extends JPanel
+    {
+        private BufferedImage image;
+
+        void setImage(BufferedImage image)
+        {
+            this.image = image;
+            repaint();
+        }
+
+        @Override
+        protected void paintComponent(Graphics g)
+        {
+            super.paintComponent(g);
+            if (image != null)
+            {
+                g.drawImage(image,10,10,100,100,null);
+            }
+        }
+
+    }
+
+    public static byte[] toByteArray(BufferedImage bi, String format)
+            throws IOException {
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ImageIO.write(bi, format, baos);
+        byte[] bytes = baos.toByteArray();
+        return bytes;
+
+    }
+
 
 }
