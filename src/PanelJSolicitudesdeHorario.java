@@ -65,34 +65,13 @@ public class PanelJSolicitudesdeHorario extends JPanel implements VistaEasyJob, 
                     JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun mensaje");
                 } else {
                     try {
-                        int[] semana = new int[7];
-                        String[] parts = seleccionado.split("[(, :)]" + "()" + " ");
-                        int j = 0;
+                        int[] semana = lista.get(index).getSemana();
+                        String dni = lista.get(index).getDni_empleado();
+                        int iden = lista.get(index).getIden();
 
-                        String[] fuera = parts[3].split(" ");
-                        String[] iden = parts[1].split(" ");
-
-                        String dni = fuera[1];
-                        parts[17] = parts[17] + " ";
-                        for (int i = 5; i < 19; i = i + 2) {
-                            if (parts[i].compareTo("Mañana ") == 0) {
-                                semana[j] = 1;
-                            } else if (parts[i].equals("Tarde ")) {
-                                semana[j] = 2;
-                            } else if (parts[i].equals("Libre ")) {
-                                semana[j] = 0;
-                            } else {
-                                semana[j] = 3;
-                            }
-
-                            j++;
-
-                        }
-                        for(int i=0;i<7;i++){
-                            System.out.println(semana[i]);
-                        }
                         conex.cambiarHorario(dni, semana);
-                        conex.eliminarSolicitud(Integer.parseInt(iden[0]));
+                        conex.eliminarSolicitud(iden);
+
                         listModel.remove(index);
                         JOptionPane.showMessageDialog(null, "Solicitud aceptada: Horario del empleado " +dni + " cambiado");
                     } catch (ArrayIndexOutOfBoundsException ex) {

@@ -95,11 +95,15 @@ public class PanelRegistro extends JPanel implements VistaEasyJob{
                     //status.setText("Registrado con exito");
 
                     int[] semana = new int[7];
-                    for(int i=0;i<7;i++){
-                        semana[i] = 0;
+                    for(int i=0;i<5;i++){
+                        semana[i] = 1;
                     }
+                    semana[5] = 0;
+                    semana[6] = 0;
+
                     conex.introducirUsuario(usu);
                     conex.añadirHorario(id,semana);
+
                     JComponent comp = (JComponent) e.getSource();
                     Window win = SwingUtilities.getWindowAncestor(comp);
                     win.dispose();

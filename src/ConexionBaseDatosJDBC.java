@@ -233,8 +233,8 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
 
             int res = ps.executeUpdate();
 
-            if (res > 0) {
-                JOptionPane.showMessageDialog(null, "Solicitud enviada con éxito");
+            if (res < 0) {
+                JOptionPane.showMessageDialog(null, "Error creando el horario por defecto");
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -284,7 +284,9 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
             ps.setString(8,dni);
 
             int res = ps.executeUpdate();
-
+            if(res < 0) {
+                JOptionPane.showMessageDialog(null, "Error cambiando el horario");
+            }
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
