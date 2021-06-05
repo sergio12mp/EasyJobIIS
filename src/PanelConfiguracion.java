@@ -9,7 +9,6 @@ public class PanelConfiguracion extends JPanel implements VistaEasyJob {
     static String bCContraseña = "CONTRASEÑA";
     static String bCCorreo = "CORREO";
     static String bCTelefono = "TELEFONO";
-    static String bCModo = "MODO OSCURO";
     static String bCAtras = "VOLVER A MENU";
 
 

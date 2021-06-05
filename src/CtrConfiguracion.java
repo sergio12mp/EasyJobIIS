@@ -85,7 +85,7 @@ public class CtrConfiguracion implements ActionListener {
             frame.getContentPane().add(panel);
             frame.pack();
 
-            frame.setBounds(450,200,600,400);
+            frame.setBounds(450,200,600,300);
             frame.setVisible(true);
 
         } else if (actComm.compareTo(PanelConfiguracion.bCTelefono) == 0) {
@@ -124,48 +124,10 @@ public class CtrConfiguracion implements ActionListener {
             frame.getContentPane().add(panel);
             frame.pack();
 
-            frame.setBounds(250, 180,1000,500);
+            frame.setBounds(250, 180, 1000, 500);
 
-            frame.setVisible(true);
-
-        }/*else if (actComm.compareTo(PanelConfiguracion.bCIdioma) == 0) {
-
-            JComponent comp = (JComponent) e.getSource();
-            Window win = SwingUtilities.getWindowAncestor(comp);
-            win.dispose();
-
-            JFrame frame = new JFrame("CAMBIAR IDIOMA");
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-            PanelCCIdioma panel = new PanelCCIdioma();
-            CtrCCIdioma ctr = new CtrCCIdioma(panel);
-            panel.controlador(ctr);
-
-            frame.getContentPane().add(panel);
-            frame.pack();
-
-            frame.setSize(600, 400);
-            frame.setVisible(true);
-        }else if (actComm.compareTo(PanelConfiguracion.bCModo) == 0) {
-
-            JComponent comp = (JComponent) e.getSource();
-            Window win = SwingUtilities.getWindowAncestor(comp);
-            win.dispose();
-
-            JFrame frame = new JFrame("MODO");
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-            PanelCCModo panel = new PanelCCModo();
-            CtrCCModo ctr = new CtrCCModo(panel);
-            panel.controlador(ctr);
-
-            frame.getContentPane().add(panel);
-            frame.pack();
-
-            frame.setSize(600, 400);
             frame.setVisible(true);
         }
-        */
     }
 }
 

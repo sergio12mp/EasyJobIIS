@@ -208,9 +208,6 @@ public class ConexionBaseDatosJDBC extends ConexionBD {
 
             int res = ps.executeUpdate();
 
-            if (res > 0) {
-                JOptionPane.showMessageDialog(null, "Solicitud borrada con éxito");
-            }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

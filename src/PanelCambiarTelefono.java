@@ -79,19 +79,35 @@ public class PanelCambiarTelefono extends JPanel implements VistaEasyJob {
         atras = new JButton(bAtras);
         atras.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        add(Box.createVerticalStrut(5));
+        add(Box.createVerticalStrut(10));
         add(tlfnAnt);
+        add(Box.createVerticalStrut(3));
+
+        add(Box.createVerticalStrut(3));
         add(anttlfn);
-        add(Box.createVerticalStrut(2));
+        add(Box.createVerticalStrut(3));
+
+        add(Box.createVerticalStrut(3));
         add(tlfnNuevo);
+        add(Box.createVerticalStrut(3));
+
+        add(Box.createVerticalStrut(3));
         add(nuevotlfn);
-        add(Box.createVerticalStrut(2));
+        add(Box.createVerticalStrut(3));
+
+        add(Box.createVerticalStrut(3));
         add(tlfnConf);
+        add(Box.createVerticalStrut(3));
+
+        add(Box.createVerticalStrut(3));
         add(conftlfn);
-        add(Box.createVerticalStrut(5));
+        add(Box.createVerticalStrut(3));
+
+        add(Box.createVerticalStrut(3));
         add(aceptar);
-        add(Box.createVerticalStrut(2));
+        add(Box.createVerticalStrut(5));
         add(atras);
+        add(Box.createVerticalStrut(3));
     }
 
 

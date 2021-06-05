@@ -46,8 +46,10 @@ public class PanelHorario extends JPanel implements VistaEasyJob {
                 semana2[i+3] = dias[i] + ":       " + "Libre";
             }else if(semana[i] == 1){
                 semana2[i+3] = dias[i] + ":       "+ "Mañana";
-            }else{
+            }else if(semana[i] == 2){
                 semana2[i+3] = dias[i] + ":       "+ "Tarde";
+            }else{
+                semana2[i+3] = dias[i] + ":       "+ "Mañana y Tarde";
             }
         }
 

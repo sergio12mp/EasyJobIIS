@@ -23,7 +23,7 @@ public class CtrJEmpleados implements ActionListener {
             Window win = SwingUtilities.getWindowAncestor(comp);
             win.dispose();
 
-            JFrame frame = new JFrame("PanelJefe");
+            JFrame frame = new JFrame("MENU JEFE");
             frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
             PanelJefe panel = new PanelJefe();

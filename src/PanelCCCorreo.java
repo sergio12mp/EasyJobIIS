@@ -79,19 +79,35 @@ public class PanelCCCorreo extends JPanel implements VistaEasyJob {
         atras = new JButton(bAtras);
         atras.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        add(Box.createVerticalStrut(5));
+        add(Box.createVerticalStrut(10));
         add(correoAnt);
+        add(Box.createVerticalStrut(3));
+
+        add(Box.createVerticalStrut(3));
         add(antCorreo);
-        add(Box.createVerticalStrut(2));
+        add(Box.createVerticalStrut(3));
+
+        add(Box.createVerticalStrut(3));
         add(correoNuevo);
+        add(Box.createVerticalStrut(3));
+
+        add(Box.createVerticalStrut(3));
         add(nuevoCorreo);
-        add(Box.createVerticalStrut(2));
+        add(Box.createVerticalStrut(3));
+
+        add(Box.createVerticalStrut(3));
         add(correoConf);
+        add(Box.createVerticalStrut(3));
+
+        add(Box.createVerticalStrut(3));
         add(confCorreo);
-        add(Box.createVerticalStrut(5));
+        add(Box.createVerticalStrut(3));
+
+        add(Box.createVerticalStrut(3));
         add(aceptar);
-        add(Box.createVerticalStrut(2));
+        add(Box.createVerticalStrut(5));
         add(atras);
+        add(Box.createVerticalStrut(3));
     }
 
 

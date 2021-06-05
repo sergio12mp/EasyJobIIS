@@ -41,6 +41,7 @@ public class PanelJSolicitudesdeHorario extends JPanel implements VistaEasyJob, 
         for (SolicitudHorario s : lista) {
             listModel.addElement(s.toString());
         }
+
         listaSolicitudes = new JList<String>(listModel);
         listaSolicitudes.addListSelectionListener(this);
         subpanelCentralDcho.setViewportView(listaSolicitudes);
@@ -73,7 +74,7 @@ public class PanelJSolicitudesdeHorario extends JPanel implements VistaEasyJob, 
                         conex.eliminarSolicitud(iden);
 
                         listModel.remove(index);
-                        JOptionPane.showMessageDialog(null, "Solicitud aceptada: Horario del empleado " +dni + " cambiado");
+                        JOptionPane.showMessageDialog(null, "Solicitud aceptada: Horario del empleado " +dni + " cambiada");
                     } catch (ArrayIndexOutOfBoundsException ex) {
                         JOptionPane.showMessageDialog(null, "No se ha seleccionado ninguna solicitud");
                     }
@@ -92,13 +93,9 @@ public class PanelJSolicitudesdeHorario extends JPanel implements VistaEasyJob, 
                     JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun mensaje");
                 } else {
                     try {
-                        String[] parts = seleccionado.split(" ");
-                        System.out.println(parts[0].length() + " " + parts[0]);
-                        String c = parts[0].substring(1, parts[0].length() - 1);
-                        System.out.println(c);
-                        int id = Integer.parseInt(c);
+                        int id = lista.get(index).getIden();
                         conex.eliminarSolicitud(id);
-
+                        JOptionPane.showMessageDialog(null, "Solicitud borrada con éxito");
                         listModel.remove(index);
                     } catch (ArrayIndexOutOfBoundsException ex) {
                         JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun mensaje");
@@ -111,7 +108,7 @@ public class PanelJSolicitudesdeHorario extends JPanel implements VistaEasyJob, 
         botones.add(Declinar);
         botones.add(Aceptar);
         botones.add(volverAlMenu);
-        add(subpanelCentralDcho, BorderLayout.NORTH);
+        add(subpanelCentralDcho, BorderLayout.CENTER);
         add(botones, BorderLayout.SOUTH);
 
     }
