@@ -13,7 +13,7 @@ RF02. -El usuario (trabajador o jefe/empresa) debe poder usar los servicios bás
   RF02.01 -El usuario debe poder buscar y solicitar un horario de trabajo.
   //??
   RF02.02 -La empresa debe poder seleccionar y modificar las horas disponibles.
-  //??
+  //Cumplido
   RF02.03 -La empresa debe poder aceptar o rechazar las solicitudes de horarios por un trabajador.
   //
   RF02.04 -Los usuarios deben poder seleccionar varios horarios como favoritos y podrán guardarlos en un apartado de la app.
@@ -51,7 +51,7 @@ RF06. -Los usuarios deben poder ponerse en contacto con nuestro equipo de desarr
 RF07. -Toda alerta de la aplicación debe poder reproducirse en el dispositivo en el que la aplicación esté funcionando.
 
 
-//El chat funciona
+//Cumplido
 RF08. -La aplicación debe tener un chat funcional para facilitar la comunicación interna entre usuarios de la misma.
   //No enviamos multimedia
   RF08.01 -El usuario debe poder enviar archivos multimedia (imágenes, videos, audios) entre los participantes del mismo.
