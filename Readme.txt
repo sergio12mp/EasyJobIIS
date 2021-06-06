@@ -15,7 +15,7 @@ RF02. -El usuario (trabajador o jefe/empresa) debe poder usar los servicios bás
   RF02.02 -La empresa debe poder seleccionar y modificar las horas disponibles.
   //Cumplido
   RF02.03 -La empresa debe poder aceptar o rechazar las solicitudes de horarios por un trabajador.
-  //
+  //No hecho
   RF02.04 -Los usuarios deben poder seleccionar varios horarios como favoritos y podrán guardarlos en un apartado de la app.
   //NO HECHO
   RF 02.05 -Los usuarios podrán activar/desactivar la geolocalización dependiendo de si se encuentran dentro o fuera de la jornada laboral.
@@ -43,7 +43,7 @@ RF05. -El usuario debe poder seleccionar entre diferentes idiomas para poder as�
   RF05.04. -El usuario podrá traducir un texto a otro idioma distinto si así lo solicita.
   RF05.05.- El usuario podrá ver el idioma predeterminado de otros usuarios.
 
-//Los usuarios contactan con los desarrolladores a través de la mensajería escribiendo como destinatario "Equipo de Desarrollo"
+//Los usuarios contactan con los desarrolladores a través del apartado Help, donde pueden contactar por telefono/correo o mensajeria interna
 RF06. -Los usuarios deben poder ponerse en contacto con nuestro equipo de desarrolladores tanto por un correo electrónico como por un pequeño foro donde se podrán ver las FAQS y así poder ayudar a los diferentes usuarios.
 
 
@@ -56,7 +56,7 @@ RF08. -La aplicación debe tener un chat funcional para facilitar la comunicaci�
   //No enviamos multimedia
   RF08.01 -El usuario debe poder enviar archivos multimedia (imágenes, videos, audios) entre los participantes del mismo.
   RF08.02 -El usuario debe poder compartir su ubicación, durante un determinado periodo de tiempo, con el otro participante del chat.
-  //cumplido
+  //Cumplido
   RF08.03 -El usuario debe poder eliminar un mensaje que haya escrito previamente, de tal forma que también sea eliminado para el destinatario.
   //No hay estados de mensaje
   RF08.04 -El usuario debe poder visualizar el estado de su mensaje, que puede estar en cuatro estados, sin enviar, enviado, recibido y leído.
@@ -73,7 +73,7 @@ RF09. -Podrá realizar los pagos desde la propia aplicación.
 RF10. -Gestionar los gastos de empresa realizados por los empleados
 	
   
-//Se hace al final
+//No se ha hecho
 RF11.-Se podrán gestionar las vacaciones.
 	RF11.01 -El usuario podrá solicitar sus vacaciones  
   RF11.02 -La empresa puede aceptar o rechazar las solicitudes de los trabajadores
